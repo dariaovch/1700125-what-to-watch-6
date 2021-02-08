@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Дарья Овчинникова](https://up.htmlacademy.ru/react/6/user/1700125).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Ufocoder](https://htmlacademy.ru/profile/id573445).
 
 ---
 
