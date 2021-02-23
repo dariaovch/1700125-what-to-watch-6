@@ -155,9 +155,9 @@ function Main({title, genre, year}) {
 }
 
 Main.propTypes = {
-  title: PropTypes.string,
-  genre: PropTypes.string,
-  year: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
 };
 
 export default Main;
