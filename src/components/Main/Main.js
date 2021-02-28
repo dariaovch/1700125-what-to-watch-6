@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {moviesArr} from '../../db.js';
 import Card from '../Card/Card.js';
 import Svg from '../Svg/Svg.js';
+import {genresList} from '../../utils/constants.js';
+import Logo from '../Logo/Logo.js';
 
 function Main({title, genre, year}) {
   return (
@@ -18,13 +20,14 @@ function Main({title, genre, year}) {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
+          <Logo />
+          {/* <div className="logo">
             <a className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
             </a>
-          </div>
+          </div> */}
 
           <div className="user-block">
             <div className="user-block__avatar">
@@ -73,33 +76,11 @@ function Main({title, genre, year}) {
             <li className="catalog__genres-item catalog__genres-item--active">
               <a href="#" className="catalog__genres-link">All genres</a>
             </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            {genresList.map((item, i) =>
+              (<li key={i} className="catalog__genres-item">
+                <a href="#" className="catalog__genres-link">{item}</a>
+              </li>)
+            )}
           </ul>
 
           <div className="catalog__movies-list">
@@ -112,13 +93,14 @@ function Main({title, genre, year}) {
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
+          <Logo theme="light" />
+          {/* <div className="logo">
             <a className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
             </a>
-          </div>
+          </div> */}
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
