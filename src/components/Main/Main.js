@@ -21,13 +21,6 @@ function Main({title, genre, year}) {
 
         <header className="page-header movie-card__head">
           <Logo />
-          {/* <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div> */}
 
           <div className="user-block">
             <div className="user-block__avatar">
@@ -73,11 +66,8 @@ function Main({title, genre, year}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
             {genresList.map((item, i) =>
-              (<li key={i} className="catalog__genres-item">
+              (<li key={i} className={i === 0 ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`} >
                 <a href="#" className="catalog__genres-link">{item}</a>
               </li>)
             )}
@@ -94,13 +84,6 @@ function Main({title, genre, year}) {
 
         <footer className="page-footer">
           <Logo theme="light" />
-          {/* <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div> */}
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
