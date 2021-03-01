@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import {moviesArr} from '../../db.js';
 import Card from '../Card/Card.js';
 import Svg from '../Svg/Svg.js';
@@ -67,7 +68,7 @@ function Main({title, genre, year}) {
 
           <ul className="catalog__genres-list">
             {genresList.map((item, i) =>
-              (<li key={i} className={i === 0 ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`} >
+              (<li key={i} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': i === 0})} >
                 <a href="#" className="catalog__genres-link">{item}</a>
               </li>)
             )}

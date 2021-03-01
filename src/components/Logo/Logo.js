@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 function Logo({theme}) {
 
-  const logoClassName = (`${theme === `light` ? `logo__link logo__link--light` : `logo__link`}`);
+  const logoClassName = cn(`logo__link`, {'logo__link--light': theme === `light`});
 
   return (
     <div className="logo">
