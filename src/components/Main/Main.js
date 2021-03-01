@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import Controllers from 'src/images/controllers.svg';
 import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
-import Svg from 'src/components/Svg/Svg.js';
 import {genres} from 'src/utils/constants.js';
 import Logo from 'src/components/Logo/Logo.js';
 
 function Main({title, genre, year}) {
   return (
     <>
-
-      <Svg />
+      <div className="visually-hidden">
+        {/* <!-- inject:svg --> */}
+        <img src={Controllers} />
+        {/* <!-- endinject --> */}
+      </div>
 
       <section className="movie-card">
         <div className="movie-card__bg">
