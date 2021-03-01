@@ -6,6 +6,7 @@ import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
 import {genres} from 'src/utils/constants.js';
 import Logo from 'src/components/Logo/Logo.js';
+import Footer from 'src/components/Footer/Footer.js';
 
 function Main({title, genre, year}) {
   return (
@@ -86,13 +87,7 @@ function Main({title, genre, year}) {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <Logo theme="light" />
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );
