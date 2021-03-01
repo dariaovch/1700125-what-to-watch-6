@@ -16,7 +16,12 @@ function Card({item}) {
 }
 
 Card.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })
 };
 
 export default Card;
