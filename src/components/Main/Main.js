@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Controllers from 'src/images/controllers.svg';
+import Header from 'src/components/Header/Header.js';
 import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
 import {genres} from 'src/utils/constants.js';
-import Logo from 'src/components/Logo/Logo.js';
 import Footer from 'src/components/Footer/Footer.js';
 
 function Main({title, genre, year}) {
@@ -24,15 +24,7 @@ function Main({title, genre, year}) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <Logo />
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header theme="movie" hasAvatar={true} />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

@@ -1,6 +1,6 @@
 import React from 'react';
 import Controllers from 'src/images/controllers.svg';
-import Logo from 'src/components/Logo/Logo.js';
+import Header from 'src/components/Header/Header.js';
 import Footer from 'src/components/Footer/Footer.js';
 
 function SignIn() {
@@ -13,11 +13,7 @@ function SignIn() {
       </div>
 
       <div className="user-page">
-        <header className="page-header user-page__head">
-          <Logo />
-
-          <h1 className="page-title user-page__title">Sign in</h1>
-        </header>
+        <Header theme="user" hasAvatar={false} />
 
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form">
