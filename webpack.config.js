@@ -19,11 +19,25 @@ module.exports = {
             use: {
             loader: 'babel-loader',
             },
+          },
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: 'svg-url-loader',
+                options: {
+                  limit: 10000,
+                },
+              },
+            ],
         }
         ],
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+          src: path.resolve(__dirname, 'src'),
+        }
     },
     devtool: 'source-map',
 };
