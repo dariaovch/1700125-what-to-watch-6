@@ -1,4 +1,4 @@
-export const moviesArr = [
+export const movies = [
   {
     id: `01`,
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,

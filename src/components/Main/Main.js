@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import {moviesArr} from '../../db.js';
-import Card from '../Card/Card.js';
-import Svg from '../Svg/Svg.js';
-import {genresList} from '../../utils/constants.js';
-import Logo from '../Logo/Logo.js';
+import {movies} from 'src/db.js';
+import Card from 'src/components/Card/Card.js';
+import Svg from 'src/components/Svg/Svg.js';
+import {genres} from 'src/utils/constants.js';
+import Logo from 'src/components/Logo/Logo.js';
 
 function Main({title, genre, year}) {
   return (
@@ -67,7 +67,7 @@ function Main({title, genre, year}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            {genresList.map((item, i) =>
+            {genres.map((item, i) =>
               (<li key={i} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': i === 0})} >
                 <a href="#" className="catalog__genres-link">{item}</a>
               </li>)
@@ -75,7 +75,7 @@ function Main({title, genre, year}) {
           </ul>
 
           <div className="catalog__movies-list">
-            {moviesArr.map((item) => <Card item={item} key={item.id} />)}
+            {movies.map((item) => <Card item={item} key={item.id} />)}
           </div>
 
           <div className="catalog__more">

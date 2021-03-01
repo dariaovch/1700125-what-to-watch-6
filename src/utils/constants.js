@@ -1,4 +1,4 @@
-export const genresList = [
+export const genres = [
   `All genres`,
   `Crime`,
   `Documentary`,
