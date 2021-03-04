@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Controllers from 'src/images/controllers.svg';
 import Header from 'src/components/Header/Header.js';
-import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Film({title, genre, year}) {
+function Film({movies}) {
   return (
     <>
       <div className="visually-hidden">
@@ -18,7 +17,7 @@ function Film({title, genre, year}) {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={movies[0].image} alt={movies[0].alt} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -27,10 +26,10 @@ function Film({title, genre, year}) {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{movies[0].title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__genre">{movies[0].genre}</span>
+                <span className="movie-card__year">{movies[0].year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -55,7 +54,7 @@ function Film({title, genre, year}) {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -74,21 +73,21 @@ function Film({title, genre, year}) {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{movies[0].ratingScore}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
+                  <span className="movie-rating__level">{movies[0].ratingLevel}</span>
+                  <span className="movie-rating__count">{movies[0].ratingCount}</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
+                <p>{movies[0].descriptionShort}</p>
 
-                <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+                <p>{movies[0].descriptionFull}</p>
 
-                <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
+                <p className="movie-card__director"><strong>Director: {movies[0].director}</strong></p>
 
-                <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {movies[0].starring}</strong></p>
               </div>
             </div>
           </div>
@@ -100,7 +99,7 @@ function Film({title, genre, year}) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__movies-list">
-            {movies.slice(0, 4).map((item) => <Card item={item} key={item.id} />)}
+            {movies.slice(1, 5).map((item) => <Card item={item} key={item.id} />)}
           </div>
         </section>
 
@@ -111,9 +110,22 @@ function Film({title, genre, year}) {
 }
 
 Film.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
+  }))
 };
 
 export default Film;

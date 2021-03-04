@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Controllers from 'src/images/controllers.svg';
 import Header from 'src/components/Header/Header.js';
-import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Main({title, genre, year, genres}) {
+function Main({title, genre, year, genres, movies}) {
   return (
     <>
       <div className="visually-hidden">
@@ -18,7 +17,7 @@ function Main({title, genre, year, genres}) {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={movies[0].image} alt={movies[0].alt} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +27,7 @@ function Main({title, genre, year, genres}) {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -89,6 +88,22 @@ Main.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
+  })),
 };
 
 export default Main;

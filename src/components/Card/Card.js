@@ -21,6 +21,16 @@ Card.propTypes = {
     image: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
   })
 };
 
