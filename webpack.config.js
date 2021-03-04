@@ -10,6 +10,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'public'),
         open: false,
         port: 1337,
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -20,6 +21,7 @@ module.exports = {
             loader: 'babel-loader',
             },
           },
+          { test: /\.css$/, use: 'css-loader' },
           {
             test: /\.svg$/,
             use: [

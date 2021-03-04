@@ -1,49 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Controllers from 'src/images/controllers.svg';
-import {movies} from 'src/db.js';
+import controllersImage from 'src/images/controllersImage.svg';
+import Header from 'src/components/Header/Header.js';
 import Card from 'src/components/Card/Card.js';
-import {genres} from 'src/utils/constants.js';
-import Logo from 'src/components/Logo/Logo.js';
+import Footer from 'src/components/Footer/Footer.js';
 
-function Main({title, genre, year}) {
+function Main({genres, movies}) {
   return (
     <>
       <div className="visually-hidden">
         {/* <!-- inject:svg --> */}
-        <img src={Controllers} />
+        <img src={controllersImage} />
         {/* <!-- endinject --> */}
       </div>
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={movies[0].image} alt={movies[0].alt} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <Logo />
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header theme="movie" hasAvatar={true} />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{movies[0].title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__genre">{movies[0].genre}</span>
+                <span className="movie-card__year">{movies[0].year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -86,22 +77,30 @@ function Main({title, genre, year}) {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <Logo theme="light" />
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );
 }
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
+  })),
 };
 
 export default Main;

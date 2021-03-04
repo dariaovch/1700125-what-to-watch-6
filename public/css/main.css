@@ -1397,3 +1397,20 @@ main {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
+
+.not-found {
+  height: 100vh;
+  color: #DFCF77;
+  background-image: linear-gradient(-180deg, #180202 0, #000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__link {
+  color: #DFCF77;
+  font-size: 24px;
+  font-weight: 700;
+}
+
