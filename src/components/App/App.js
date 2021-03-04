@@ -5,7 +5,7 @@ import {movies} from 'src/db.js';
 import Main from 'src/components/Main/Main.js';
 import SignIn from 'src/components/SignIn/SignIn';
 import MyList from 'src/components/MyList/MyList';
-import Film from 'src/components/Film/Film';
+import Movie from 'src/components/Movie/Movie';
 import AddReview from 'src/components/AddReview/AddReview';
 import Player from 'src/components/Player/Player';
 import NotFound from 'src/components/NotFound/NotFound';
@@ -24,7 +24,7 @@ function App() {
           <MyList />
         </Route>
         <Route exact path="/films/:id">
-          <Film movies={movies} />
+          <Movie movies={movies} />
         </Route>
         <Route exact path="/films/:id/review">
           <AddReview stars={stars} />
