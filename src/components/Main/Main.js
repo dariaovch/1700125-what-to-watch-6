@@ -6,7 +6,7 @@ import Header from 'src/components/Header/Header.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Main({title, genre, year, genres, movies}) {
+function Main({genres, movies}) {
   return (
     <>
       <div className="visually-hidden">
@@ -31,10 +31,10 @@ function Main({title, genre, year, genres, movies}) {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{movies[0].title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__genre">{movies[0].genre}</span>
+                <span className="movie-card__year">{movies[0].year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -84,9 +84,6 @@ function Main({title, genre, year, genres, movies}) {
 }
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,

@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main title={movies[0].title} genre={movies[0].genre} year={movies[0].year} genres={genres} movies={movies} />
+          <Main genres={genres} movies={movies} />
         </Route>
         <Route exact path="/login">
           <SignIn />
