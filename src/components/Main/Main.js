@@ -5,10 +5,9 @@ import Controllers from 'src/images/controllers.svg';
 import Header from 'src/components/Header/Header.js';
 import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
-import {genres} from 'src/utils/constants.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Main({title, genre, year}) {
+function Main({title, genre, year, genres}) {
   return (
     <>
       <div className="visually-hidden">
@@ -89,6 +88,7 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
 };
 
 export default Main;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {genres, stars} from 'src/utils/constants.js';
 import Main from 'src/components/Main/Main.js';
 import SignIn from 'src/components/SignIn/SignIn';
 import MyList from 'src/components/MyList/MyList';
@@ -13,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main title="The Grand Budapest Hotel" genre="Drama" year="2014" />
+          <Main title="The Grand Budapest Hotel" genre="Drama" year="2014" genres={genres} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -22,10 +23,10 @@ function App() {
           <MyList />
         </Route>
         <Route exact path="/films/:id">
-          <Film />
+          <Film title="The Grand Budapest Hotel" genre="Drama" year="2014" />
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview />
+          <AddReview stars={stars} />
         </Route>
         <Route exact path="/player/:id">
           <Player />

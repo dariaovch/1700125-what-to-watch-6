@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Controllers from 'src/images/controllers.svg';
 import Header from 'src/components/Header/Header.js';
 import {movies} from 'src/db.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Film() {
+function Film({title, genre, year}) {
   return (
     <>
       <div className="visually-hidden">
@@ -26,10 +27,10 @@ function Film() {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -108,5 +109,11 @@ function Film() {
     </>
   );
 }
+
+Film.propTypes = {
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+};
 
 export default Film;

@@ -120,3 +120,4 @@ export const movies = [
     title: `Midnight Special`,
   },
 ];
+
