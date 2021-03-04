@@ -1,12 +1,12 @@
 import React from 'react';
-import Controllers from 'src/images/controllers.svg';
+import controllersImage from 'src/images/controllersImage.svg';
 
 function Player() {
   return (
     <>
       <div className="visually-hidden">
         {/* <!-- inject:svg --> */}
-        <img src={Controllers} />
+        <img src={controllersImage} />
         {/* <!-- endinject --> */}
       </div>
 

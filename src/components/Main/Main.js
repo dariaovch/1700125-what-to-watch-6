@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Controllers from 'src/images/controllers.svg';
+import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Header/Header.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
@@ -11,7 +11,7 @@ function Main({title, genre, year, genres, movies}) {
     <>
       <div className="visually-hidden">
         {/* <!-- inject:svg --> */}
-        <img src={Controllers} />
+        <img src={controllersImage} />
         {/* <!-- endinject --> */}
       </div>
 

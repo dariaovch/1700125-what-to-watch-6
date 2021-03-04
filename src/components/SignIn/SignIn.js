@@ -1,5 +1,5 @@
 import React from 'react';
-import Controllers from 'src/images/controllers.svg';
+import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Header/Header.js';
 import Footer from 'src/components/Footer/Footer.js';
 
@@ -8,7 +8,7 @@ function SignIn() {
     <>
       <div className="visually-hidden">
         {/* <!-- inject:svg --> */}
-        <img src={Controllers} />
+        <img src={controllersImage} />
         {/* <!-- endinject --> */}
       </div>
 
