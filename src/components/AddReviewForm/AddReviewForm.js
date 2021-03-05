@@ -21,6 +21,7 @@ function AddReviewForm({stars}) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
+    // eslint-disable-next-line no-console
     console.log(values);
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import controllersImage from 'src/images/controllersImage.svg';
@@ -7,6 +8,12 @@ import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
 function Main({genres, movies}) {
+  const history = useHistory();
+
+  function handlePosterClick() {
+    history.push(`/films/:id`);
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -27,7 +34,7 @@ function Main({genres, movies}) {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" />
+              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" onClick={handlePosterClick} />
             </div>
 
             <div className="movie-card__desc">

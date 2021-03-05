@@ -1,8 +1,15 @@
 import React from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from 'src/components/Header/Header.js';
 
 function MovieCard({movie}) {
+  const history = useHistory();
+
+  // function handleReviewClick() {
+  //   history.push(`/films/:id/review`);
+  // }
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -35,7 +42,7 @@ function MovieCard({movie}) {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
             </div>
           </div>
         </div>

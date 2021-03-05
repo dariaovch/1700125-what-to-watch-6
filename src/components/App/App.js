@@ -30,7 +30,7 @@ function App() {
           <AddReview stars={stars} />
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player movie={movies[0]} />
         </Route>
         <Route>
           <NotFound />

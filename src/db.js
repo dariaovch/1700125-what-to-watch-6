@@ -14,6 +14,7 @@ export const movies = [
     starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
     descriptionShort: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.`,
     descriptionFull: `Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
   },
   {
     id: `01`,
@@ -26,12 +27,14 @@ export const movies = [
     image: `img/bohemian-rhapsody.jpg`,
     alt: `Bohemian Rhapsody`,
     title: `Bohemian Rhapsody`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/1/1e/Singin%27_in_the_Rain_trailer_%281952%29.webm`,
   },
   {
     id: `03`,
     image: `img/macbeth.jpg`,
     alt: `Macbeth`,
     title: `Macbeth`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/a/a8/ROMAN_HOLIDAY_%E2%80%93_Trailer_1953.webm`,
   },
   {
     id: `04`,

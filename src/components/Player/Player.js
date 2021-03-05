@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import controllersImage from 'src/images/controllersImage.svg';
 
-function Player() {
+function Player({movie}) {
   return (
     <>
       <div className="visually-hidden">
@@ -11,7 +12,7 @@ function Player() {
       </div>
 
       <div className="player">
-        <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+        <video src={movie.videoLink} className="player__video" poster={movie.poster}></video>
 
         <button type="button" className="player__exit">Exit</button>
 
@@ -45,5 +46,25 @@ function Player() {
     </>
   );
 }
+
+Player.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
+    videoLink: PropTypes.string,
+  })
+};
 
 export default Player;
