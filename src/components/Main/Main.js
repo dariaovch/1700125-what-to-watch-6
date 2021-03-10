@@ -7,7 +7,7 @@ import Header from 'src/components/Header/Header.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Main({genres, movies}) {
+function Main({genres, movies, handleCardClick}) {
   const history = useHistory();
 
   function handlePosterClick() {
@@ -76,7 +76,7 @@ function Main({genres, movies}) {
           </ul>
 
           <div className="catalog__movies-list">
-            {movies.map((item) => <Card item={item} key={item.id} />)}
+            {movies.map((item) => <Card item={item} key={item.id} handleClick={handleCardClick} />)}
           </div>
 
           <div className="catalog__more">
@@ -107,6 +107,7 @@ Main.propTypes = {
     starring: PropTypes.string,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
+    videoLink: PropTypes.string,
   })),
 };
 

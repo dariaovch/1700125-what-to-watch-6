@@ -11,11 +11,34 @@ import Player from 'src/components/Player/Player';
 import NotFound from 'src/components/NotFound/NotFound';
 
 function App() {
+
+  const [movie, setMovie] = React.useState({
+    id: ``,
+    image: ``,
+    alt: ``,
+    title: ``,
+    genre: ``,
+    year: ``,
+    poster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: ``,
+    director: ``,
+    starring: ``,
+    descriptionShort: ``,
+    descriptionFull: ``,
+    videoLink: ``,
+  });
+
+  function handleMovieClick(item) {
+    setMovie(item);
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main genres={genres} movies={movies} />
+          <Main genres={genres} movies={movies} handleCardClick={handleMovieClick} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -24,7 +47,7 @@ function App() {
           <MyList />
         </Route>
         <Route exact path="/films/:id">
-          <Movie movies={movies} />
+          <Movie movies={movies} movie={movie} />
         </Route>
         <Route exact path="/films/:id/review">
           <AddReview stars={stars} />

@@ -5,7 +5,7 @@ import MovieCard from 'src/components/MovieCard/MovieCard.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Movie({movies}) {
+function Movie({movies, movie}) {
   return (
     <>
       <div className="visually-hidden">
@@ -14,7 +14,7 @@ function Movie({movies}) {
         {/* <!-- endinject --> */}
       </div>
 
-      <MovieCard movie={movies[0]} />
+      <MovieCard movie={movie} />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
@@ -47,6 +47,7 @@ Movie.propTypes = {
     starring: PropTypes.string,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
+    videoLink: PropTypes.string,
   }))
 };
 
