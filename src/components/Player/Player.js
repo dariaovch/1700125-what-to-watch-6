@@ -24,6 +24,8 @@ function Player({movies}) {
   });
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [isLoaded, setIsLoaded] = React.useState(false);
   const videoRef = React.useRef();
 
   const {id} = useParams();
@@ -42,13 +44,19 @@ function Player({movies}) {
     history.push(`/films/${currentMovie.id}`);
   }
 
-  function handleVideoData() {
+  const handleVideoData = () => {
     setDuration(videoRef.current.duration);
-  }
+    setCurrentTime(videoRef.current.currentTime);
+    setIsLoaded(true);
+  };
 
-  function formatDuration() {
-    let minutes = Math.floor(duration/60);
-    let seconds = Math.floor(duration % 60);
+  const handleTimeUpdate = () => {
+    setCurrentTime(videoRef.current.currentTime);
+  };
+
+  function formatDuration(time) {
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60);
     if (seconds < 10) {
       seconds = `0` + seconds;
     }
@@ -65,8 +73,6 @@ function Player({movies}) {
     }
   }
 
-  console.log(duration)
-
   return (
     <>
       <div className="visually-hidden">
@@ -76,7 +82,15 @@ function Player({movies}) {
       </div>
 
       <div className="player">
-        <video ref={videoRef} src={currentMovie.videoLink} type="video/webm" className="player__video" poster={currentMovie.bgImage} onLoadedMetadata={handleVideoData}></video>
+        <video
+          ref={videoRef}
+          src={currentMovie.videoLink}
+          type="video/webm"
+          className="player__video"
+          poster={currentMovie.bgImage}
+          onLoadedMetadata={handleVideoData}
+          onTimeUpdate={handleTimeUpdate}
+        ></video>
 
         <button type="button" className="player__exit" onClick={handleExit}>Exit</button>
 
@@ -86,7 +100,7 @@ function Player({movies}) {
               <progress className="player__progress" value="30" max="100"></progress>
               <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{formatDuration(duration)}</div>
+            <div className="player__time-value">{formatDuration(duration - currentTime)}</div>
           </div>
 
           <div className="player__controls-row">
@@ -105,7 +119,7 @@ function Player({movies}) {
                 <span>Pause</span>
               </>}
             </button>
-            <div className="player__name">Transpotting</div>
+            <div className="player__name">{isLoaded ? `${currentMovie.title}` : `Loading...`}</div>
 
             <button type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
