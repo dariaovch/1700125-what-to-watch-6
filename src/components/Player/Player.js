@@ -26,6 +26,7 @@ function Player({movies}) {
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [isLoaded, setIsLoaded] = React.useState(false);
+  // const [fullScreen, setFullScreen] = React.useState(false);
   const videoRef = React.useRef();
 
   const {id} = useParams();
@@ -73,6 +74,60 @@ function Player({movies}) {
     }
   }
 
+  function toggleFullScreen() {
+    // setFullScreen(!fullScreen);
+    // if (!fullScreen) {
+    videoRef.current.requestFullscreen();
+    // } else {
+    //   videoRef.current.exitFullscreen();
+    // }
+  }
+
+  // Логика прогрессбара
+
+  const porgressbarRef = React.useRef();
+  const [clickedTime, setClickedTime] = React.useState();
+
+  const progressbarValue = (currentTime / duration) * 100;
+
+  const getClickedValue = (evt) => {
+    const progressbar = porgressbarRef.current;
+    const progressbarWidth = progressbar.clientWidth;
+    const progressbarStart = progressbar.getBoundingClientRect().left;
+    const clickedPosition = evt.pageX;
+    const clickedValue = clickedPosition - progressbarStart;
+    const timePerPixel = duration / progressbarWidth;
+
+    return clickedValue * timePerPixel;
+  };
+
+  React.useEffect(() => {
+    if (clickedTime && clickedTime !== currentTime) {
+      videoRef.current.currentTime = clickedTime;
+      setClickedTime(null);
+      // eslint-disable-next-line no-console
+      console.log(clickedTime);
+    }
+  }, [clickedTime]);
+
+  function onProgressUpdate(time) {
+    setClickedTime(time);
+  }
+
+  const handleTogglerDrag = (evt) => {
+    onProgressUpdate(getClickedValue(evt));
+
+    const updateTimeOnMouseMove = (evtMove) => {
+      onProgressUpdate(getClickedValue(evtMove));
+    };
+
+    document.addEventListener(`mousemove`, updateTimeOnMouseMove);
+    document.addEventListener(`mouseup`, function handleMouseUp() {
+      document.removeEventListener(`mousemove`, updateTimeOnMouseMove);
+      document.removeEventListener(`mouseup`, handleMouseUp);
+    });
+  };
+
   return (
     <>
       <div className="visually-hidden">
@@ -96,9 +151,9 @@ function Player({movies}) {
 
         <div className="player__controls">
           <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+            <div className="player__time" >
+              <progress ref={porgressbarRef} className="player__progress" value={progressbarValue} max="100"></progress>
+              <div onMouseDown={handleTogglerDrag} className="player__toggler" style={{left: `${progressbarValue}%`}}>Toggler</div>
             </div>
             <div className="player__time-value">{formatDuration(duration - currentTime)}</div>
           </div>
@@ -121,7 +176,7 @@ function Player({movies}) {
             </button>
             <div className="player__name">{isLoaded ? `${currentMovie.title}` : `Loading...`}</div>
 
-            <button type="button" className="player__full-screen">
+            <button type="button" className="player__full-screen" onClick={toggleFullScreen}>
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>
