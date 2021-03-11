@@ -23,6 +23,7 @@ function Player({movies}) {
     videoLink: ``,
   });
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [duration, setDuration] = React.useState(0);
   const videoRef = React.useRef();
 
   const {id} = useParams();
@@ -41,6 +42,20 @@ function Player({movies}) {
     history.push(`/films/${currentMovie.id}`);
   }
 
+  function handleVideoData() {
+    setDuration(videoRef.current.duration);
+  }
+
+  function formatDuration() {
+    let minutes = Math.floor(duration/60);
+    let seconds = Math.floor(duration % 60);
+    if (seconds < 10) {
+      seconds = `0` + seconds;
+    }
+
+    return `${minutes}:${seconds}`;
+  }
+
   function handlePlayClick() {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
@@ -49,6 +64,8 @@ function Player({movies}) {
       videoRef.current.pause();
     }
   }
+
+  console.log(duration)
 
   return (
     <>
@@ -59,7 +76,7 @@ function Player({movies}) {
       </div>
 
       <div className="player">
-        <video ref={videoRef} src={currentMovie.videoLink} type="video/webm" className="player__video" poster={currentMovie.bgImage}></video>
+        <video ref={videoRef} src={currentMovie.videoLink} type="video/webm" className="player__video" poster={currentMovie.bgImage} onLoadedMetadata={handleVideoData}></video>
 
         <button type="button" className="player__exit" onClick={handleExit}>Exit</button>
 
@@ -69,7 +86,7 @@ function Player({movies}) {
               <progress className="player__progress" value="30" max="100"></progress>
               <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">1:30:29</div>
+            <div className="player__time-value">{formatDuration(duration)}</div>
           </div>
 
           <div className="player__controls-row">
