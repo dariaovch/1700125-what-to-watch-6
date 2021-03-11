@@ -1,11 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import MovieCard from 'src/components/MovieCard/MovieCard.js';
 import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
 
-function Movie({movies, movie}) {
+function Movie({movies}) {
+
+  const [currentMovie, setCurrentMovie] = React.useState({
+    id: ``,
+    image: ``,
+    alt: ``,
+    title: ``,
+    genre: ``,
+    year: ``,
+    poster: ``,
+    ratingScore: ``,
+    ratingLevel: ``,
+    ratingCount: ``,
+    director: ``,
+    starring: ``,
+    descriptionShort: ``,
+    descriptionFull: ``,
+    videoLink: ``,
+  });
+
+  const {id} = useParams();
+
+  const findMovie = () => {
+    return movies.find((item) => item.id === id);
+  };
+
+  React.useEffect(() => {
+    setCurrentMovie(findMovie);
+  }, []);
+
+  // console.log(currentMovie);
+
+
   return (
     <>
       <div className="visually-hidden">
@@ -14,7 +47,7 @@ function Movie({movies, movie}) {
         {/* <!-- endinject --> */}
       </div>
 
-      <MovieCard movie={movie} />
+      <MovieCard movie={currentMovie} />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
@@ -40,6 +73,7 @@ Movie.propTypes = {
     genre: PropTypes.string,
     year: PropTypes.string,
     poster: PropTypes.string,
+    bgImage: PropTypes.string,
     ratingScore: PropTypes.string,
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,

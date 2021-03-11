@@ -1,17 +1,25 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Header/Header.js';
-import Card from 'src/components/Card/Card.js';
 import Footer from 'src/components/Footer/Footer.js';
+import MoviesList from 'src/components/MoviesList/MoviesList.js';
 
-function Main({genres, movies, handleCardClick}) {
+function Main({genres, movies}) {
   const history = useHistory();
 
   function handlePosterClick() {
-    history.push(`/films/:id`);
+    history.push(`/films/${movies[0].id}`);
+  }
+
+  function handlePlayClick() {
+    history.push(`/player/${movies[0].id}`);
+  }
+
+  function handleMyListClick() {
+    history.push(`/mylist`);
   }
 
   return (
@@ -45,13 +53,13 @@ function Main({genres, movies, handleCardClick}) {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use href="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={handleMyListClick}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use href="#add"></use>
                   </svg>
@@ -75,9 +83,7 @@ function Main({genres, movies, handleCardClick}) {
             )}
           </ul>
 
-          <div className="catalog__movies-list">
-            {movies.map((item) => <Card item={item} key={item.id} handleClick={handleCardClick} />)}
-          </div>
+          <MoviesList movies={movies} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

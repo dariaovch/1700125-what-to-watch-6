@@ -1,26 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link, useHistory} from 'react-router-dom';
-import Movie from 'src/components/Movie/Movie';
 
-function Card({item, handleClick}) {
+function Card({item, onCardHover, onCardLeave}) {
 
   const history = useHistory();
 
   function handleCardClick() {
-    handleClick(item);
     history.push(`/films/${item.id}`);
+  }
+
+  function handleCardHover() {
+    onCardHover(item);
   }
 
 
   return (
     <>
-      <article className="small-movie-card catalog__movies-card" onClick={handleCardClick}>
+      <article className="small-movie-card catalog__movies-card" onClick={handleCardClick} onMouseEnter={handleCardHover} onMouseLeave={onCardLeave}>
         <div className="small-movie-card__image">
           <img src={item.image} alt={item.alt} width="280" height="175" />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{item.title}</a>
+          <Link className="small-movie-card__link" to={`/films/${item.id}`}>{item.title}</Link>
         </h3>
       </article>
     </>
@@ -44,7 +46,9 @@ Card.propTypes = {
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
-  })
+  }),
+  onCardHover: PropTypes.func,
+  onCardLeave: PropTypes.func,
 };
 
 export default Card;
