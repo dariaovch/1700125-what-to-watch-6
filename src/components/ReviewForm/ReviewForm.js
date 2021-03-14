@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Stars from 'src/components/Stars/Stars.js';
+import Stars from './Stars/Stars';
 
-function AddReviewForm({stars}) {
+function ReviewForm({stars, onSubmit}) {
   const [values, setValues] = React.useState({
     rating: ``,
     reviewText: ``,
@@ -19,7 +19,7 @@ function AddReviewForm({stars}) {
   }
 
   function handleSubmit(evt) {
-    evt.preventDefault();
+    onSubmit(evt);
 
     // eslint-disable-next-line no-console
     console.log(values);
@@ -48,11 +48,12 @@ function AddReviewForm({stars}) {
   );
 }
 
-AddReviewForm.propTypes = {
+ReviewForm.propTypes = {
   stars: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
   })),
+  onSubmit: PropTypes.func,
 };
 
-export default AddReviewForm;
+export default ReviewForm;

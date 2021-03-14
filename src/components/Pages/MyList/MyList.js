@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import controllersImage from 'src/images/controllersImage.svg';
-import Header from 'src/components/Header/Header.js';
-// import {movies} from 'src/db.js';
-// import Card from 'src/components/Card/Card.js';
-import Footer from 'src/components/Footer/Footer.js';
-import MoviesList from '../MoviesList/MoviesList';
+import Header from 'src/components/Layout/Header/Header';
+import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
+import Footer from 'src/components/Layout/Footer/Footer';
 
-function MyList({movies, handleCardClick}) {
+function MyList({movies}) {
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <div className="user-page">
@@ -21,8 +17,7 @@ function MyList({movies, handleCardClick}) {
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <MoviesList movies={movies} handleClick={handleCardClick} />
+          <MoviesList movies={movies} />
         </section>
 
         <Footer />
@@ -49,8 +44,7 @@ MyList.propTypes = {
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
-  })),
-  handleCardClick: PropTypes.func,
+  }))
 };
 
 export default MyList;

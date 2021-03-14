@@ -2,44 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
-import Header from 'src/components/Header/Header.js';
-import AddReviewForm from 'src/components/AddReviewForm/AddReviewForm.js';
+import Header from 'src/components/Layout/Header/Header';
+import ReviewForm from 'src/components/ReviewForm/ReviewForm';
 
 function AddReview({movies, stars}) {
-  const [currentMovie, setCurrentMovie] = React.useState({
-    id: ``,
-    image: ``,
-    alt: ``,
-    title: ``,
-    genre: ``,
-    year: ``,
-    poster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: ``,
-    director: ``,
-    starring: ``,
-    descriptionShort: ``,
-    descriptionFull: ``,
-    videoLink: ``,
-  });
-
   const {id} = useParams();
 
-  const findMovie = () => {
-    return movies.find((item) => item.id === id);
-  };
+  const currentMovie = movies.find((item) => item.id === id);
 
-  React.useEffect(() => {
-    setCurrentMovie(findMovie);
-  }, []);
+  function handleFormSubmit(evt) {
+    evt.preventDefault();
+  }
 
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <section className="movie-card movie-card--full">
@@ -58,7 +36,7 @@ function AddReview({movies, stars}) {
         </div>
 
         <div className="add-review">
-          <AddReviewForm stars={stars} />
+          <ReviewForm stars={stars} onSubmit={handleFormSubmit} />
         </div>
 
       </section>

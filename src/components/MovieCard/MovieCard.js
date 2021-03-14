@@ -1,16 +1,16 @@
 import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from 'src/components/Header/Header.js';
+import Header from 'src/components/Layout/Header/Header.js';
 
 function MovieCard({movie}) {
   const history = useHistory();
 
-  function handlePlayClick() {
+  function handlePlayClick() { // button
     history.push(`/player/${movie.id}`);
   }
 
-  function handleMyListClick() {
+  function handleMyListClick() { // button
     history.push(`/mylist`);
   }
 

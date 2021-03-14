@@ -1,18 +1,16 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {genres, stars} from 'src/utils/constants.js';
-// import {movies} from 'src/db.js';
-import Main from 'src/components/Main/Main.js';
-import SignIn from 'src/components/SignIn/SignIn';
-import MyList from 'src/components/MyList/MyList';
-import Movie from 'src/components/Movie/Movie';
-import AddReview from 'src/components/AddReview/AddReview';
-import Player from 'src/components/Player/Player';
-import NotFound from 'src/components/NotFound/NotFound';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {genres, stars} from 'src/utils/constants';
+import Main from 'src/components/Pages/Main/Main';
+import SignIn from 'src/components/Pages/SignIn/SignIn';
+import MyList from 'src/components/Pages/MyList/MyList';
+import Movie from 'src/components/Pages/Movie/Movie';
+import Review from 'src/components/Pages/Review/Review';
+import Player from 'src/components/Pages/Player/Player';
+import NotFound from 'src/components/Pages/NotFound/NotFound';
 
 function App({movies}) {
-
   return (
     <BrowserRouter>
       <Switch>
@@ -29,7 +27,7 @@ function App({movies}) {
           <Movie movies={movies} />
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview movies={movies} stars={stars} />
+          <Review movies={movies} stars={stars} />
         </Route>
         <Route exact path="/player/:id">
           <Player movies={movies} />

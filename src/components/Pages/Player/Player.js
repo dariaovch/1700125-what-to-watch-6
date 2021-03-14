@@ -3,94 +3,55 @@ import PropTypes from 'prop-types';
 import {useParams, useHistory} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 
-function Player({movies}) {
 
-  const [currentMovie, setCurrentMovie] = React.useState({
-    id: ``,
-    image: ``,
-    alt: ``,
-    title: ``,
-    genre: ``,
-    year: ``,
-    poster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: ``,
-    director: ``,
-    starring: ``,
-    descriptionShort: ``,
-    descriptionFull: ``,
-    videoLink: ``,
-  });
+function formatDuration(time) {
+  const minutes = Math.floor(time / 60);
+  let seconds = Math.floor(time % 60);
+
+  if (seconds < 10) {
+    seconds = `0` + seconds;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+
+function Player({movies}) {
+  const porgressbarRef = React.useRef();
+  const videoRef = React.useRef();
+  const [isLoaded, setIsLoaded] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  // const [fullScreen, setFullScreen] = React.useState(false);
-  const videoRef = React.useRef();
 
   const {id} = useParams();
-
-  const findMovie = () => {
-    return movies.find((item) => item.id === id);
-  };
-
-  React.useEffect(() => {
-    setCurrentMovie(findMovie);
-  }, []);
-
   const history = useHistory();
 
-  function handleExit() {
-    history.push(`/films/${currentMovie.id}`);
-  }
+  const currentMovie = movies.find((item) => item.id === id);
+  const progressbarValue = `${(currentTime / duration) * 100}`;
 
-  const handleVideoData = () => {
+  const handleExit = () => history.push(`/films/${currentMovie.id}`); // button
+
+  const handleVideoMetadataLoaded = () => {
     setDuration(videoRef.current.duration);
     setCurrentTime(videoRef.current.currentTime);
     setIsLoaded(true);
   };
 
-  const handleTimeUpdate = () => {
-    setCurrentTime(videoRef.current.currentTime);
-  };
+  const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime);
 
-  function formatDuration(time) {
-    let minutes = Math.floor(time / 60);
-    let seconds = Math.floor(time % 60);
-    if (seconds < 10) {
-      seconds = `0` + seconds;
-    }
-
-    return `${minutes}:${seconds}`;
-  }
-
-  function handlePlayClick() {
+  const handlePlayClick = () => {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
       videoRef.current.play();
     } else {
       videoRef.current.pause();
     }
-  }
+  };
 
-  function toggleFullScreen() {
-    // setFullScreen(!fullScreen);
-    // if (!fullScreen) {
-    videoRef.current.requestFullscreen();
-    // } else {
-    //   videoRef.current.exitFullscreen();
-    // }
-  }
+  const handleFullscreenButtonClick = () => videoRef.current.requestFullscreen();
 
-  // Логика прогрессбара
-
-  const porgressbarRef = React.useRef();
-  const [clickedTime, setClickedTime] = React.useState();
-
-  const progressbarValue = (currentTime / duration) * 100;
-
-  const getClickedValue = (evt) => {
+  const extractVideoTime = (evt) => {
     const progressbar = porgressbarRef.current;
     const progressbarWidth = progressbar.clientWidth;
     const progressbarStart = progressbar.getBoundingClientRect().left;
@@ -101,25 +62,14 @@ function Player({movies}) {
     return clickedValue * timePerPixel;
   };
 
-  React.useEffect(() => {
-    if (clickedTime && clickedTime !== currentTime) {
-      videoRef.current.currentTime = clickedTime;
-      setClickedTime(null);
-      // eslint-disable-next-line no-console
-      console.log(clickedTime);
-    }
-  }, [clickedTime]);
+  const processVideoTime = (time) => {
+    videoRef.current.currentTime = time;
+  };
 
-  function onProgressUpdate(time) {
-    setClickedTime(time);
-  }
+  const handleTogglerMouseDown = (evt) => {
+    processVideoTime(extractVideoTime(evt));
 
-  const handleTogglerDrag = (evt) => {
-    onProgressUpdate(getClickedValue(evt));
-
-    const updateTimeOnMouseMove = (evtMove) => {
-      onProgressUpdate(getClickedValue(evtMove));
-    };
+    const updateTimeOnMouseMove = (evtMove) => processVideoTime(extractVideoTime(evtMove));
 
     document.addEventListener(`mousemove`, updateTimeOnMouseMove);
     document.addEventListener(`mouseup`, function handleMouseUp() {
@@ -131,9 +81,7 @@ function Player({movies}) {
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <div className="player">
@@ -143,7 +91,7 @@ function Player({movies}) {
           type="video/webm"
           className="player__video"
           poster={currentMovie.bgImage}
-          onLoadedMetadata={handleVideoData}
+          onLoadedMetadata={handleVideoMetadataLoaded}
           onTimeUpdate={handleTimeUpdate}
         ></video>
 
@@ -153,7 +101,7 @@ function Player({movies}) {
           <div className="player__controls-row">
             <div className="player__time" >
               <progress ref={porgressbarRef} className="player__progress" value={progressbarValue} max="100"></progress>
-              <div onMouseDown={handleTogglerDrag} className="player__toggler" style={{left: `${progressbarValue}%`}}>Toggler</div>
+              <div onMouseDown={handleTogglerMouseDown} className="player__toggler" style={{left: `${progressbarValue}%`}}>Toggler</div>
             </div>
             <div className="player__time-value">{formatDuration(duration - currentTime)}</div>
           </div>
@@ -176,7 +124,7 @@ function Player({movies}) {
             </button>
             <div className="player__name">{isLoaded ? `${currentMovie.title}` : `Loading...`}</div>
 
-            <button type="button" className="player__full-screen" onClick={toggleFullScreen}>
+            <button type="button" className="player__full-screen" onClick={handleFullscreenButtonClick}>
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>

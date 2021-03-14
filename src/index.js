@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {movies} from 'src/mocks/db.js';
+import {movies} from 'src/mocks/films.js';
 import App from 'src/components/App/App.js';
 
 ReactDOM.render(

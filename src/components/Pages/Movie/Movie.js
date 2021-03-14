@@ -2,49 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
-import MovieCard from 'src/components/MovieCard/MovieCard.js';
-import Card from 'src/components/Card/Card.js';
-import Footer from 'src/components/Footer/Footer.js';
+import MovieCard from 'src/components/MovieCard/MovieCard';
+import Card from 'src/components/Movies/MoviesList/Card/Card';
+import Footer from 'src/components/Layout/Footer/Footer';
+import NotFound from 'src/components/Pages/NotFound/NotFound';
 
 function Movie({movies}) {
-
-  const [currentMovie, setCurrentMovie] = React.useState({
-    id: ``,
-    image: ``,
-    alt: ``,
-    title: ``,
-    genre: ``,
-    year: ``,
-    poster: ``,
-    ratingScore: ``,
-    ratingLevel: ``,
-    ratingCount: ``,
-    director: ``,
-    starring: ``,
-    descriptionShort: ``,
-    descriptionFull: ``,
-    videoLink: ``,
-  });
-
   const {id} = useParams();
+  const currentMovie = movies.find((item) => item.id === id);
 
-  const findMovie = () => {
-    return movies.find((item) => item.id === id);
-  };
-
-  React.useEffect(() => {
-    setCurrentMovie(findMovie);
-  }, []);
-
-  // console.log(currentMovie);
-
+  if (!currentMovie) {
+    return <NotFound />;
+  }
 
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <MovieCard movie={currentMovie} />

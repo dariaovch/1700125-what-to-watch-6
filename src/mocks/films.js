@@ -33,7 +33,7 @@ export const movies = [
     starring: `Eddie Redmayne, Katherine Waterston, Jude Law, Johnny Depp and other`,
     descriptionShort: `The second installment of the "Fantastic Beasts" series featuring the adventures of Magizoologist Newt Scamander.`,
     descriptionFull: `In an effort to thwart Grindelwald's plans of raising pure-blood wizards to rule over all non-magical beings, Albus Dumbledore enlists his former student Newt Scamander, who agrees to help, though he's unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.`,
-    videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/b/b3/The_Wolverine_Trailer_Exclusive_%282013%29.webm`,
   },
   {
     id: `02`,
@@ -87,7 +87,7 @@ export const movies = [
     starring: `Leonardo DiCaprio, Cate Blanchett, Kate Beckinsale and other`,
     descriptionShort: `A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`,
     descriptionFull: `Biopic of billionaire Howard Hughes, starting with his early filmmaking years as owner of R.K.O. Pictures, but mostly focusing on his role in designing and promoting new aircraft. Hughes was a risk-taker spending several fortunes on designing experimental aircraft and eventually founding TWA as a rival to Pan Am airlines owned by his great rival Juan Trippe. When Trippe's politico Senator Ralph Owen Brewster accuses Hughes of being a war profiteer, it's Hughes who gains the upper hand. Hughes also had many women in his life including a long relationship with Katharine Hepburn. From an early age, however, Hughes was also germophobic and would have severe bouts of mental illness.`,
-    videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/8/8a/Spartacus_%281960%29_-_Trailer.webm`,
   },
   {
     id: `05`,
@@ -141,7 +141,7 @@ export const movies = [
     starring: `Leonardo DiCaprio, Tom Hardy, Will Poulter and other`,
     descriptionShort: `A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.`,
     descriptionFull: `While exploring uncharted wilderness in 1823, legendary frontiersman Hugh Glass sustains injuries from a brutal bear attack. When his hunting team leaves him for dead, Glass must utilize his survival skills to find a way back home while avoiding natives on their own hunt. Grief-stricken and fueled by vengeance, Glass treks through the wintry terrain to track down John Fitzgerald, the former confidant who betrayed and abandoned him.`,
-    videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/8/8a/Spartacus_%281960%29_-_Trailer.webm`,
   },
   {
     id: `08`,

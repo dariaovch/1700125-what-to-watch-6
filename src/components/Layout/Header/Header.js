@@ -2,8 +2,8 @@ import React from 'react';
 import {useLocation} from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import Logo from 'src/components/Logo/Logo.js';
-import Breadcrumbs from 'src/components/Breadcrumbs/Breadcrumbs.js';
+import Logo from 'src/components/Layout/Logo/Logo';
+import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
 
 function Header({theme, hasAvatar, hasBreadcrumbs, movie}) {
 

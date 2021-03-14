@@ -1,15 +1,13 @@
 import React from 'react';
 import controllersImage from 'src/images/controllersImage.svg';
-import Header from 'src/components/Header/Header.js';
-import Footer from 'src/components/Footer/Footer.js';
+import Header from 'src/components/Layout/Header/Header';
+import Footer from 'src/components/Layout/Footer/Footer';
 
 function SignIn() {
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <div className="user-page">

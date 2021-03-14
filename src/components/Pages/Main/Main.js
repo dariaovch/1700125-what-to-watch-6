@@ -1,38 +1,25 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import controllersImage from 'src/images/controllersImage.svg';
-import Header from 'src/components/Header/Header.js';
-import Footer from 'src/components/Footer/Footer.js';
-import MoviesList from 'src/components/MoviesList/MoviesList.js';
+import Header from 'src/components/Layout/Header/Header';
+import Footer from 'src/components/Layout/Footer/Footer';
+import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
+import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
+
 
 function Main({genres, movies}) {
-  const history = useHistory();
-
-  function handlePosterClick() {
-    history.push(`/films/${movies[0].id}`);
-  }
-
-  function handlePlayClick() {
-    history.push(`/player/${movies[0].id}`);
-  }
-
-  function handleMyListClick() {
-    history.push(`/mylist`);
-  }
+  const promoMovie = movies[0];
 
   return (
     <>
       <div className="visually-hidden">
-        {/* <!-- inject:svg --> */}
         <img src={controllersImage} />
-        {/* <!-- endinject --> */}
       </div>
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={movies[0].image} alt={movies[0].alt} />
+          <img src={promoMovie.image} alt={promoMovie.alt} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -42,29 +29,31 @@ function Main({genres, movies}) {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={movies[0].poster} alt={movies[0].alt} width="218" height="327" onClick={handlePosterClick} />
+              <Link to={`/films/${promoMovie.id}`}>
+                <img src={promoMovie.poster} alt={promoMovie.alt} width="218" height="327" />
+              </Link>
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movies[0].title}</h2>
+              <h2 className="movie-card__title">{promoMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movies[0].genre}</span>
-                <span className="movie-card__year">{movies[0].year}</span>
+                <span className="movie-card__genre">{promoMovie.genre}</span>
+                <span className="movie-card__year">{promoMovie.year}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayClick}>
+                <Link to={`/player/${promoMovie.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use href="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button" onClick={handleMyListClick}>
+                </Link>
+                <Link to={`/mylist`} className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use href="#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -75,14 +64,7 @@ function Main({genres, movies}) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            {genres.map((item, i) =>
-              (<li key={i} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': i === 0})} >
-                <a href="#" className="catalog__genres-link">{item}</a>
-              </li>)
-            )}
-          </ul>
-
+          <MoviesGenres genres={genres} />
           <MoviesList movies={movies} />
 
           <div className="catalog__more">
@@ -97,7 +79,7 @@ function Main({genres, movies}) {
 }
 
 Main.propTypes = {
-  genres: PropTypes.array.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

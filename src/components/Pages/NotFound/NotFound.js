@@ -1,6 +1,6 @@
-import 'src/components/NotFound/NotFound.css';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import 'src/components/Pages/NotFound/NotFound.css';
 
 function NotFound() {
   return (
