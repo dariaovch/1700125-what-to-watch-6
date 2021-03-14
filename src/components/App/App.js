@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {genres, stars} from 'src/utils/constants.js';
-import {movies} from 'src/db.js';
-import Main from 'src/components/Main/Main.js';
-import SignIn from 'src/components/SignIn/SignIn';
-import MyList from 'src/components/MyList/MyList';
-import Movie from 'src/components/Movie/Movie';
-import AddReview from 'src/components/AddReview/AddReview';
-import Player from 'src/components/Player/Player';
-import NotFound from 'src/components/NotFound/NotFound';
+import {genres, stars} from 'src/utils/constants';
+import Main from 'src/components/Pages/Main/Main';
+import SignIn from 'src/components/Pages/SignIn/SignIn';
+import MyList from 'src/components/Pages/MyList/MyList';
+import Movie from 'src/components/Pages/Movie/Movie';
+import Review from 'src/components/Pages/Review/Review';
+import Player from 'src/components/Pages/Player/Player';
+import NotFound from 'src/components/Pages/NotFound/NotFound';
 
-function App() {
+function App({movies}) {
   return (
     <BrowserRouter>
       <Switch>
@@ -21,16 +21,16 @@ function App() {
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList movies={movies} />
         </Route>
         <Route exact path="/films/:id">
           <Movie movies={movies} />
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview stars={stars} />
+          <Review movies={movies} stars={stars} />
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player movies={movies} />
         </Route>
         <Route>
           <NotFound />
@@ -39,5 +39,25 @@ function App() {
     </BrowserRouter>
   );
 }
+
+App.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    poster: PropTypes.string,
+    ratingScore: PropTypes.string,
+    ratingLevel: PropTypes.string,
+    ratingCount: PropTypes.string,
+    director: PropTypes.string,
+    starring: PropTypes.string,
+    descriptionShort: PropTypes.string,
+    descriptionFull: PropTypes.string,
+    videoLink: PropTypes.string,
+  })),
+};
 
 export default App;

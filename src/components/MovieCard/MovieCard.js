@@ -1,13 +1,24 @@
 import React from 'react';
+import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from 'src/components/Header/Header.js';
+import Header from 'src/components/Layout/Header/Header.js';
 
 function MovieCard({movie}) {
+  const history = useHistory();
+
+  function handlePlayClick() { // button
+    history.push(`/player/${movie.id}`);
+  }
+
+  function handleMyListClick() { // button
+    history.push(`/mylist`);
+  }
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={movie.image} alt={movie.alt} />
+          <img src={movie.bgImage} alt={movie.alt} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -23,19 +34,19 @@ function MovieCard({movie}) {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayClick}>
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button className="btn btn--list movie-card__button" type="button" onClick={handleMyListClick}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
             </div>
           </div>
         </div>
@@ -95,6 +106,7 @@ MovieCard.propTypes = {
     genre: PropTypes.string,
     year: PropTypes.string,
     poster: PropTypes.string,
+    bgImage: PropTypes.string,
     ratingScore: PropTypes.string,
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
