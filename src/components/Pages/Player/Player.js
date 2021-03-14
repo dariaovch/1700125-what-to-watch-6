@@ -4,14 +4,15 @@ import {useParams, useHistory} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import PlayerControls from './PlayerControls/PlayerControls';
 import PlayerProgressbar from './PlayerProgressbar/PlayerProgressbar';
+import useVideoPlayer from '../../../hooks/useVideoPlayer';
 
 
 function Player({movies}) {
   const videoRef = React.useRef();
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [duration, setDuration] = React.useState(0);
-  const [currentTime, setCurrentTime] = React.useState(0);
+  // const [isLoaded, setIsLoaded] = React.useState(false);
+  // const [isPlaying, setIsPlaying] = React.useState(false);
+  // const [duration, setDuration] = React.useState(0);
+  // const [currentTime, setCurrentTime] = React.useState(0);
 
   const {id} = useParams();
   const history = useHistory();
@@ -20,28 +21,40 @@ function Player({movies}) {
 
   const handleExit = () => history.push(`/films/${currentMovie.id}`); // button
 
-  const handleVideoMetadataLoaded = () => {
-    setDuration(videoRef.current.duration);
-    setCurrentTime(videoRef.current.currentTime);
-    setIsLoaded(true);
-  };
+  const {
+    isLoaded,
+    handleVideoMetadataLoaded,
+    isPlaying,
+    handlePlayClick,
+    handleTimeUpdate,
+    processVideoTime,
+    handleFullscreenButtonClick,
+    duration,
+    currentTime
+  } = useVideoPlayer(videoRef);
 
-  const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime);
+  // const handleVideoMetadataLoaded = () => {
+  //   setDuration(videoRef.current.duration);
+  //   setCurrentTime(videoRef.current.currentTime);
+  //   setIsLoaded(true);
+  // };
 
-  const handlePlayClick = () => {
-    setIsPlaying(!isPlaying);
-    if (!isPlaying) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-    }
-  };
+  // const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime);
 
-  const processVideoTime = (time) => {
-    videoRef.current.currentTime = time;
-  };
+  // const handlePlayClick = () => {
+  //   setIsPlaying(!isPlaying);
+  //   if (!isPlaying) {
+  //     videoRef.current.play();
+  //   } else {
+  //     videoRef.current.pause();
+  //   }
+  // };
 
-  const handleFullscreenButtonClick = () => videoRef.current.requestFullscreen();
+  // const processVideoTime = (time) => {
+  //   videoRef.current.currentTime = time;
+  // };
+
+  // const handleFullscreenButtonClick = () => videoRef.current.requestFullscreen();
 
   return (
     <>
