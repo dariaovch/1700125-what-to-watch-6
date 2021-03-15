@@ -6,11 +6,11 @@ import Header from 'src/components/Layout/Header/Header.js';
 function MovieCard({movie}) {
   const history = useHistory();
 
-  const handlePlayClick = () => { // button
+  const handlePlayClick = () => {
     history.push(`/player/${movie.id}`);
   };
 
-  const handleMyListClick = () => { // button
+  const handleMyListClick = () => {
     history.push(`/mylist`);
   };
 

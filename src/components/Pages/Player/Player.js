@@ -14,7 +14,7 @@ function Player({movies}) {
 
   const currentMovie = movies.find((item) => item.id === id);
 
-  const handleExit = () => history.push(`/films/${currentMovie.id}`); // button
+  const handleExit = () => history.push(`/films/${currentMovie.id}`);
 
   const {
     videoPlayerRef,

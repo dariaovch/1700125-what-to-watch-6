@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import PlayerVideo from '../../../Pages/Player/PlayerVideo/PlayerVideo';
+import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
 
 function Card({item, onOver, onOut, activeMovie}) {
   const activeVideoRef = React.useRef();

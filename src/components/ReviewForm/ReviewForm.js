@@ -21,8 +21,6 @@ function ReviewForm({stars, onSubmit}) {
   const handleSubmit = (evt) => {
     onSubmit(evt);
 
-    // eslint-disable-next-line no-console
-    console.log(values);
   };
 
   return (
