@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Stars from './Stars/Stars';
+import Stars from 'src/components/ReviewForm/Stars/Stars';
 
 function ReviewForm({stars, onSubmit}) {
   const [values, setValues] = React.useState({
@@ -8,7 +8,7 @@ function ReviewForm({stars, onSubmit}) {
     reviewText: ``,
   });
 
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
 
@@ -16,14 +16,12 @@ function ReviewForm({stars, onSubmit}) {
       ...values,
       [name]: value,
     });
-  }
+  };
 
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     onSubmit(evt);
 
-    // eslint-disable-next-line no-console
-    console.log(values);
-  }
+  };
 
   return (
     <form action="#" className="add-review__form" onSubmit={handleSubmit}>

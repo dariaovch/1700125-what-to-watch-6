@@ -1,9 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card/Card';
+import Card from 'src/components/Movies/MoviesList/Card/Card';
+import {videoDelayTime} from 'src/utils/constants';
 
 function MoviesList({movies}) {
-  const [, setActiveMovie] = React.useState();
+  const [activeMovie, setActiveMovie] = React.useState();
+
+  const handleCardMouseOver = (item, activeVideoRef) => {
+    setActiveMovie(item);
+    setTimeout(() => {
+      activeVideoRef.current.play();
+    }, videoDelayTime);
+  };
+
+  const handleCardMouseOut = (activeVideoRef) => {
+    activeVideoRef.current.pause();
+    setActiveMovie();
+  };
 
   return (
     <div className="catalog__movies-list">
@@ -11,8 +24,10 @@ function MoviesList({movies}) {
         <Card
           key={item.id}
           item={item}
-          onEnter={() => setActiveMovie(item)}
-          onLeave={() => setActiveMovie()} />
+          onOver={handleCardMouseOver}
+          onOut={handleCardMouseOut}
+          activeMovie={activeMovie}
+        />
       )}
     </div>
   );
