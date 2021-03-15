@@ -1,4 +1,4 @@
-function formatDuration(time) {
+const formatDuration = (time) => {
   const minutes = Math.floor(time / 60);
   let seconds = Math.floor(time % 60);
 
@@ -7,6 +7,6 @@ function formatDuration(time) {
   }
 
   return `${minutes}:${seconds}`;
-}
+};
 
 export default formatDuration;

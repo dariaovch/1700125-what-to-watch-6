@@ -11,7 +11,7 @@ const PlayerVideo = React.forwardRef(({videoSrc, bgImage, handleLoadedMetadata, 
     onLoadedMetadata={handleLoadedMetadata}
     onTimeUpdate={handleTimeUpdate}
     muted={isMuted}
-  ></video>
+  />
 ));
 
 PlayerVideo.displayName = `PlayerVideo`;

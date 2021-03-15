@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
+import {videoDelayTime} from 'src/utils/constants';
 
 function MoviesList({movies}) {
   const [activeMovie, setActiveMovie] = React.useState();
 
-  function handleCardMouseOver(item, activeVideoRef) {
+  const handleCardMouseOver = (item, activeVideoRef) => {
     setActiveMovie(item);
     setTimeout(() => {
       activeVideoRef.current.play();
-    }, 1000);
-  }
+    }, videoDelayTime);
+  };
 
-  function handleCardMouseOut(activeVideoRef) {
+  const handleCardMouseOut = (activeVideoRef) => {
     activeVideoRef.current.pause();
     setActiveMovie();
-  }
+  };
 
   return (
     <div className="catalog__movies-list">

@@ -8,7 +8,7 @@ function ReviewForm({stars, onSubmit}) {
     reviewText: ``,
   });
 
-  function handleChange(evt) {
+  const handleChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
 
@@ -16,14 +16,14 @@ function ReviewForm({stars, onSubmit}) {
       ...values,
       [name]: value,
     });
-  }
+  };
 
-  function handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     onSubmit(evt);
 
     // eslint-disable-next-line no-console
     console.log(values);
-  }
+  };
 
   return (
     <form action="#" className="add-review__form" onSubmit={handleSubmit}>

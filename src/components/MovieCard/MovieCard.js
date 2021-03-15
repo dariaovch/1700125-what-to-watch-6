@@ -6,13 +6,13 @@ import Header from 'src/components/Layout/Header/Header.js';
 function MovieCard({movie}) {
   const history = useHistory();
 
-  function handlePlayClick() { // button
+  const handlePlayClick = () => { // button
     history.push(`/player/${movie.id}`);
-  }
+  };
 
-  function handleMyListClick() { // button
+  const handleMyListClick = () => { // button
     history.push(`/mylist`);
-  }
+  };
 
   return (
     <section className="movie-card movie-card--full">

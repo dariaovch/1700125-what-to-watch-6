@@ -6,13 +6,13 @@ import PlayerVideo from '../../../Pages/Player/PlayerVideo/PlayerVideo';
 function Card({item, onOver, onOut, activeMovie}) {
   const activeVideoRef = React.useRef();
 
-  function handleMouseOver() {
+  const handleMouseOver = () => {
     onOver(item, activeVideoRef);
-  }
+  };
 
-  function handleMouseOut() {
+  const handleMouseOut = () => {
     onOut(activeVideoRef);
-  }
+  };
 
   return (
     <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>

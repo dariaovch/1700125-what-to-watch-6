@@ -1,27 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import formatDuration from 'src/utils/formatDuration';
+import extractVideoTime from 'src/utils/extractVideoTime';
 
 function PlayerProgressbar({duration, currentTime, processVideoTime}) {
   const porgressbarRef = React.useRef();
 
   const progressbarValue = `${(currentTime / duration) * 100}`;
 
-  const extractVideoTime = (evt) => {
-    const progressbar = porgressbarRef.current;
-    const progressbarWidth = progressbar.clientWidth;
-    const progressbarStart = progressbar.getBoundingClientRect().left;
-    const clickedPosition = evt.pageX;
-    const clickedValue = clickedPosition - progressbarStart;
-    const timePerPixel = duration / progressbarWidth;
-
-    return clickedValue * timePerPixel;
-  };
-
   const handleTogglerMouseDown = (evt) => {
-    processVideoTime(extractVideoTime(evt));
+    processVideoTime(extractVideoTime(evt, porgressbarRef, duration));
 
-    const updateTimeOnMouseMove = (evtMove) => processVideoTime(extractVideoTime(evtMove));
+    const updateTimeOnMouseMove = (evtMove) => processVideoTime(extractVideoTime(evtMove, porgressbarRef, duration));
 
     document.addEventListener(`mousemove`, updateTimeOnMouseMove);
 

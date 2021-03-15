@@ -1,3 +1,5 @@
+export const videoDelayTime = 1000;
+
 export const genres = [
   `All genres`,
   `Crime`,

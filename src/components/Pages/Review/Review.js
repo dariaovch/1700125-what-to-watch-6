@@ -10,9 +10,9 @@ function AddReview({movies, stars}) {
 
   const currentMovie = movies.find((item) => item.id === id);
 
-  function handleFormSubmit(evt) {
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
-  }
+  };
 
   return (
     <>
