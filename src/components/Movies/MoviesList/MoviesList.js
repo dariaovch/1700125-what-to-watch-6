@@ -3,7 +3,19 @@ import PropTypes from 'prop-types';
 import Card from './Card/Card';
 
 function MoviesList({movies}) {
-  const [, setActiveMovie] = React.useState();
+  const [activeMovie, setActiveMovie] = React.useState();
+
+  function handleCardMouseOver(item, activeVideoRef) {
+    setActiveMovie(item);
+    setTimeout(() => {
+      activeVideoRef.current.play();
+    }, 1000);
+  }
+
+  function handleCardMouseOut(activeVideoRef) {
+    activeVideoRef.current.pause();
+    setActiveMovie();
+  }
 
   return (
     <div className="catalog__movies-list">
@@ -11,8 +23,10 @@ function MoviesList({movies}) {
         <Card
           key={item.id}
           item={item}
-          onEnter={() => setActiveMovie(item)}
-          onLeave={() => setActiveMovie()} />
+          onOver={handleCardMouseOver}
+          onOut={handleCardMouseOut}
+          activeMovie={activeMovie}
+        />
       )}
     </div>
   );

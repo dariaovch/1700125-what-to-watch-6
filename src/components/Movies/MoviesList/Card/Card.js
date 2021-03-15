@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import PlayerVideo from '../../../Pages/Player/PlayerVideo/PlayerVideo';
 
-function Card({item, onEnter, onLeave}) {
+function Card({item, onOver, onOut, activeMovie}) {
+  const activeVideoRef = React.useRef();
+
+  function handleMouseOver() {
+    onOver(item, activeVideoRef);
+  }
+
+  function handleMouseOut() {
+    onOut(activeVideoRef);
+  }
+
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <div className="small-movie-card__image">
-        <img src={item.image} alt={item.alt} width="280" height="175" />
+        {!activeMovie && <img src={item.image} alt={item.alt} width="280" height="175" />}
+        {activeMovie && <PlayerVideo ref={activeVideoRef} videoSrc={item.videoLink} bgImage={item.image} isMuted={true} />}
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${item.id}`}>{item.title}</Link>
@@ -33,8 +45,9 @@ Card.propTypes = {
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
   }),
-  onEnter: PropTypes.func,
-  onLeave: PropTypes.func,
+  onOver: PropTypes.func,
+  onOut: PropTypes.func,
+  activeMovie: PropTypes.object,
 };
 
 export default Card;

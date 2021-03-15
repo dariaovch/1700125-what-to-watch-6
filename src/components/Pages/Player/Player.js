@@ -5,14 +5,11 @@ import controllersImage from 'src/images/controllersImage.svg';
 import PlayerControls from './PlayerControls/PlayerControls';
 import PlayerProgressbar from './PlayerProgressbar/PlayerProgressbar';
 import useVideoPlayer from '../../../hooks/useVideoPlayer';
+import PlayerVideo from './PlayerVideo/PlayerVideo';
 
 
 function Player({movies}) {
   const videoRef = React.useRef();
-  // const [isLoaded, setIsLoaded] = React.useState(false);
-  // const [isPlaying, setIsPlaying] = React.useState(false);
-  // const [duration, setDuration] = React.useState(0);
-  // const [currentTime, setCurrentTime] = React.useState(0);
 
   const {id} = useParams();
   const history = useHistory();
@@ -33,29 +30,6 @@ function Player({movies}) {
     currentTime
   } = useVideoPlayer(videoRef);
 
-  // const handleVideoMetadataLoaded = () => {
-  //   setDuration(videoRef.current.duration);
-  //   setCurrentTime(videoRef.current.currentTime);
-  //   setIsLoaded(true);
-  // };
-
-  // const handleTimeUpdate = () => setCurrentTime(videoRef.current.currentTime);
-
-  // const handlePlayClick = () => {
-  //   setIsPlaying(!isPlaying);
-  //   if (!isPlaying) {
-  //     videoRef.current.play();
-  //   } else {
-  //     videoRef.current.pause();
-  //   }
-  // };
-
-  // const processVideoTime = (time) => {
-  //   videoRef.current.currentTime = time;
-  // };
-
-  // const handleFullscreenButtonClick = () => videoRef.current.requestFullscreen();
-
   return (
     <>
       <div className="visually-hidden">
@@ -63,15 +37,15 @@ function Player({movies}) {
       </div>
 
       <div className="player">
-        <video
+
+        <PlayerVideo
           ref={videoRef}
-          src={currentMovie.videoLink}
-          type="video/webm"
-          className="player__video"
-          poster={currentMovie.bgImage}
-          onLoadedMetadata={handleVideoMetadataLoaded}
-          onTimeUpdate={handleTimeUpdate}
-        ></video>
+          videoSrc={currentMovie.videoLink}
+          bgImage={currentMovie.bgImage}
+          handleLoadedMetadata={handleVideoMetadataLoaded}
+          handleTimeUpdate={handleTimeUpdate}
+          isMuted={false}
+        />
 
         <button type="button" className="player__exit" onClick={handleExit}>Exit</button>
 
