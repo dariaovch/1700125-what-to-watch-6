@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card/Card';
+import Card from 'src/components/Movies/MoviesList/Card/Card';
 
 function MoviesList({movies}) {
   const [activeMovie, setActiveMovie] = React.useState();

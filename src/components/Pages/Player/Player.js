@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams, useHistory} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
-import PlayerControls from './PlayerControls/PlayerControls';
-import PlayerProgressbar from './PlayerProgressbar/PlayerProgressbar';
-import useVideoPlayer from '../../../hooks/useVideoPlayer';
-import PlayerVideo from './PlayerVideo/PlayerVideo';
+import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerControls';
+import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
+import useVideoPlayer from 'src/hooks/useVideoPlayer';
+import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
 
 
 function Player({movies}) {
-  const videoRef = React.useRef();
-
   const {id} = useParams();
   const history = useHistory();
 
@@ -19,6 +17,7 @@ function Player({movies}) {
   const handleExit = () => history.push(`/films/${currentMovie.id}`); // button
 
   const {
+    videoPlayerRef,
     isLoaded,
     handleVideoMetadataLoaded,
     isPlaying,
@@ -28,7 +27,7 @@ function Player({movies}) {
     handleFullscreenButtonClick,
     duration,
     currentTime
-  } = useVideoPlayer(videoRef);
+  } = useVideoPlayer();
 
   return (
     <>
@@ -39,7 +38,7 @@ function Player({movies}) {
       <div className="player">
 
         <PlayerVideo
-          ref={videoRef}
+          ref={videoPlayerRef}
           videoSrc={currentMovie.videoLink}
           bgImage={currentMovie.bgImage}
           handleLoadedMetadata={handleVideoMetadataLoaded}

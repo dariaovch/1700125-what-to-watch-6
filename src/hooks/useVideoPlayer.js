@@ -1,6 +1,7 @@
 import React from 'react';
 
-function useVideoPlayer(videoPlayerRef) {
+function useVideoPlayer() {
+  const videoPlayerRef = React.useRef();
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
@@ -30,6 +31,7 @@ function useVideoPlayer(videoPlayerRef) {
   const handleFullscreenButtonClick = () => videoPlayerRef.current.requestFullscreen();
 
   return {
+    videoPlayerRef,
     isLoaded,
     handleVideoMetadataLoaded,
     isPlaying,

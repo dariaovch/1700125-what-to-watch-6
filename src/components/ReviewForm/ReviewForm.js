@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Stars from './Stars/Stars';
+import Stars from 'src/components/ReviewForm/Stars/Stars';
 
 function ReviewForm({stars, onSubmit}) {
   const [values, setValues] = React.useState({
