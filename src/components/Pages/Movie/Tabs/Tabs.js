@@ -1,53 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Overview from 'src/components/Pages/Movie/Overview/Overview';
-import Details from 'src/components/Pages/Movie/Details/Details';
-import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
+import cn from 'classnames';
 
-function Tabs({movie}) {
+function Tabs({children}) {
+
+  const [activeTab, setActiveTab] = React.useState(children[0].props.label);
+
+  const handleTabClick = (evt, newActiveTab) => {
+    evt.preventDefault();
+    setActiveTab(newActiveTab);
+  };
 
   return (
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className="movie-nav__item movie-nav__item--active">
-            <a href="#" className="movie-nav__link">Overview</a>
-          </li>
-          <li className="movie-nav__item">
-            <a href="#" className="movie-nav__link">Details</a>
-          </li>
-          <li className="movie-nav__item">
-            <a href="#" className="movie-nav__link">Reviews</a>
-          </li>
+          {children.map((tab) => {
+            const label = tab.props.label;
+            return (
+              <li key={label} className={cn(`movie-nav__item`, {'movie-nav__item--active': label === activeTab})}>
+                <a href="#" className="movie-nav__link" onClick={(evt) => handleTabClick(evt, label)}>{label}</a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
-      <Overview movie={movie} />
-      <Details movie={movie} />
-      <MovieReviews />
-
+      {children.map((item) => (
+        item.props.label === activeTab && <div key={item.props.label}>
+          {item.props.children}
+        </div>)
+      )}
     </div>
   );
 }
 
 Tabs.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
-    director: PropTypes.string,
-    starring: PropTypes.string,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-  }),
+  children: PropTypes.node,
 };
 
 export default Tabs;
