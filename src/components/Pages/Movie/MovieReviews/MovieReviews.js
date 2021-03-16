@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function MovieReviews({}) {
+function MovieReviews() {
 
   return (
 
-    <div className="movie-card__reviews movie-card__row">
+    <>
       <div className="movie-card__reviews-col">
         <div className="review">
           <blockquote className="review__quote">
@@ -86,8 +86,7 @@ function MovieReviews({}) {
           <div className="review__rating">7,0</div>
         </div>
       </div>
-    </div>
-
+    </>
   );
 }
 
