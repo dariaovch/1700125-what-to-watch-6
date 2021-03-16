@@ -20,7 +20,7 @@ function Overview({movie}) {
 
         <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
 
-        <p className="movie-card__starring"><strong>Starring: {movie.starring}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)} and others</strong></p>
       </div>
     </>
   );
@@ -40,7 +40,7 @@ Overview.propTypes = {
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
     director: PropTypes.string,
-    starring: PropTypes.string,
+    starring: PropTypes.array,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
   }),

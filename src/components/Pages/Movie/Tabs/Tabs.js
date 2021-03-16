@@ -4,22 +4,25 @@ import cn from 'classnames';
 
 function Tabs({children}) {
 
-  const [activeTab, setActiveTab] = React.useState(children[0].props.label);
+  const [activeTabLabel, setActiveTabLabel] = React.useState(children[0].props.tabLabel);
 
-  const handleTabClick = (evt, newActiveTab) => {
-    evt.preventDefault();
-    setActiveTab(newActiveTab);
+  const createTabClickHandler = (activeTab) => {
+    return (evt) => {
+      evt.preventDefault();
+
+      setActiveTabLabel(activeTab);
+    };
   };
 
   return (
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {children.map((tab) => {
-            const label = tab.props.label;
+          {children.map((item) => {
+            const tabLabel = item.props.tabLabel;
             return (
-              <li key={label} className={cn(`movie-nav__item`, {'movie-nav__item--active': label === activeTab})}>
-                <a href="#" className="movie-nav__link" onClick={(evt) => handleTabClick(evt, label)}>{label}</a>
+              <li key={tabLabel} className={cn(`movie-nav__item`, {'movie-nav__item--active': tabLabel === activeTabLabel})}>
+                <a href="#" className="movie-nav__link" onClick={createTabClickHandler(tabLabel)}>{tabLabel}</a>
               </li>
             );
           })}
@@ -27,7 +30,7 @@ function Tabs({children}) {
       </nav>
 
       {children.map((item) => (
-        item.props.label === activeTab && <div key={item.props.label}>
+        item.props.tabLabel === activeTabLabel && <div key={item.props.tabLabel}>
           {item.props.children}
         </div>)
       )}

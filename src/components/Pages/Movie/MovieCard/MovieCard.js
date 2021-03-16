@@ -2,10 +2,10 @@ import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from 'src/components/Layout/Header/Header.js';
-import Tabs from '../Tabs/Tabs';
-import Overview from '../Overview/Overview';
-import Details from '../Details/Details';
-import MovieReviews from '../MovieReviews/MovieReviews';
+import Tabs from 'src/components/Pages/Movie/Tabs/Tabs';
+import Overview from 'src/components/Pages/Movie/Overview/Overview';
+import Details from 'src/components/Pages//Movie/Details/Details';
+import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 
 function MovieCard({movie}) {
   const history = useHistory();
@@ -63,15 +63,15 @@ function MovieCard({movie}) {
           </div>
 
           <Tabs>
-            <div label="Overview">
+            <div tabLabel="Overview">
               <Overview movie={movie} />
             </div>
 
-            <div label="Details" className="movie-card__text movie-card__row">
+            <div tabLabel="Details" className="movie-card__text movie-card__row">
               <Details movie={movie} />
             </div>
 
-            <div label="Reviews" className="movie-card__reviews movie-card__row">
+            <div tabLabel="Reviews" className="movie-card__reviews movie-card__row">
               <MovieReviews />
             </div>
           </Tabs>
@@ -95,7 +95,7 @@ MovieCard.propTypes = {
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
     director: PropTypes.string,
-    starring: PropTypes.string,
+    starring: PropTypes.array,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
   }),
