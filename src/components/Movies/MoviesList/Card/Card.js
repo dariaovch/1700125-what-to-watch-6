@@ -40,7 +40,7 @@ Card.propTypes = {
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
     director: PropTypes.string,
-    starring: PropTypes.string,
+    starring: PropTypes.array,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,

@@ -2,6 +2,10 @@ import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from 'src/components/Layout/Header/Header.js';
+import Tabs from 'src/components/Pages/Movie/Tabs/Tabs';
+import Overview from 'src/components/Pages/Movie/Overview/Overview';
+import Details from 'src/components/Pages//Movie/Details/Details';
+import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 
 function MovieCard({movie}) {
   const history = useHistory();
@@ -58,39 +62,19 @@ function MovieCard({movie}) {
             <img src={movie.poster} alt={movie.alt} width="218" height="327" />
           </div>
 
-          <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{movie.ratingScore}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{movie.ratingLevel}</span>
-                <span className="movie-rating__count">{movie.ratingCount}</span>
-              </p>
+          <Tabs>
+            <div tabLabel="Overview">
+              <Overview movie={movie} />
             </div>
 
-            <div className="movie-card__text">
-              <p>{movie.descriptionShort}</p>
-
-              <p>{movie.descriptionFull}</p>
-
-              <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: {movie.starring}</strong></p>
+            <div tabLabel="Details" className="movie-card__text movie-card__row">
+              <Details movie={movie} />
             </div>
-          </div>
+
+            <div tabLabel="Reviews" className="movie-card__reviews movie-card__row">
+              <MovieReviews />
+            </div>
+          </Tabs>
         </div>
       </div>
     </section>
@@ -111,7 +95,7 @@ MovieCard.propTypes = {
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
     director: PropTypes.string,
-    starring: PropTypes.string,
+    starring: PropTypes.array,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
   }),

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
-import MovieCard from 'src/components/MovieCard/MovieCard';
-import Card from 'src/components/Movies/MoviesList/Card/Card';
+import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
+import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
 
 function Movie({movies}) {
   const {id} = useParams();
@@ -24,13 +24,8 @@ function Movie({movies}) {
       <MovieCard movie={currentMovie} />
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            {movies.slice(1, 5).map((item) => <Card item={item} key={item.id} />)}
-          </div>
-        </section>
+        <MoreLikeThis movies={movies} currentMovie={currentMovie} />
 
         <Footer />
       </div>
@@ -52,7 +47,7 @@ Movie.propTypes = {
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
     director: PropTypes.string,
-    starring: PropTypes.string,
+    starring: PropTypes.array,
     descriptionShort: PropTypes.string,
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
