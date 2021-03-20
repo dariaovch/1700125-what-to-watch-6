@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {genres, stars} from 'src/utils/constants';
 import Main from 'src/components/Pages/Main/Main';
 import SignIn from 'src/components/Pages/SignIn/SignIn';
@@ -10,7 +11,9 @@ import Review from 'src/components/Pages/Review/Review';
 import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 
-function App({movies}) {
+function App(props) {
+  const {movies} = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -60,4 +63,9 @@ App.propTypes = {
   })),
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  movies: state.moviesList,
+});
+
+export {App};
+export default connect(mapStateToProps, null)(App);
