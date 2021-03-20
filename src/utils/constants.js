@@ -4,7 +4,7 @@ export const genres = [
   `All genres`,
   `Crime`,
   `Documentary`,
-  `Dramas`,
+  `Drama`,
   `Horror`,
   `Kids & Family`,
   `Romance`,

@@ -22,7 +22,7 @@ export const movies = [
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     alt: `Fantastic Beasts: The Crimes of Grindelwald`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    genre: `Sci-Fi`,
+    genre: `Sci - Fi`,
     year: `2018`,
     poster: `img/fantastic-beasts-poster.jpg`,
     bgImage: `img/crimes-bg.jpg`,
