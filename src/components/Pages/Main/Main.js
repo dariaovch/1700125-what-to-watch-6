@@ -19,7 +19,7 @@ function Main({genres, movies}) {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={promoMovie.image} alt={promoMovie.alt} />
+          <img src={promoMovie.bgImage} alt={promoMovie.alt} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -79,7 +79,7 @@ function Main({genres, movies}) {
 }
 
 Main.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -88,6 +88,7 @@ Main.propTypes = {
     genre: PropTypes.string,
     year: PropTypes.string,
     poster: PropTypes.string,
+    bgImage: PropTypes.string,
     ratingScore: PropTypes.string,
     ratingLevel: PropTypes.string,
     ratingCount: PropTypes.string,
@@ -99,4 +100,6 @@ Main.propTypes = {
   })),
 };
 
+
 export default Main;
+
