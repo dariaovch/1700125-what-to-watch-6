@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
 import {videoDelayTime} from 'src/utils/constants';
+import ShowMoreButton from './ShowMoreButton/ShowMoreButton';
 
-function MoviesList(props) {
-  const {movies} = props;
+function MoviesList({movies, isMoreButtonVisible, onMoreButtonClick}) {
   const [activeMovie, setActiveMovie] = React.useState();
 
   const handleCardMouseOver = (item, activeVideoRef) => {
@@ -21,17 +20,20 @@ function MoviesList(props) {
   };
 
   return (
-    <div className="catalog__movies-list">
-      {movies.map((item) =>
-        <Card
-          key={item.id}
-          item={item}
-          onOver={handleCardMouseOver}
-          onOut={handleCardMouseOut}
-          activeMovie={activeMovie}
-        />
-      )}
-    </div>
+    <>
+      <div className="catalog__movies-list">
+        {movies.map((item) =>
+          <Card
+            key={item.id}
+            item={item}
+            onOver={handleCardMouseOver}
+            onOut={handleCardMouseOut}
+            activeMovie={activeMovie}
+          />
+        )}
+      </div>
+      {isMoreButtonVisible && <ShowMoreButton onButtonClick={onMoreButtonClick} />}
+    </>
   );
 }
 
@@ -54,11 +56,8 @@ MoviesList.propTypes = {
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
   })),
+  isMoreButtonVisible: PropTypes.bool,
+  onMoreButtonClick: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-});
-
-export {MoviesList};
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;

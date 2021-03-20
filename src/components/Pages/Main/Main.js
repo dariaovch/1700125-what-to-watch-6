@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {cardsAmount} from 'src/utils/constants';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -8,8 +10,29 @@ import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 
 
-function Main({genres, movies}) {
+function Main(props) {
+  const {genres, movies} = props;
   const promoMovie = movies[0];
+
+  const [shownCards, setShownCards] = React.useState([]);
+  const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
+
+
+  React.useEffect(() => {
+    setShownCards(movies.slice(0, cardsAmount));
+    if (movies.length <= cardsAmount) {
+      setIsMoreButtonVisible(false);
+    } else {
+      setIsMoreButtonVisible(true);
+    }
+  }, [movies]);
+
+  function handleMoreButtonClick() {
+    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
+    if (shownCards.length >= movies.length - cardsAmount) {
+      setIsMoreButtonVisible(false);
+    }
+  }
 
   return (
     <>
@@ -65,11 +88,8 @@ function Main({genres, movies}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <MoviesGenres genres={genres} />
-          <MoviesList movies={movies} />
+          <MoviesList movies={shownCards} isMoreButtonVisible={isMoreButtonVisible} onMoreButtonClick={handleMoreButtonClick} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         <Footer />
@@ -100,6 +120,10 @@ Main.propTypes = {
   })),
 };
 
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
 
-export default Main;
+export {Main};
+export default connect(mapStateToProps)(Main);
 

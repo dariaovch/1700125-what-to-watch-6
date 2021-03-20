@@ -6,10 +6,12 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {movies} from 'src/mocks/films.js';
 import App from 'src/components/App/App.js';
 import {reducer} from 'src/store/reducer';
+import {genres} from 'src/utils/constants';
 
 const store = createStore(
     reducer,
     {
+      genre: genres[0],
       movies,
     },
     composeWithDevTools()
