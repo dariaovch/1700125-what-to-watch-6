@@ -9,7 +9,7 @@ export const ActionCreator = {
     type: ActionType.FILTER_LIST,
     payload: {
       genre: item,
-      moviesList: item.id === `00` ? movies : movies.filter((movie) => movie.genre === item.title),
+      movies: item.id === `00` ? movies : movies.filter((movie) => movie.genre === item.title),
     },
   }),
 };

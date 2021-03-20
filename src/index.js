@@ -10,7 +10,7 @@ import {reducer} from 'src/store/reducer';
 const store = createStore(
     reducer,
     {
-      moviesList: movies,
+      movies,
     },
     composeWithDevTools()
 );

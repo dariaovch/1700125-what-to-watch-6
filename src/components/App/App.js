@@ -64,8 +64,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesList,
+  movies: state.movies,
 });
 
 export {App};
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps)(App);

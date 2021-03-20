@@ -5,7 +5,7 @@ import Card from 'src/components/Movies/MoviesList/Card/Card';
 import {videoDelayTime} from 'src/utils/constants';
 
 function MoviesList(props) {
-  const {moviesList} = props;
+  const {movies} = props;
   const [activeMovie, setActiveMovie] = React.useState();
 
   const handleCardMouseOver = (item, activeVideoRef) => {
@@ -22,7 +22,7 @@ function MoviesList(props) {
 
   return (
     <div className="catalog__movies-list">
-      {moviesList.map((item) =>
+      {movies.map((item) =>
         <Card
           key={item.id}
           item={item}
@@ -36,7 +36,7 @@ function MoviesList(props) {
 }
 
 MoviesList.propTypes = {
-  moviesList: PropTypes.arrayOf(PropTypes.shape({
+  movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
@@ -57,8 +57,8 @@ MoviesList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  moviesList: state.moviesList,
+  movies: state.movies,
 });
 
 export {MoviesList};
-export default connect(mapStateToProps, null)(MoviesList);
+export default connect(mapStateToProps)(MoviesList);
