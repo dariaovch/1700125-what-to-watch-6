@@ -1,5 +1,7 @@
 export const videoDelayTime = 1000;
 
+export const cardsAmount = 8;
+
 export const genres = [
   {
     id: `00`,

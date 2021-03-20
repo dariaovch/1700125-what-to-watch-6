@@ -10,6 +10,7 @@ import {reducer} from 'src/store/reducer';
 const store = createStore(
     reducer,
     {
+      genre: `All genres`,
       movies,
     },
     composeWithDevTools()

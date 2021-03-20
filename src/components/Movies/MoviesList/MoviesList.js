@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
-import {videoDelayTime} from 'src/utils/constants';
+import {videoDelayTime, cardsAmount} from 'src/utils/constants';
 import ShowMoreButton from './ShowMoreButton/ShowMoreButton';
 
-function MoviesList(props) {
-  const {movies} = props;
+function MoviesList({movies}) {
   const [activeMovie, setActiveMovie] = React.useState();
 
   const [shownCards, setShownCards] = React.useState([]);
@@ -26,8 +24,8 @@ function MoviesList(props) {
   };
 
   React.useEffect(() => {
-    setShownCards(movies.slice(0, 8));
-    if (movies.length <= 8) {
+    setShownCards(movies.slice(0, cardsAmount));
+    if (movies.length <= cardsAmount) {
       setIsMoreButtonVisible(false);
     } else {
       setIsMoreButtonVisible(true);
@@ -35,8 +33,8 @@ function MoviesList(props) {
   }, [movies]);
 
   function handleMoreButtonClick() {
-    setShownCards(movies.slice(0, shownCards.length + 8));
-    if (shownCards.length >= movies.length - 8) {
+    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
+    if (shownCards.length >= movies.length - cardsAmount) {
       setIsMoreButtonVisible(false);
     }
   }
@@ -80,9 +78,4 @@ MoviesList.propTypes = {
   })),
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-});
-
-export {MoviesList};
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;
