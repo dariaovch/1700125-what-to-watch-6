@@ -1,4 +1,4 @@
-import {filterListByGenre} from "../utils/filterMovies";
+import {filterListByGenre} from "src/utils/filterMovies";
 
 export const ActionType = {
   FILTER_LIST: `filterMovies/filterListByGenre`,
