@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -8,7 +9,8 @@ import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 
 
-function Main({genres, movies}) {
+function Main(props) {
+  const {genres, movies} = props;
   const promoMovie = movies[0];
 
   return (
@@ -79,7 +81,7 @@ function Main({genres, movies}) {
 }
 
 Main.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -99,4 +101,9 @@ Main.propTypes = {
   })),
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  movies: state.moviesList,
+});
+
+export {Main};
+export default connect(mapStateToProps, null)(Main);

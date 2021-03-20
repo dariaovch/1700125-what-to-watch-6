@@ -1,15 +1,42 @@
 export const videoDelayTime = 1000;
 
 export const genres = [
-  `All genres`,
-  `Crime`,
-  `Documentary`,
-  `Drama`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci - Fi`,
-  `Thriller`
+  {
+    id: `00`,
+    title: `All genres`,
+  },
+  {
+    id: `01`,
+    title: `Crime`,
+  },
+  {
+    id: `02`,
+    title: `Documentary`,
+  },
+  {
+    id: `03`,
+    title: `Drama`,
+  },
+  {
+    id: `04`,
+    title: `Horror`,
+  },
+  {
+    id: `05`,
+    title: `Comedy`,
+  },
+  {
+    id: `06`,
+    title: `Romance`,
+  },
+  {
+    id: `07`,
+    title: `Sci - Fi`,
+  },
+  {
+    id: `08`,
+    title: `Thriller`,
+  },
 ];
 
 export const stars = [

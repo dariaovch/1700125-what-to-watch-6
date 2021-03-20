@@ -14,9 +14,9 @@ function MoviesGenres(props) {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((item, i) =>
-        <li key={i} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': item === genre})} >
-          <a href="#" className="catalog__genres-link" onClick={() => onFilterListByGenre(item)}>{item}</a>
+      {genres.map((item) =>
+        <li key={item.id} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': item === genre})} >
+          <a href="#" className="catalog__genres-link" onClick={() => onFilterListByGenre(item)}>{item.title}</a>
         </li>
       )}
     </ul>
@@ -24,7 +24,7 @@ function MoviesGenres(props) {
 }
 
 MoviesGenres.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   genre: PropTypes.string,
   onFilterListByGenre: PropTypes.func,
 };

@@ -9,13 +9,16 @@ import {reducer} from 'src/store/reducer';
 
 const store = createStore(
     reducer,
+    {
+      moviesList: movies,
+    },
     composeWithDevTools()
 );
 
 ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App movies={movies} />
+        <App />
       </Provider>
     </React.StrictMode>,
     document.getElementById(`root`)
