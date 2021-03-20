@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
 import {videoDelayTime} from 'src/utils/constants';
 
-function MoviesList({movies}) {
+function MoviesList(props) {
+  const {moviesList} = props;
   const [activeMovie, setActiveMovie] = React.useState();
 
   const handleCardMouseOver = (item, activeVideoRef) => {
@@ -20,7 +22,7 @@ function MoviesList({movies}) {
 
   return (
     <div className="catalog__movies-list">
-      {movies.map((item) =>
+      {moviesList.map((item) =>
         <Card
           key={item.id}
           item={item}
@@ -34,7 +36,7 @@ function MoviesList({movies}) {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
+  moviesList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
@@ -54,4 +56,9 @@ MoviesList.propTypes = {
   })),
 };
 
-export default MoviesList;
+const mapStateToProps = (state) => ({
+  moviesList: state.moviesList,
+});
+
+export {MoviesList};
+export default connect(mapStateToProps, null)(MoviesList);
