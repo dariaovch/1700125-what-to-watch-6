@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {cardsAmount} from 'src/utils/constants';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -12,6 +13,26 @@ import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 function Main(props) {
   const {genres, movies} = props;
   const promoMovie = movies[0];
+
+  const [shownCards, setShownCards] = React.useState([]);
+  const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
+
+
+  React.useEffect(() => {
+    setShownCards(movies.slice(0, cardsAmount));
+    if (movies.length <= cardsAmount) {
+      setIsMoreButtonVisible(false);
+    } else {
+      setIsMoreButtonVisible(true);
+    }
+  }, [movies]);
+
+  function handleMoreButtonClick() {
+    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
+    if (shownCards.length >= movies.length - cardsAmount) {
+      setIsMoreButtonVisible(false);
+    }
+  }
 
   return (
     <>
@@ -67,7 +88,7 @@ function Main(props) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <MoviesGenres genres={genres} />
-          <MoviesList movies={movies} />
+          <MoviesList movies={shownCards} isMoreButtonVisible={isMoreButtonVisible} onMoreButtonClick={handleMoreButtonClick} />
 
         </section>
 

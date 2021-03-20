@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
-import {videoDelayTime, cardsAmount} from 'src/utils/constants';
+import {videoDelayTime} from 'src/utils/constants';
 import ShowMoreButton from './ShowMoreButton/ShowMoreButton';
 
-function MoviesList({movies}) {
+function MoviesList({movies, isMoreButtonVisible, onMoreButtonClick}) {
   const [activeMovie, setActiveMovie] = React.useState();
-
-  const [shownCards, setShownCards] = React.useState([]);
-  const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
-
 
   const handleCardMouseOver = (item, activeVideoRef) => {
     setActiveMovie(item);
@@ -23,26 +19,10 @@ function MoviesList({movies}) {
     setActiveMovie();
   };
 
-  React.useEffect(() => {
-    setShownCards(movies.slice(0, cardsAmount));
-    if (movies.length <= cardsAmount) {
-      setIsMoreButtonVisible(false);
-    } else {
-      setIsMoreButtonVisible(true);
-    }
-  }, [movies]);
-
-  function handleMoreButtonClick() {
-    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
-    if (shownCards.length >= movies.length - cardsAmount) {
-      setIsMoreButtonVisible(false);
-    }
-  }
-
   return (
     <>
       <div className="catalog__movies-list">
-        {shownCards.map((item) =>
+        {movies.map((item) =>
           <Card
             key={item.id}
             item={item}
@@ -52,7 +32,7 @@ function MoviesList({movies}) {
           />
         )}
       </div>
-      {isMoreButtonVisible && <ShowMoreButton onButtonClick={handleMoreButtonClick} />}
+      {isMoreButtonVisible && <ShowMoreButton onButtonClick={onMoreButtonClick} />}
     </>
   );
 }
@@ -76,6 +56,8 @@ MoviesList.propTypes = {
     descriptionFull: PropTypes.string,
     videoLink: PropTypes.string,
   })),
+  isMoreButtonVisible: PropTypes.bool,
+  onMoreButtonClick: PropTypes.func,
 };
 
 export default MoviesList;
