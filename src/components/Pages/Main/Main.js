@@ -67,9 +67,6 @@ function Main({genres, movies}) {
           <MoviesGenres genres={genres} />
           <MoviesList movies={movies} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         <Footer />

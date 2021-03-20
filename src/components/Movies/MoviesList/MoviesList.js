@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
 import {videoDelayTime} from 'src/utils/constants';
+import ShowMoreButton from './ShowMoreButton/ShowMoreButton';
 
 function MoviesList(props) {
   const {movies} = props;
   const [activeMovie, setActiveMovie] = React.useState();
+
+  const [shownCards, setShownCards] = React.useState([]);
+  const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
+
 
   const handleCardMouseOver = (item, activeVideoRef) => {
     setActiveMovie(item);
@@ -20,18 +25,37 @@ function MoviesList(props) {
     setActiveMovie();
   };
 
+  React.useEffect(() => {
+    setShownCards(movies.slice(0, 8));
+    if (movies.length <= 8) {
+      setIsMoreButtonVisible(false);
+    } else {
+      setIsMoreButtonVisible(true);
+    }
+  }, [movies]);
+
+  function handleMoreButtonClick() {
+    setShownCards(movies.slice(0, shownCards.length + 8));
+    if (shownCards.length >= movies.length - 8) {
+      setIsMoreButtonVisible(false);
+    }
+  }
+
   return (
-    <div className="catalog__movies-list">
-      {movies.map((item) =>
-        <Card
-          key={item.id}
-          item={item}
-          onOver={handleCardMouseOver}
-          onOut={handleCardMouseOut}
-          activeMovie={activeMovie}
-        />
-      )}
-    </div>
+    <>
+      <div className="catalog__movies-list">
+        {shownCards.map((item) =>
+          <Card
+            key={item.id}
+            item={item}
+            onOver={handleCardMouseOver}
+            onOut={handleCardMouseOut}
+            activeMovie={activeMovie}
+          />
+        )}
+      </div>
+      {isMoreButtonVisible && <ShowMoreButton onButtonClick={handleMoreButtonClick} />}
+    </>
   );
 }
 
