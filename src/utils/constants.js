@@ -13,7 +13,7 @@ export const genres = [
   },
   {
     id: `02`,
-    title: `Documentary`,
+    title: `Action`,
   },
   {
     id: `03`,
@@ -21,7 +21,7 @@ export const genres = [
   },
   {
     id: `04`,
-    title: `Horror`,
+    title: `Adventure`,
   },
   {
     id: `05`,
@@ -29,14 +29,10 @@ export const genres = [
   },
   {
     id: `06`,
-    title: `Romance`,
+    title: `Fantasy`,
   },
   {
     id: `07`,
-    title: `Sci - Fi`,
-  },
-  {
-    id: `08`,
     title: `Thriller`,
   },
 ];

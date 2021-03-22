@@ -1,17 +1,20 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cardsAmount} from 'src/utils/constants';
+import {fetchMovies} from 'src/store/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
+import Preloader from 'src/components/Pages/Preloader/Preloader';
 
 
 function Main(props) {
-  const {genres, movies} = props;
+  const {genres, movies, isDataLoaded, onLoadMovies} = props;
   const promoMovie = movies[0];
 
   const [shownCards, setShownCards] = React.useState([]);
@@ -34,6 +37,18 @@ function Main(props) {
     }
   }
 
+  React.useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadMovies();
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <Preloader />
+    );
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -42,7 +57,7 @@ function Main(props) {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={promoMovie.bgImage} alt={promoMovie.alt} />
+          <img src={`` || promoMovie.background_image} alt={`` || promoMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -53,15 +68,15 @@ function Main(props) {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <Link to={`/films/${promoMovie.id}`}>
-                <img src={promoMovie.poster} alt={promoMovie.alt} width="218" height="327" />
+                <img src={`` || promoMovie.poster_image} alt={`` || promoMovie.name} width="218" height="327" />
               </Link>
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoMovie.title}</h2>
+              <h2 className="movie-card__title">{`` || promoMovie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoMovie.genre}</span>
-                <span className="movie-card__year">{promoMovie.year}</span>
+                <span className="movie-card__genre">{`` || promoMovie.genre}</span>
+                <span className="movie-card__year">{`` || promoMovie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -87,7 +102,7 @@ function Main(props) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <MoviesGenres genres={genres} />
+          <MoviesGenres genres={genres} movies={movies} />
           <MoviesList movies={shownCards} isMoreButtonVisible={isMoreButtonVisible} onMoreButtonClick={handleMoreButtonClick} />
 
         </section>
@@ -101,29 +116,39 @@ function Main(props) {
 Main.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
+    name: PropTypes.string,
+    poster_image: PropTypes.string,
+    preview_image: PropTypes.string,
+    background_image: PropTypes.string,
+    background_color: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scores_count: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    videoLink: PropTypes.string,
+    run_time: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    id: PropTypes.number,
+    is_favorite: PropTypes.bool,
+    video_link: PropTypes.string,
+    preview_video_link: PropTypes.string,
   })),
+  isDataLoaded: PropTypes.bool,
+  onLoadMovies: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  isDataLoaded: state.isDataLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadMovies() {
+    dispatch(fetchMovies());
+  }
 });
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
