@@ -1,9 +1,11 @@
 import {ActionType} from 'src/store/action';
+import {AuthStatus} from 'src/utils/auth';
 
 const initialState = {
   genre: `All Genres`,
   movies: [],
   isDataLoaded: false,
+  authStatus: AuthStatus.NO_AUTH,
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,7 +22,11 @@ const reducer = (state = initialState, action) => {
         genre: action.payload.genre,
         movies: action.payload.movies,
       };
-
+    case ActionType.REQUIRE_AUTH:
+      return {
+        ...state,
+        authStatus: action.payload,
+      };
   }
 
   return state;
