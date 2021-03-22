@@ -4,15 +4,17 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cardsAmount} from 'src/utils/constants';
+import {fetchMovies} from 'src/store/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
+import Preloader from 'src/components/Pages/Preloader/Preloader';
 
 
 function Main(props) {
-  const {genres, movies} = props;
+  const {genres, movies, isDataLoaded, onLoadMovies} = props;
   const promoMovie = movies[0];
 
   const [shownCards, setShownCards] = React.useState([]);
@@ -33,6 +35,18 @@ function Main(props) {
     if (shownCards.length >= movies.length - cardsAmount) {
       setIsMoreButtonVisible(false);
     }
+  }
+
+  React.useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadMovies();
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <Preloader />
+    );
   }
 
   return (
@@ -120,6 +134,8 @@ Main.propTypes = {
     video_link: PropTypes.string,
     preview_video_link: PropTypes.string,
   })),
+  isDataLoaded: PropTypes.bool,
+  onLoadMovies: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -127,6 +143,12 @@ const mapStateToProps = (state) => ({
   isDataLoaded: state.isDataLoaded,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoadMovies() {
+    dispatch(fetchMovies());
+  }
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 

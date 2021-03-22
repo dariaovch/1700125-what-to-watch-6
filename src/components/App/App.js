@@ -11,30 +11,15 @@ import Movie from 'src/components/Pages/Movie/Movie';
 import Review from 'src/components/Pages/Review/Review';
 import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
-import {fetchMovies} from 'src/store/apiActions';
-import Preloader from 'src/components/Pages/Preloader/Preloader';
 
 function App(props) {
-  const {movies, isDataLoaded, onLoadMovies} = props;
-
-
-  React.useEffect(() => {
-    if (!isDataLoaded) {
-      onLoadMovies();
-    }
-  }, [isDataLoaded]);
-
-  if (!isDataLoaded) {
-    return (
-      <Preloader />
-    );
-  }
+  const {movies} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main genres={genres} movies={movies} />
+          <Main genres={genres} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -79,20 +64,11 @@ App.propTypes = {
     video_link: PropTypes.string,
     preview_video_link: PropTypes.string,
   })),
-  isDataLoaded: PropTypes.bool,
-  onLoadMovies: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  isDataLoaded: state.isDataLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadMovies() {
-    dispatch(fetchMovies());
-  }
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
