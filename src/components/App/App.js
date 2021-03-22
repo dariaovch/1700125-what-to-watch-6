@@ -12,7 +12,7 @@ import Review from 'src/components/Pages/Review/Review';
 import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 import {fetchMovies} from 'src/store/apiActions';
-import Preloader from '../Pages/Preloader/Preloader';
+import Preloader from 'src/components/Pages/Preloader/Preloader';
 
 function App(props) {
   const {movies, isDataLoaded, onLoadMovies} = props;
