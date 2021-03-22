@@ -1,20 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import {createAPI} from 'src/utils/api';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {movies} from 'src/mocks/films.js';
+// import {movies} from 'src/mocks/films.js';
 import App from 'src/components/App/App.js';
 import {reducer} from 'src/store/reducer';
 import {genres} from 'src/utils/constants';
+
+const api = createAPI();
 
 const store = createStore(
     reducer,
     {
       genre: genres[0],
-      movies,
+      movies: [],
+      isDataLoaded: false,
     },
-    composeWithDevTools()
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 ReactDOM.render(

@@ -7,6 +7,7 @@ import {ActionCreator} from 'src/store/action';
 
 function MoviesGenres(props) {
   const {
+    movies,
     genres,
     genre,
     onFilterListByGenre,
@@ -16,7 +17,7 @@ function MoviesGenres(props) {
     <ul className="catalog__genres-list">
       {genres.map((item) =>
         <li key={item.id} className={cn(`catalog__genres-item`, {'catalog__genres-item--active': item === genre})} >
-          <a href="#" className="catalog__genres-link" onClick={() => onFilterListByGenre(item)}>{item.title}</a>
+          <a href="#" className="catalog__genres-link" onClick={() => onFilterListByGenre(item, movies)}>{item.title}</a>
         </li>
       )}
     </ul>
@@ -24,6 +25,7 @@ function MoviesGenres(props) {
 }
 
 MoviesGenres.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   genre: PropTypes.object,
   onFilterListByGenre: PropTypes.func,
@@ -34,8 +36,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterListByGenre(item) {
-    dispatch(ActionCreator.filterListByGenre(item));
+  onFilterListByGenre(item, movies) {
+    dispatch(ActionCreator.filterListByGenre(item, movies));
   },
 });
 

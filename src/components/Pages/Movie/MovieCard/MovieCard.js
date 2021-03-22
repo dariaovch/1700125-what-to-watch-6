@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -22,7 +23,7 @@ function MovieCard({movie}) {
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={movie.bgImage} alt={movie.alt} />
+          <img src={movie.background_image} alt={movie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -31,10 +32,10 @@ function MovieCard({movie}) {
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{movie.title}</h2>
+            <h2 className="movie-card__title">{movie.name}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{movie.genre}</span>
-              <span className="movie-card__year">{movie.year}</span>
+              <span className="movie-card__year">{movie.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -59,7 +60,7 @@ function MovieCard({movie}) {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={movie.poster} alt={movie.alt} width="218" height="327" />
+            <img src={movie.poster_image} alt={movie.name} width="218" height="327" />
           </div>
 
           <Tabs>
@@ -83,21 +84,23 @@ function MovieCard({movie}) {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
+    name: PropTypes.string,
+    poster_image: PropTypes.string,
+    preview_image: PropTypes.string,
+    background_image: PropTypes.string,
+    background_color: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scores_count: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
+    run_time: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    id: PropTypes.number,
+    is_favorite: PropTypes.bool,
+    video_link: PropTypes.string,
+    preview_video_link: PropTypes.string,
   }),
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
@@ -10,9 +11,24 @@ import Movie from 'src/components/Pages/Movie/Movie';
 import Review from 'src/components/Pages/Review/Review';
 import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
+import {fetchMovies} from 'src/store/apiActions';
+import Preloader from '../Pages/Preloader/Preloader';
 
 function App(props) {
-  const {movies} = props;
+  const {movies, isDataLoaded, onLoadMovies} = props;
+
+
+  React.useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadMovies();
+    }
+  }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return (
+      <Preloader />
+    );
+  }
 
   return (
     <BrowserRouter>
@@ -45,27 +61,38 @@ function App(props) {
 
 App.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
+    name: PropTypes.string,
+    poster_image: PropTypes.string,
+    preview_image: PropTypes.string,
+    background_image: PropTypes.string,
+    background_color: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scores_count: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    videoLink: PropTypes.string,
+    run_time: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    id: PropTypes.number,
+    is_favorite: PropTypes.bool,
+    video_link: PropTypes.string,
+    preview_video_link: PropTypes.string,
   })),
+  isDataLoaded: PropTypes.bool,
+  onLoadMovies: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  isDataLoaded: state.isDataLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadMovies() {
+    dispatch(fetchMovies());
+  }
 });
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
