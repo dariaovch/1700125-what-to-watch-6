@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {genres, stars} from 'src/utils/constants';
 import Main from 'src/components/Pages/Main/Main';
 import SignIn from 'src/components/Pages/SignIn/SignIn';
 import MyList from 'src/components/Pages/MyList/MyList';
@@ -11,6 +10,7 @@ import Movie from 'src/components/Pages/Movie/Movie';
 import Review from 'src/components/Pages/Review/Review';
 import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
+import {PrivateRoute} from 'src/hocs/PrivateRoute/PrivateRoute';
 
 function App(props) {
   const {movies} = props;
@@ -19,19 +19,27 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main genres={genres} />
+          <Main />
         </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList movies={movies} />
+          <PrivateRoute
+            exact
+            path="/mylist"
+            component={MyList}
+          />
         </Route>
         <Route exact path="/films/:id">
           <Movie movies={movies} />
         </Route>
         <Route exact path="/films/:id/review">
-          <Review movies={movies} stars={stars} />
+          <PrivateRoute
+            exact
+            path="/films/:id/review"
+            component={Review}
+          />
         </Route>
         <Route exact path="/player/:id">
           <Player movies={movies} />

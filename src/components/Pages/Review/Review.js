@@ -4,8 +4,9 @@ import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/ReviewForm/ReviewForm';
+import {stars} from 'src/utils/constants';
 
-function AddReview({movies, stars}) {
+function AddReview({movies}) {
   const {id} = useParams();
 
   const currentMovie = movies.find((item) => item.id === id);

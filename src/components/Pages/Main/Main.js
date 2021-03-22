@@ -11,10 +11,11 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
+import {genres} from 'src/utils/constants';
 
 
 function Main(props) {
-  const {genres, movies, isDataLoaded, onLoadMovies} = props;
+  const {movies, isDataLoaded, onLoadMovies} = props;
   const promoMovie = movies[0];
 
   const [shownCards, setShownCards] = React.useState([]);
