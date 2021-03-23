@@ -1246,6 +1246,9 @@ main {
   cursor: pointer; }
   .sign-in__btn:hover, .sign-in__btn:focus {
     border: 1px solid rgba(217, 205, 141, 0.7); }
+  .sign-in__btn:disabled {
+    opacity: .6;
+  }
 
 .sign-in__reset-password {
   text-align: center; }
@@ -1336,7 +1339,9 @@ main {
   color: inherit; }
 
 .user-block {
-  margin-left: auto; }
+  margin-left: auto;
+  display: flex;
+}
 
 .user-block__avatar {
   width: 63px;
@@ -1362,6 +1367,15 @@ main {
   transition: color 0.2s; }
   .user-block__link:hover {
     color: #C9B37E; }
+
+.user-block__email {
+  display: block;
+  font-size: 20px;
+  line-height: 24px;
+  color: #DFCF77;
+  font-weight: bold;
+  margin-right: 20px;
+}
 
 .user-page {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#170202), to(#0c0101));

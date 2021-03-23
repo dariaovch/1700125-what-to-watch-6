@@ -2,6 +2,7 @@ export const ActionType = {
   FILTER_LIST: `filterMovies/filterListByGenre`,
   LOAD_MOVIES: `data/loadMovies`,
   REQUIRE_AUTH: `user/requireAuth`,
+  GET_USER_DATA: `user/getUserData`,
 };
 
 export const ActionCreator = {
@@ -19,6 +20,10 @@ export const ActionCreator = {
   requireAuth: (status) => ({
     type: ActionType.REQUIRE_AUTH,
     payload: status,
+  }),
+  getUserData: (userData) => ({
+    type: ActionType.GET_USER_DATA,
+    payload: userData,
   })
 };
 

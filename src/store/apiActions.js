@@ -13,7 +13,13 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`login`, {email, password})
+export const login = ({email, password}) => (dispatch, _getState, api) => (
+  api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuth(AuthStatus.AUTH)))
 );
+
+export const getCurrentUser = () => (dispatch, _getState, api) => (
+  api.get(`login`)
+    .then(({data}) => dispatch(ActionCreator.getUserData(data)))
+);
+

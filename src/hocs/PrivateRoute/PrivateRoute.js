@@ -17,7 +17,7 @@ const PrivateRoute = ({component: Component, ...props}) => {
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.component,
+  component: PropTypes.func,
   authStatus: PropTypes.string,
 };
 

@@ -23,6 +23,7 @@ const store = createStore(
       movies: [],
       isDataLoaded: false,
       authStatus: AuthStatus.NO_AUTH,
+      userData: {},
     },
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api))

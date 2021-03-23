@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Logo from 'src/components/Layout/Logo/Logo';
 import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
-import {AuthStatus} from '../../../utils/auth';
+import {AuthStatus} from 'src/utils/auth';
 
 function Header(props) {
-  const {theme, hasBreadcrumbs, movie, authStatus} = props;
+  const {theme, hasBreadcrumbs, movie, authStatus, email} = props;
 
   const location = useLocation();
 
@@ -22,11 +22,12 @@ function Header(props) {
       {location.pathname === `/mylist` && <h1 className="page-title user-page__title">My list</h1>}
 
       {authStatus === AuthStatus.AUTH &&
-      <div className="user-block">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-        </div>
-      </div>}
+        <div className="user-block">
+          <p className="user-block__email">{email}</p>
+          <div className="user-block__avatar">
+            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          </div>
+        </div>}
       {authStatus === AuthStatus.NO_AUTH &&
       <div className="user-block">
         <Link to="/login" className="user-block__link">Sign in</Link>
@@ -57,6 +58,7 @@ Header.propTypes = {
     videoLink: PropTypes.string,
   }),
   authStatus: PropTypes.string,
+  email: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
