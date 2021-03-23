@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
@@ -54,4 +55,8 @@ Movie.propTypes = {
   }))
 };
 
-export default Movie;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
+
+export default connect(mapStateToProps)(Movie);

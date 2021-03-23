@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerControls';
@@ -89,4 +90,8 @@ Player.propTypes = {
   }))
 };
 
-export default Player;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
+
+export default connect(mapStateToProps)(Player);

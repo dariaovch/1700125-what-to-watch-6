@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
 import Main from 'src/components/Pages/Main/Main';
 import SignIn from 'src/components/Pages/SignIn/SignIn';
 import MyList from 'src/components/Pages/MyList/MyList';
@@ -12,8 +10,7 @@ import Player from 'src/components/Pages/Player/Player';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 import {PrivateRoute} from 'src/hocs/PrivateRoute/PrivateRoute';
 
-function App(props) {
-  const {movies} = props;
+function App() {
 
   return (
     <BrowserRouter>
@@ -32,7 +29,7 @@ function App(props) {
           />
         </Route>
         <Route exact path="/films/:id">
-          <Movie movies={movies} />
+          <Movie />
         </Route>
         <Route exact path="/films/:id/review">
           <PrivateRoute
@@ -42,7 +39,7 @@ function App(props) {
           />
         </Route>
         <Route exact path="/player/:id">
-          <Player movies={movies} />
+          <Player />
         </Route>
         <Route>
           <NotFound />
@@ -52,31 +49,31 @@ function App(props) {
   );
 }
 
-App.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
-    description: PropTypes.string,
-    rating: PropTypes.number,
-    scores_count: PropTypes.number,
-    director: PropTypes.string,
-    starring: PropTypes.array,
-    run_time: PropTypes.number,
-    genre: PropTypes.string,
-    released: PropTypes.number,
-    id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
-  })),
-};
+// App.propTypes = {
+//   movies: PropTypes.arrayOf(PropTypes.shape({
+//     name: PropTypes.string,
+//     poster_image: PropTypes.string,
+//     preview_image: PropTypes.string,
+//     background_image: PropTypes.string,
+//     background_color: PropTypes.string,
+//     description: PropTypes.string,
+//     rating: PropTypes.number,
+//     scores_count: PropTypes.number,
+//     director: PropTypes.string,
+//     starring: PropTypes.array,
+//     run_time: PropTypes.number,
+//     genre: PropTypes.string,
+//     released: PropTypes.number,
+//     id: PropTypes.number,
+//     is_favorite: PropTypes.bool,
+//     video_link: PropTypes.string,
+//     preview_video_link: PropTypes.string,
+//   })),
+// };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-});
+// const mapStateToProps = (state) => ({
+//   movies: state.movies,
+// });
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default App;
