@@ -49,31 +49,5 @@ function App() {
   );
 }
 
-// App.propTypes = {
-//   movies: PropTypes.arrayOf(PropTypes.shape({
-//     name: PropTypes.string,
-//     poster_image: PropTypes.string,
-//     preview_image: PropTypes.string,
-//     background_image: PropTypes.string,
-//     background_color: PropTypes.string,
-//     description: PropTypes.string,
-//     rating: PropTypes.number,
-//     scores_count: PropTypes.number,
-//     director: PropTypes.string,
-//     starring: PropTypes.array,
-//     run_time: PropTypes.number,
-//     genre: PropTypes.string,
-//     released: PropTypes.number,
-//     id: PropTypes.number,
-//     is_favorite: PropTypes.bool,
-//     video_link: PropTypes.string,
-//     preview_video_link: PropTypes.string,
-//   })),
-// };
-
-// const mapStateToProps = (state) => ({
-//   movies: state.movies,
-// });
-
 export {App};
 export default App;
