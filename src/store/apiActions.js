@@ -23,3 +23,7 @@ export const getCurrentUser = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.getUserData(data)))
 );
 
+export const getCurrentMovieData = (movieId) => (dispatch, _getState, api) => (
+  api.get(`films/${movieId}`)
+    .then(({data}) => dispatch(ActionCreator.getMovieData(data)))
+);

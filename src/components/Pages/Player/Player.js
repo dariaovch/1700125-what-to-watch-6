@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -7,13 +8,15 @@ import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerCon
 import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
 import useVideoPlayer from 'src/hooks/useVideoPlayer';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
+import {getCurrentMovieData} from '../../../store/apiActions';
+import Preloader from 'src/components/Pages/Preloader/Preloader';
 
 
-function Player({movies}) {
+function Player(props) {
+  const {currentMovie, onLoadCurrentMovieData} = props;
+
   const {id} = useParams();
   const history = useHistory();
-
-  const currentMovie = movies.find((item) => item.id === id);
 
   const handleExit = () => history.push(`/films/${currentMovie.id}`);
 
@@ -30,6 +33,14 @@ function Player({movies}) {
     currentTime
   } = useVideoPlayer();
 
+  React.useEffect(() => {
+    onLoadCurrentMovieData(id);
+  }, []);
+
+  if (!currentMovie) {
+    return <Preloader />;
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -40,8 +51,8 @@ function Player({movies}) {
 
         <PlayerVideo
           ref={videoPlayerRef}
-          videoSrc={currentMovie.videoLink}
-          bgImage={currentMovie.bgImage}
+          videoSrc={currentMovie.video_link}
+          bgImage={currentMovie.background_image}
           handleLoadedMetadata={handleVideoMetadataLoaded}
           handleTimeUpdate={handleTimeUpdate}
           isMuted={false}
@@ -60,7 +71,7 @@ function Player({movies}) {
             onPlayClick={handlePlayClick}
             isPlaying={isPlaying}
             isLoaded={isLoaded}
-            title={currentMovie.title}
+            title={currentMovie.name}
             onFullscreenClick={handleFullscreenButtonClick}
           />
         </div>
@@ -71,27 +82,38 @@ function Player({movies}) {
 
 Player.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
+    name: PropTypes.string,
+    poster_image: PropTypes.string,
+    preview_image: PropTypes.string,
+    background_image: PropTypes.string,
+    background_color: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scores_count: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    videoLink: PropTypes.string,
-  }))
+    run_time: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    id: PropTypes.number,
+    is_favorite: PropTypes.bool,
+    video_link: PropTypes.string,
+    preview_video_link: PropTypes.string,
+  })),
+  currentMovie: PropTypes.object,
+  onLoadCurrentMovieData: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  currentMovie: state.currentMovie,
 });
 
-export default connect(mapStateToProps)(Player);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadCurrentMovieData(id) {
+    dispatch(getCurrentMovieData(id));
+  },
+});
+
+export {Player};
+export default connect(mapStateToProps, mapDispatchToProps)(Player);

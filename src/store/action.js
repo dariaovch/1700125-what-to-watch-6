@@ -3,6 +3,7 @@ export const ActionType = {
   LOAD_MOVIES: `data/loadMovies`,
   REQUIRE_AUTH: `user/requireAuth`,
   GET_USER_DATA: `user/getUserData`,
+  GET_MOVIE_DATA: `data/getMovieData`,
 };
 
 export const ActionCreator = {
@@ -24,6 +25,10 @@ export const ActionCreator = {
   getUserData: (userData) => ({
     type: ActionType.GET_USER_DATA,
     payload: userData,
-  })
+  }),
+  getMovieData: (movieData) => ({
+    type: ActionType.GET_MOVIE_DATA,
+    payload: movieData,
+  }),
 };
 

@@ -7,6 +7,7 @@ const initialState = {
   isDataLoaded: false,
   authStatus: AuthStatus.NO_AUTH,
   userData: {},
+  currentMovie: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload,
+      };
+    case ActionType.GET_MOVIE_DATA:
+      return {
+        ...state,
+        currentMovie: action.payload,
       };
   }
 
