@@ -7,7 +7,6 @@ import controllersImage from 'src/images/controllersImage.svg';
 import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
-// import Preloader from 'src/components/Pages/Preloader/Preloader';
 import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
 import {getCurrentMovieData} from '../../../store/apiActions';
 
@@ -15,7 +14,6 @@ function Movie(props) {
   const {movies, currentMovie, onLoadCurrentMovieData} = props;
 
   const {id} = useParams();
-  // const currentMovie = movies.find((item) => item.id === id);
 
   React.useEffect(() => {
     onLoadCurrentMovieData(id);
