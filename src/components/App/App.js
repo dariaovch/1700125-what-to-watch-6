@@ -21,23 +21,15 @@ function App() {
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/mylist">
-          <PrivateRoute
-            exact
-            path="/mylist"
-            component={MyList}
-          />
-        </Route>
+        <PrivateRoute exact path="/mylist">
+          <MyList />
+        </PrivateRoute>
         <Route exact path="/films/:id">
           <Movie />
         </Route>
-        <Route exact path="/films/:id/review">
-          <PrivateRoute
-            exact
-            path="/films/:id/review"
-            component={Review}
-          />
-        </Route>
+        <PrivateRoute exact path="/films/:id/review">
+          <Review />
+        </PrivateRoute>
         <Route exact path="/player/:id">
           <Player />
         </Route>

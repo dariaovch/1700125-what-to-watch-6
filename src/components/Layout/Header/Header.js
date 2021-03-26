@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Logo from 'src/components/Layout/Logo/Logo';
 import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
-import {AuthStatus} from 'src/utils/auth';
+import {AuthStatus} from 'src/store/auth';
 
 function Header(props) {
   const {theme, hasBreadcrumbs, movie, authStatus, email} = props;

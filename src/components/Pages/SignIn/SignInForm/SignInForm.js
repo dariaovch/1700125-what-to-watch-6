@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
 import useFormWithValidation from 'src/hooks/useFormWithValidation';
 import {login} from 'src/store/apiActions';
 
@@ -11,8 +10,6 @@ function SignInForm(props) {
 
   const {values, handleChange, errors, isFormValid, resetForm} = useFormWithValidation();
 
-  const history = useHistory();
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -21,7 +18,6 @@ function SignInForm(props) {
       password: values.password
     });
     resetForm();
-    history.push(`/`);
   };
 
 

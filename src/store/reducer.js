@@ -1,13 +1,13 @@
 import {ActionType} from 'src/store/action';
-import {AuthStatus} from 'src/utils/auth';
+import {AuthStatus} from 'src/store/auth';
 
 const initialState = {
   genre: `All Genres`,
   movies: [],
-  isDataLoaded: false,
   authStatus: AuthStatus.NO_AUTH,
-  userData: {},
-  currentMovie: {},
+  userData: null,
+  currentMovie: null,
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {

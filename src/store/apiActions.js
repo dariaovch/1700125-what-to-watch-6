@@ -1,6 +1,5 @@
 import {ActionCreator} from "src/store/action";
-import {AuthStatus} from "src/utils/auth";
-
+import {AuthStatus} from 'src/store/auth';
 
 export const fetchMovies = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -10,12 +9,13 @@ export const fetchMovies = () => (dispatch, _getState, api) => (
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(ActionCreator.requireAuth(AuthStatus.AUTH)))
-    .catch(() => {})
+    .catch(() => dispatch(ActionCreator.requireAuth(AuthStatus.NO_AUTH)))
 );
 
 export const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuth(AuthStatus.AUTH)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(`/`)))
 );
 
 export const getCurrentUser = () => (dispatch, _getState, api) => (

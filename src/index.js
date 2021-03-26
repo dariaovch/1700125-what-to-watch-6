@@ -9,8 +9,9 @@ import App from 'src/components/App/App.js';
 import {reducer} from 'src/store/reducer';
 import {genres} from 'src/utils/constants';
 import {ActionCreator} from 'src/store/action';
-import {AuthStatus} from 'src/utils/auth';
+import {AuthStatus} from 'src/store/auth';
 import {checkAuth} from 'src/store/apiActions';
+import {redirect} from 'src/middlewares/redirect';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuth(AuthStatus.NO_AUTH))
@@ -21,12 +22,14 @@ const store = createStore(
     {
       genre: genres[0],
       movies: [],
-      isDataLoaded: false,
       authStatus: AuthStatus.NO_AUTH,
-      userData: {},
+      userData: null,
+      currentMovie: null,
+      isDataLoaded: false,
     },
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect),
     )
 );
 

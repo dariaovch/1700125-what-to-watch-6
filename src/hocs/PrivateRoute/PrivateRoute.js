@@ -2,22 +2,28 @@ import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {AuthStatus} from 'src/utils/auth';
+import {AuthStatus} from 'src/store/auth';
 
-const PrivateRoute = ({component: Component, ...props}) => {
+const PrivateRoute = ({children, ...props}) => {
   const {authStatus} = props;
 
   return (
-    <Route>
-      {
-        () => authStatus === AuthStatus.AUTH ? <Component {...props} /> : <Redirect to="/login" />
+    <Route
+      {...props}
+      render={() =>
+        authStatus === AuthStatus.AUTH ? (
+          children
+        ) : (
+          <Redirect to="/login" />
+        )
       }
-    </Route>
+    />
+
   );
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.func,
+  children: PropTypes.node,
   authStatus: PropTypes.string,
 };
 

@@ -13,7 +13,7 @@ import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
 import {getCurrentUser} from 'src/store/apiActions';
-import {AuthStatus} from 'src/utils/auth';
+import {AuthStatus} from 'src/store/auth';
 
 
 function Main(props) {
@@ -70,7 +70,7 @@ function Main(props) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header theme="movie" email={`` || userData.email} />
+        <Header theme="movie" email={`` || (userData && userData.email)} />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -122,7 +122,7 @@ function Main(props) {
 }
 
 Main.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     poster_image: PropTypes.string,
