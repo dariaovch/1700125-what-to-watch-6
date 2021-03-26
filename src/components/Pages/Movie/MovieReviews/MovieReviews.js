@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {reviews} from 'src/mocks/reviews';
 import ReviewItem from 'src/components/Pages/Movie/MovieReviews/ReviewItem';
 import {getComments} from '../../../../store/apiActions';
 

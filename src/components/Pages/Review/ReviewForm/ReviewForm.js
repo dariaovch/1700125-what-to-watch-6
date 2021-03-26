@@ -10,22 +10,21 @@ function ReviewForm({stars, onReviewFormSubmit}) {
   const {values, handleChange, errors, isFormValid, resetForm} = useFormWithValidation();
   const {id} = useParams();
 
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(values)
 
-    // onReviewFormSubmit(id, {
-    //   rating: values.rating,
-    //   comment: values.comment,
-    // });
+    onReviewFormSubmit(id, {
+      rating: values.rating,
+      comment: values.comment,
+    });
+
     resetForm();
   };
 
   return (
     <form action="#" className="add-review__form" onSubmit={handleSubmit} noValidate>
       <div className="rating">
-        <Stars stars={stars} onChange={handleChange} ratingValue={values.rating} />
+        <Stars stars={stars} onChange={handleChange} />
       </div>
 
       <div className="add-review__text">
@@ -37,7 +36,6 @@ function ReviewForm({stars, onReviewFormSubmit}) {
           minLength="50"
           maxLength="400"
           onChange={handleChange}
-          value={`` || values.comment}
         ></textarea>
         {errors.comment && <span className="sign-in__error-message">{errors.comment}</span>}
         <div className="add-review__submit">
@@ -58,8 +56,8 @@ ReviewForm.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onReviewFormSubmit(data) {
-    dispatch(postComment(data));
+  onReviewFormSubmit(id, data) {
+    dispatch(postComment(id, data));
   },
 });
 

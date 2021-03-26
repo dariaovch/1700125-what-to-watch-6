@@ -5,7 +5,6 @@ export const ActionType = {
   REQUIRE_AUTH: `user/requireAuth`,
   GET_USER_DATA: `user/getUserData`,
   GET_MOVIE_DATA: `data/getMovieData`,
-  POST_COMMENT: `data/postComment`,
   GET_COMMENTS: `data/getComments`,
 };
 
@@ -41,9 +40,5 @@ export const ActionCreator = {
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
   }),
-  // postComment: (commentData) => ({
-  //   type: ActionType.POST_COMMENT,
-  //   payload: commentData,
-  // }),
 };
 

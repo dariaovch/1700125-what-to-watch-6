@@ -12,7 +12,6 @@ function useFormWithValidation() {
     const target = evt.target;
     const name = target.name;
     const value = target.value;
-    const isRadio = target.type === `radio`;
 
     setValues({
       ...values,
