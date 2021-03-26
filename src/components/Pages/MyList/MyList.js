@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
@@ -47,4 +48,8 @@ MyList.propTypes = {
   }))
 };
 
-export default MyList;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
+
+export default connect(mapStateToProps)(MyList);

@@ -3,7 +3,11 @@ import axios from "axios";
 const BASE_URL = `https://6.react.pages.academy/wtw`;
 const REQUEST_TIMEOUT = 5000;
 
-export const createAPI = () => {
+const resCode = {
+  UNAUTHORIZED: 401,
+};
+
+export const createAPI = (onUnathorized) => {
   const api = axios.create({
     baseURL: BASE_URL,
     timeout: REQUEST_TIMEOUT,
@@ -13,6 +17,14 @@ export const createAPI = () => {
   const onSuccess = (res) => res;
 
   const onFail = (err) => {
+    const {response} = err;
+
+    if (response.status === resCode.UNAUTHORIZED) {
+      onUnathorized();
+
+      throw err;
+    }
+
     throw err;
   };
 

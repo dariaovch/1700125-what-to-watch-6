@@ -11,15 +11,23 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
+import {genres} from 'src/utils/constants';
+import {getCurrentUser} from 'src/store/apiActions';
+import {AuthStatus} from 'src/store/auth';
 
 
 function Main(props) {
-  const {genres, movies, isDataLoaded, onLoadMovies} = props;
+  const {movies, isDataLoaded, onLoadMovies, authStatus, onGetUserData, userData} = props;
   const promoMovie = movies[0];
 
   const [shownCards, setShownCards] = React.useState([]);
   const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
 
+  React.useEffect(() => {
+    if (authStatus === AuthStatus.AUTH) {
+      onGetUserData();
+    }
+  }, []);
 
   React.useEffect(() => {
     setShownCards(movies.slice(0, cardsAmount));
@@ -62,7 +70,7 @@ function Main(props) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header theme="movie" hasAvatar={true} />
+        <Header theme="movie" email={`` || (userData && userData.email)} />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -114,7 +122,7 @@ function Main(props) {
 }
 
 Main.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     poster_image: PropTypes.string,
@@ -136,16 +144,24 @@ Main.propTypes = {
   })),
   isDataLoaded: PropTypes.bool,
   onLoadMovies: PropTypes.func,
+  authStatus: PropTypes.string,
+  onGetUserData: PropTypes.func,
+  userData: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
   isDataLoaded: state.isDataLoaded,
+  authStatus: state.authStatus,
+  userData: state.userData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadMovies() {
     dispatch(fetchMovies());
+  },
+  onGetUserData() {
+    dispatch(getCurrentUser());
   }
 });
 
