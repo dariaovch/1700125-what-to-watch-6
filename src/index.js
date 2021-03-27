@@ -25,6 +25,7 @@ const store = createStore(
       authStatus: AuthStatus.NO_AUTH,
       userData: null,
       currentMovie: null,
+      movieReviews: [],
       isDataLoaded: false,
     },
     composeWithDevTools(

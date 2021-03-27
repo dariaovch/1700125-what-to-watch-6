@@ -2,13 +2,15 @@
 import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Header from 'src/components/Layout/Header/Header.js';
 import Tabs from 'src/components/Pages/Movie/Tabs/Tabs';
 import Overview from 'src/components/Pages/Movie/Overview/Overview';
 import Details from 'src/components/Pages//Movie/Details/Details';
 import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
+import {AuthStatus} from 'src/store/auth';
 
-function MovieCard({movie}) {
+function MovieCard({movie, authStatus}) {
   const history = useHistory();
 
   const handlePlayClick = () => {
@@ -28,7 +30,7 @@ function MovieCard({movie}) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header theme="movie" hasAvatar={true} />
+        <Header theme="movie" />
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -51,7 +53,7 @@ function MovieCard({movie}) {
                 </svg>
                 <span>My list</span>
               </button>
-              <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
+              {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
         </div>
@@ -102,6 +104,12 @@ MovieCard.propTypes = {
     video_link: PropTypes.string,
     preview_video_link: PropTypes.string,
   }),
+  authStatus: PropTypes.string,
 };
 
-export default MovieCard;
+const mapStateToProps = (state) => ({
+  authStatus: state.authStatus,
+});
+
+export {MovieCard};
+export default connect(mapStateToProps)(MovieCard);

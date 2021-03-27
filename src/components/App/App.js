@@ -27,9 +27,12 @@ function App() {
         <Route exact path="/films/:id">
           <Movie />
         </Route>
-        <PrivateRoute exact path="/films/:id/review">
+        {/* <PrivateRoute exact path="/films/:id/review">
           <Review />
-        </PrivateRoute>
+        </PrivateRoute> */}
+        <Route exact path="/films/:id/review">
+          <Review />
+        </Route>
         <Route exact path="/player/:id">
           <Player />
         </Route>

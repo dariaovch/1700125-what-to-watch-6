@@ -19,11 +19,24 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
 );
 
 export const getCurrentUser = () => (dispatch, _getState, api) => (
-  api.get(`login`)
+  api.get(`/login`)
     .then(({data}) => dispatch(ActionCreator.getUserData(data)))
 );
 
 export const getCurrentMovieData = (movieId) => (dispatch, _getState, api) => (
-  api.get(`films/${movieId}`)
+  api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.getMovieData(data)))
 );
+
+export const getComments = (movieId) => (dispatch, _getState, api) => (
+  api.get(`/comments/${movieId}`)
+    .then(({data}) => dispatch(ActionCreator.getComments(data)))
+);
+
+export const postComment = (movieId, {rating, comment}) => (dispatch, _getState, api) => (
+  api.post(`/comments/${movieId}`, {rating, comment})
+    .then(({data}) => dispatch(ActionCreator.getComments(data)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(`/films/${movieId}`)))
+);
+
+

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 
 function Stars({stars, onChange}) {
+
   return (
     <div className="rating__stars">
       {stars.map((item) =>
@@ -24,6 +25,7 @@ Stars.propTypes = {
     label: PropTypes.string.isRequired,
   })),
   onChange: PropTypes.func.isRequired,
+  ratingValue: PropTypes.number,
 };
 
 

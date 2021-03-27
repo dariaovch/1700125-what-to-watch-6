@@ -1,20 +1,20 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
-import ReviewForm from 'src/components/ReviewForm/ReviewForm';
+import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
+import {getCurrentMovieData} from '../../../store/apiActions';
 
-function AddReview({movies}) {
+function AddReview({currentMovie, onLoadCurrentMovieData}) {
   const {id} = useParams();
 
-  const currentMovie = movies.find((item) => item.id === id);
-
-  const handleFormSubmit = (evt) => {
-    evt.preventDefault();
-  };
+  React.useEffect(() => {
+    onLoadCurrentMovieData(id);
+  }, []);
 
   return (
     <>
@@ -25,20 +25,20 @@ function AddReview({movies}) {
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src={currentMovie.bgImage} alt={currentMovie.alt} />
+            <img src={currentMovie.background_image} alt={currentMovie.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header hasAvatar={true} hasBreadcrumbs={true} movie={currentMovie} />
+          <Header hasBreadcrumbs={true} movie={currentMovie} />
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src={currentMovie.poster} alt={currentMovie.poster} width="218" height="327" />
+            <img src={currentMovie.poster_image} alt={currentMovie.name} width="218" height="327" />
           </div>
         </div>
 
         <div className="add-review">
-          <ReviewForm stars={stars} onSubmit={handleFormSubmit} />
+          <ReviewForm stars={stars} />
         </div>
 
       </section>
@@ -48,32 +48,40 @@ function AddReview({movies}) {
 }
 
 AddReview.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
+  currentMovie: PropTypes.shape({
+    name: PropTypes.string,
+    poster_image: PropTypes.string,
+    preview_image: PropTypes.string,
+    background_image: PropTypes.string,
+    background_color: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    scores_count: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    videoLink: PropTypes.string,
-  })),
+    run_time: PropTypes.number,
+    genre: PropTypes.string,
+    released: PropTypes.number,
+    id: PropTypes.number,
+    is_favorite: PropTypes.bool,
+    video_link: PropTypes.string,
+    preview_video_link: PropTypes.string,
+  }),
   stars: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
   })),
+  onLoadCurrentMovieData: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
+  currentMovie: state.currentMovie,
 });
 
-export default connect(mapStateToProps)(AddReview);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadCurrentMovieData(id) {
+    dispatch(getCurrentMovieData(id));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

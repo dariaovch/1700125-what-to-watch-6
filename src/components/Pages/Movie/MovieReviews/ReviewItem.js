@@ -1,31 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import formatDate from 'src/utils/formatDate';
 
 function ReviewItem({item}) {
   return (
     <div className="review">
       <blockquote className="review__quote">
-        <p className="review__text">{item.reviewText}</p>
+        <p className="review__text">{item.comment}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{item.author}</cite>
-          <time className="review__date" dateTime={item.dateTime}>{item.dateStr}</time>
+          <cite className="review__author">{item.user.name}</cite>
+          <time className="review__date" dateTime={item.date}>{formatDate(item.date)}</time>
         </footer>
       </blockquote>
 
-      <div className="review__rating">{item.reviewRating}</div>
+      <div className="review__rating">{item.rating}</div>
     </div>
   );
 }
 
 ReviewItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    reviewText: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    dateTime: PropTypes.string.isRequired,
-    dateStr: PropTypes.string.isRequired,
-    reviewRating: PropTypes.string,
+    id: PropTypes.number,
+    user: PropTypes.object,
+    rating: PropTypes.number,
+    comment: PropTypes.string,
+    date: PropTypes.string
   }),
 };
 

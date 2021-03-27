@@ -7,6 +7,7 @@ const initialState = {
   authStatus: AuthStatus.NO_AUTH,
   userData: null,
   currentMovie: null,
+  movieReviews: [],
   isDataLoaded: false,
 };
 
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentMovie: action.payload,
+      };
+    case ActionType.GET_COMMENTS:
+      return {
+        ...state,
+        movieReviews: action.payload,
       };
   }
 
