@@ -30,8 +30,9 @@ MoviesGenres.propTypes = {
   onFilterListByGenre: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  genre: state.genre,
+const mapStateToProps = ({DATA}) => ({
+  genre: DATA.genre,
+  movies: DATA.movies,
 });
 
 const mapDispatchToProps = (dispatch) => ({

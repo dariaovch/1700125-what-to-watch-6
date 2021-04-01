@@ -148,11 +148,11 @@ Main.propTypes = {
   userData: PropTypes.object,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  isDataLoaded: state.isDataLoaded,
-  authStatus: state.authStatus,
-  userData: state.userData,
+const mapStateToProps = ({DATA, USER}) => ({
+  movies: DATA.movies,
+  isDataLoaded: DATA.isDataLoaded,
+  authStatus: USER.authStatus,
+  userData: USER.userData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

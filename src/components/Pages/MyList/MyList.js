@@ -48,8 +48,8 @@ MyList.propTypes = {
   }))
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
+const mapStateToProps = ({DATA}) => ({
+  movies: DATA.movies,
 });
 
 export default connect(mapStateToProps)(MyList);

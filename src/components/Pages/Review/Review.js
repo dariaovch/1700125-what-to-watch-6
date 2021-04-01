@@ -74,8 +74,8 @@ AddReview.propTypes = {
   onLoadCurrentMovieData: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  currentMovie: state.currentMovie,
+const mapStateToProps = ({DATA}) => ({
+  currentMovie: DATA.currentMovie,
 });
 
 const mapDispatchToProps = (dispatch) => ({

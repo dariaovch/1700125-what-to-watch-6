@@ -1,5 +1,5 @@
 export const ActionType = {
-  FILTER_LIST: `list/filterListByGenre`,
+  FILTER_LIST: `data/filterListByGenre`,
   LOAD_MOVIES: `data/loadMovies`,
   REDIRECT_TO_ROUTE: `app/redirectToRoute`,
   REQUIRE_AUTH: `user/requireAuth`,

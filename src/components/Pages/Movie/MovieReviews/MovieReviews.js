@@ -31,8 +31,8 @@ MovieReviews.propTypes = {
   onLoadMovieReviews: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  movieReviews: state.movieReviews,
+const mapStateToProps = ({DATA}) => ({
+  movieReviews: DATA.movieReviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({

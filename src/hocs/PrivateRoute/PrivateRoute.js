@@ -27,8 +27,8 @@ PrivateRoute.propTypes = {
   authStatus: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-  authStatus: state.authStatus,
+const mapStateToProps = ({USER}) => ({
+  authStatus: USER.authStatus,
 });
 
 export {PrivateRoute};

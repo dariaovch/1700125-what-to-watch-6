@@ -104,9 +104,9 @@ Player.propTypes = {
   onLoadCurrentMovieData: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies,
-  currentMovie: state.currentMovie,
+const mapStateToProps = ({DATA}) => ({
+  movies: DATA.movies,
+  currentMovie: DATA.currentMovie,
 });
 
 const mapDispatchToProps = (dispatch) => ({
