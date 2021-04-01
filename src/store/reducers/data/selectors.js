@@ -1,4 +1,4 @@
-import {NameSpace} from 'src/store/rootReducer';
+import {NameSpace} from 'src/store/reducers/rootReducer';
 
 export const getMovies = (state) => state[NameSpace.DATA].movies;
 

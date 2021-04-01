@@ -1,4 +1,4 @@
-import {NameSpace} from 'src/store/rootReducer';
+import {NameSpace} from 'src/store/reducers/rootReducer';
 
 export const getAuthStatus = (state) => state[NameSpace.USER].authStatus;
 

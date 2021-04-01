@@ -14,7 +14,7 @@ import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
 import {AuthStatus} from 'src/store/auth';
 import {getDataLoadedStatus, getMovies} from 'src/store/reducers/data/selectors';
-import {getUserData, getAuthStatus} from 'src/store/actions/userActions';
+import {getUserData, getAuthStatus} from 'src/store/reducers/user/selectors';
 
 function Main(props) {
   const {movies, isDataLoaded, onLoadMovies, authStatus, onGetUserData, userData} = props;
@@ -38,12 +38,15 @@ function Main(props) {
     }
   }, [movies]);
 
-  function handleMoreButtonClick() {
-    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
-    if (shownCards.length >= movies.length - cardsAmount) {
-      setIsMoreButtonVisible(false);
-    }
-  }
+  const handleMoreButtonClick = React.useCallback(
+      () => {
+        setShownCards(movies.slice(0, shownCards.length + cardsAmount));
+        if (shownCards.length >= movies.length - cardsAmount) {
+          setIsMoreButtonVisible(false);
+        }
+      },
+      [shownCards]
+  );
 
   React.useEffect(() => {
     if (!isDataLoaded) {

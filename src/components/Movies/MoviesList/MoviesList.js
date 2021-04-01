@@ -7,17 +7,23 @@ import ShowMoreButton from './ShowMoreButton/ShowMoreButton';
 function MoviesList({movies, isMoreButtonVisible, onMoreButtonClick}) {
   const [activeMovie, setActiveMovie] = React.useState();
 
-  const handleCardMouseOver = (item, activeVideoRef) => {
-    setActiveMovie(item);
-    setTimeout(() => {
-      activeVideoRef.current.play();
-    }, videoDelayTime);
-  };
+  const handleCardMouseOver = React.useCallback(
+      (item, activeVideoRef) => {
+        setActiveMovie(item);
+        setTimeout(() => {
+          activeVideoRef.current.play();
+        }, videoDelayTime);
+      },
+      [activeMovie]
+  );
 
-  const handleCardMouseOut = (activeVideoRef) => {
-    activeVideoRef.current.pause();
-    setActiveMovie();
-  };
+  const handleCardMouseOut = React.useCallback(
+      (activeVideoRef) => {
+        activeVideoRef.current.pause();
+        setActiveMovie();
+      },
+      [activeMovie]
+  );
 
   return (
     <>
