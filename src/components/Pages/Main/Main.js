@@ -13,7 +13,8 @@ import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
 import {AuthStatus} from 'src/store/auth';
-
+import {getDataLoadedStatus, getMovies} from 'src/store/reducers/data/selectors';
+import {getUserData, getAuthStatus} from 'src/store/actions/userActions';
 
 function Main(props) {
   const {movies, isDataLoaded, onLoadMovies, authStatus, onGetUserData, userData} = props;
@@ -148,11 +149,11 @@ Main.propTypes = {
   userData: PropTypes.object,
 };
 
-const mapStateToProps = ({DATA, USER}) => ({
-  movies: DATA.movies,
-  isDataLoaded: DATA.isDataLoaded,
-  authStatus: USER.authStatus,
-  userData: USER.userData,
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  isDataLoaded: getDataLoadedStatus(state),
+  authStatus: getAuthStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

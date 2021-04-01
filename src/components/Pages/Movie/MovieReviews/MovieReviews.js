@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ReviewItem from 'src/components/Pages/Movie/MovieReviews/ReviewItem';
 import {getComments} from 'src/store/actions/apiActions';
+import {getMovieReviews} from 'src/store/reducers/data/selectors';
 
 function MovieReviews({movieReviews, onLoadMovieReviews}) {
   const {id} = useParams();
@@ -31,8 +32,8 @@ MovieReviews.propTypes = {
   onLoadMovieReviews: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  movieReviews: DATA.movieReviews,
+const mapStateToProps = (state) => ({
+  movieReviews: getMovieReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

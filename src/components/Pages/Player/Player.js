@@ -10,6 +10,7 @@ import useVideoPlayer from 'src/hooks/useVideoPlayer';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
+import {getCurrentMovie, getMovies} from 'src/store/reducers/data/selectors';
 
 
 function Player(props) {
@@ -104,9 +105,9 @@ Player.propTypes = {
   onLoadCurrentMovieData: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  movies: DATA.movies,
-  currentMovie: DATA.currentMovie,
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

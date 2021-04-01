@@ -8,6 +8,7 @@ import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
+import {getCurrentMovie} from 'src/store/reducers/data/selectors';
 
 function AddReview({currentMovie, onLoadCurrentMovieData}) {
   const {id} = useParams();
@@ -74,8 +75,8 @@ AddReview.propTypes = {
   onLoadCurrentMovieData: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  currentMovie: DATA.currentMovie,
+const mapStateToProps = (state) => ({
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -9,6 +9,7 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
+import {getCurrentMovie, getMovies} from 'src/store/reducers/data/selectors';
 
 function Movie(props) {
   const {movies, currentMovie, onLoadCurrentMovieData} = props;
@@ -65,9 +66,9 @@ Movie.propTypes = {
   onLoadCurrentMovieData: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  movies: DATA.movies,
-  currentMovie: DATA.currentMovie,
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

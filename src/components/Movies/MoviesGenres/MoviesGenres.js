@@ -3,6 +3,7 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {filterListByGenre} from 'src/store/actions/listActions';
+import {getGenre, getMovies} from 'src/store/reducers/data/selectors';
 
 function MoviesGenres(props) {
   const {
@@ -30,9 +31,9 @@ MoviesGenres.propTypes = {
   onFilterListByGenre: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  genre: DATA.genre,
-  movies: DATA.movies,
+const mapStateToProps = (state) => ({
+  genre: getGenre(state),
+  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
