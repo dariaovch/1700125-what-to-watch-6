@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cardsAmount} from 'src/utils/constants';
-import {fetchMovies} from 'src/store/apiActions';
+import {fetchMovies, getCurrentUser} from 'src/store/actions/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -12,7 +12,6 @@ import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
-import {getCurrentUser} from 'src/store/apiActions';
 import {AuthStatus} from 'src/store/auth';
 
 

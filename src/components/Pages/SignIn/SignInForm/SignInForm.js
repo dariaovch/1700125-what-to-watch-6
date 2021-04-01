@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import useFormWithValidation from 'src/hooks/useFormWithValidation';
-import {login} from 'src/store/apiActions';
+import {login} from 'src/store/actions/apiActions';
 
 
 function SignInForm(props) {

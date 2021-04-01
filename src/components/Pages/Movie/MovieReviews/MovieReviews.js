@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ReviewItem from 'src/components/Pages/Movie/MovieReviews/ReviewItem';
-import {getComments} from '../../../../store/apiActions';
+import {getComments} from 'src/store/actions/apiActions';
 
 function MovieReviews({movieReviews, onLoadMovieReviews}) {
   const {id} = useParams();

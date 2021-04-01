@@ -8,7 +8,7 @@ import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
-import {getCurrentMovieData} from '../../../store/apiActions';
+import {getCurrentMovieData} from 'src/store/actions/apiActions';
 
 function Movie(props) {
   const {movies, currentMovie, onLoadCurrentMovieData} = props;

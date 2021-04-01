@@ -1,4 +1,4 @@
-import {ActionType} from 'src/store/action';
+import {ActionType} from 'src/store/actions/actionType';
 import {AuthStatus} from 'src/store/auth';
 
 const initialState = {

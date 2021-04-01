@@ -7,7 +7,7 @@ import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
-import {getCurrentMovieData} from '../../../store/apiActions';
+import {getCurrentMovieData} from 'src/store/actions/apiActions';
 
 function AddReview({currentMovie, onLoadCurrentMovieData}) {
   const {id} = useParams();
