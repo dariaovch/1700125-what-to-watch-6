@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Logo from 'src/components/Layout/Logo/Logo';
 import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
+import {getAuthStatus} from 'src/store/reducers/user/selectors';
 
 function Header(props) {
   const {theme, hasBreadcrumbs, movie, authStatus, email} = props;
@@ -62,7 +63,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authStatus: state.authStatus,
+  authStatus: getAuthStatus(state),
 });
 
 export {Header};

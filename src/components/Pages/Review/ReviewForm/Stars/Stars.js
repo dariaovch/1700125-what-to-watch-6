@@ -29,4 +29,7 @@ Stars.propTypes = {
 };
 
 
-export default Stars;
+export default React.memo(Stars, (prevProps, nextProps) => {
+  return prevProps.value === nextProps.value;
+});
+

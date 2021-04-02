@@ -3,6 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {AuthStatus} from 'src/store/auth';
+import {getAuthStatus} from 'src/store/reducers/user/selectors';
 
 const PrivateRoute = ({children, ...props}) => {
   const {authStatus} = props;
@@ -28,7 +29,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authStatus: state.authStatus,
+  authStatus: getAuthStatus(state),
 });
 
 export {PrivateRoute};

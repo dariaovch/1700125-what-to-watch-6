@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import useFormWithValidation from 'src/hooks/useFormWithValidation';
 import Stars from 'src/components/Pages/Review/ReviewForm/Stars/Stars';
-import {postComment} from 'src/store/apiActions';
+import {postComment} from 'src/store/actions/apiActions';
 
 function ReviewForm({stars, onReviewFormSubmit}) {
   const {values, handleChange, errors, isFormValid, resetForm} = useFormWithValidation();

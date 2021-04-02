@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cardsAmount} from 'src/utils/constants';
-import {fetchMovies} from 'src/store/apiActions';
+import {fetchMovies, getCurrentUser} from 'src/store/actions/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -12,9 +12,9 @@ import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
-import {getCurrentUser} from 'src/store/apiActions';
 import {AuthStatus} from 'src/store/auth';
-
+import {getDataLoadedStatus, getMovies} from 'src/store/reducers/data/selectors';
+import {getUserData, getAuthStatus} from 'src/store/reducers/user/selectors';
 
 function Main(props) {
   const {movies, isDataLoaded, onLoadMovies, authStatus, onGetUserData, userData} = props;
@@ -38,12 +38,15 @@ function Main(props) {
     }
   }, [movies]);
 
-  function handleMoreButtonClick() {
-    setShownCards(movies.slice(0, shownCards.length + cardsAmount));
-    if (shownCards.length >= movies.length - cardsAmount) {
-      setIsMoreButtonVisible(false);
-    }
-  }
+  const handleMoreButtonClick = React.useCallback(
+      () => {
+        setShownCards(movies.slice(0, shownCards.length + cardsAmount));
+        if (shownCards.length >= movies.length - cardsAmount) {
+          setIsMoreButtonVisible(false);
+        }
+      },
+      [shownCards]
+  );
 
   React.useEffect(() => {
     if (!isDataLoaded) {
@@ -150,10 +153,10 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  isDataLoaded: state.isDataLoaded,
-  authStatus: state.authStatus,
-  userData: state.userData,
+  movies: getMovies(state),
+  isDataLoaded: getDataLoadedStatus(state),
+  authStatus: getAuthStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ReviewItem from 'src/components/Pages/Movie/MovieReviews/ReviewItem';
-import {getComments} from '../../../../store/apiActions';
+import {getComments} from 'src/store/actions/apiActions';
+import {getMovieReviews} from 'src/store/reducers/data/selectors';
 
 function MovieReviews({movieReviews, onLoadMovieReviews}) {
   const {id} = useParams();
@@ -32,7 +33,7 @@ MovieReviews.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movieReviews: state.movieReviews,
+  movieReviews: getMovieReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

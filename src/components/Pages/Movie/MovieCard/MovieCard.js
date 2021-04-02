@@ -9,6 +9,7 @@ import Overview from 'src/components/Pages/Movie/Overview/Overview';
 import Details from 'src/components/Pages//Movie/Details/Details';
 import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 import {AuthStatus} from 'src/store/auth';
+import {getAuthStatus} from 'src/store/reducers/user/selectors';
 
 function MovieCard({movie, authStatus}) {
   const history = useHistory();
@@ -108,7 +109,7 @@ MovieCard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authStatus: state.authStatus,
+  authStatus: getAuthStatus(state),
 });
 
 export {MovieCard};

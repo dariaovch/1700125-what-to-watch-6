@@ -8,8 +8,9 @@ import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerCon
 import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
 import useVideoPlayer from 'src/hooks/useVideoPlayer';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
-import {getCurrentMovieData} from '../../../store/apiActions';
+import {getCurrentMovieData} from 'src/store/actions/apiActions';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
+import {getCurrentMovie, getMovies} from 'src/store/reducers/data/selectors';
 
 
 function Player(props) {
@@ -105,8 +106,8 @@ Player.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  currentMovie: state.currentMovie,
+  movies: getMovies(state),
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

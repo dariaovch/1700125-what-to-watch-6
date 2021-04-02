@@ -53,4 +53,6 @@ Card.propTypes = {
   activeMovie: PropTypes.object,
 };
 
-export default Card;
+export default React.memo(Card, (prevProps, nextProps) => {
+  return (prevProps.activeMovie === prevProps.item) === (nextProps.activeMovie === nextProps.item);
+});

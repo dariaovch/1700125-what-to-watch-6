@@ -6,27 +6,32 @@ import {createAPI} from 'src/utils/api';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from 'src/components/App/App.js';
-import {reducer} from 'src/store/reducer';
+import rootReducer from 'src/store/reducers/rootReducer';
 import {genres} from 'src/utils/constants';
-import {ActionCreator} from 'src/store/action';
 import {AuthStatus} from 'src/store/auth';
-import {checkAuth} from 'src/store/apiActions';
+import {checkAuth} from 'src/store/actions/apiActions';
 import {redirect} from 'src/middlewares/redirect';
+import {requireAuth} from 'src/store/actions/userActions';
 
 const api = createAPI(
-    () => store.dispatch(ActionCreator.requireAuth(AuthStatus.NO_AUTH))
+    () => store.dispatch(requireAuth(AuthStatus.NO_AUTH))
 );
 
 const store = createStore(
-    reducer,
+    rootReducer,
     {
-      genre: genres[0],
-      movies: [],
-      authStatus: AuthStatus.NO_AUTH,
-      userData: null,
-      currentMovie: null,
-      movieReviews: [],
-      isDataLoaded: false,
+      DATA: {
+        genre: genres[0],
+        movies: [],
+        currentMovie: null,
+        movieReviews: [],
+        isDataLoaded: false,
+      },
+      // LIST: {genre: genres[0]},
+      USER: {
+        authStatus: AuthStatus.NO_AUTH,
+        userData: null,
+      },
     },
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api)),

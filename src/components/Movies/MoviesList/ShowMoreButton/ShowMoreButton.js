@@ -13,4 +13,4 @@ ShowMoreButton.propTypes = {
   onButtonClick: PropTypes.func,
 };
 
-export default ShowMoreButton;
+export default React.memo(ShowMoreButton);
