@@ -14,3 +14,13 @@ export const getComments = (comments) => ({
   type: ActionType.GET_COMMENTS,
   payload: comments,
 });
+
+export const getMoviesToWatch = (movies) => ({
+  type: ActionType.GET_FAVORITE_MOVIES,
+  payload: movies,
+});
+
+export const getPromoMovie = (movie) => ({
+  type: ActionType.GET_PROMO_MOVIE,
+  payload: movie,
+});

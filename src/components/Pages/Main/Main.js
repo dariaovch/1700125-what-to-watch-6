@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {cardsAmount} from 'src/utils/constants';
-import {fetchMovies, getCurrentUser} from 'src/store/actions/apiActions';
+import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -13,12 +13,21 @@ import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {genres} from 'src/utils/constants';
 import {AuthStatus} from 'src/store/auth';
-import {getDataLoadedStatus, getMovies} from 'src/store/reducers/data/selectors';
+import {getDataLoadedStatus, getMovies, getPromoMovie} from 'src/store/reducers/data/selectors';
 import {getUserData, getAuthStatus} from 'src/store/reducers/user/selectors';
 
 function Main(props) {
-  const {movies, isDataLoaded, onLoadMovies, authStatus, onGetUserData, userData} = props;
-  const promoMovie = movies[0];
+  const {
+    movies,
+    isDataLoaded,
+    onLoadMovies,
+    authStatus,
+    onGetUserData,
+    userData,
+    promoMovie,
+    onGetPromoMovie
+  } = props;
+
 
   const [shownCards, setShownCards] = React.useState([]);
   const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
@@ -47,6 +56,12 @@ function Main(props) {
       },
       [shownCards]
   );
+
+  React.useEffect(() => {
+    if (!promoMovie) {
+      onGetPromoMovie();
+    }
+  }, [promoMovie]);
 
   React.useEffect(() => {
     if (!isDataLoaded) {
@@ -150,6 +165,8 @@ Main.propTypes = {
   authStatus: PropTypes.string,
   onGetUserData: PropTypes.func,
   userData: PropTypes.object,
+  promoMovie: PropTypes.object,
+  onGetPromoMovie: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -157,6 +174,7 @@ const mapStateToProps = (state) => ({
   isDataLoaded: getDataLoadedStatus(state),
   authStatus: getAuthStatus(state),
   userData: getUserData(state),
+  promoMovie: getPromoMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -165,6 +183,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onGetUserData() {
     dispatch(getCurrentUser());
+  },
+  onGetPromoMovie() {
+    dispatch(getPromo());
   }
 });
 

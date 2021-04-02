@@ -1,6 +1,6 @@
 import {AuthStatus} from 'src/store/auth';
 import {redirectToRoute} from 'src/store/actions/appActions';
-import {getMovieData, loadMovies} from 'src/store/actions/dataActions';
+import {getMovieData, loadMovies, getMoviesToWatch, getPromoMovie} from 'src/store/actions/dataActions';
 import {getUserData, requireAuth} from 'src/store/actions/userActions';
 
 export const fetchMovies = () => (dispatch, _getState, api) => (
@@ -41,4 +41,18 @@ export const postComment = (movieId, {rating, comment}) => (dispatch, _getState,
     .then(() => dispatch(redirectToRoute(`/films/${movieId}`)))
 );
 
+export const getFavoriteMovies = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => dispatch(getMoviesToWatch(data)))
+);
+
+export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${movieId}/${statusCode}`)
+    .then(() => dispatch(redirectToRoute(`/mylist`)))
+);
+
+export const getPromo = () => (dispatch, _getState, api) => (
+  api.get(`/films/promo`)
+    .then(({data}) => dispatch(getPromoMovie(data)))
+);
 
