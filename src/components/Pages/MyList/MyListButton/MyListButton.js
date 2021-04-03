@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams, useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getFavoriteMovies} from 'src/store/reducers/data/selectors';
+import {getFavoriteMovies} from 'src/store/selectors/data';
 import {changeFavoriteStatus} from 'src/store/actions/apiActions';
 import {addToFavoriteCode, removeFromFavoriteCode} from 'src/utils/constants';
 
@@ -14,8 +14,8 @@ function MyListButton(props) {
   const {id} = useParams();
 
   const handleMyListClick = () => {
-    const movieId = location.pathname === `/` ? promoMovie.id : id;
-    const isFavorite = favoriteMovies ? favoriteMovies.find((item) => item.id === movieId) : false;
+    const movieId = (location.pathname === `/` && promoMovie) ? promoMovie.id : id;
+    const isFavorite = favoriteMovies.find((item) => item.id === movieId);
     if (isFavorite) {
       onChangeFavoriteMovieStatus(movieId, removeFromFavoriteCode);
     } else {

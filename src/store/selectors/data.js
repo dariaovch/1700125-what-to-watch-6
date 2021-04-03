@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import {NameSpace} from 'src/store/reducers/rootReducer';
-import {filterMoviesListByGenre} from '../../../utils/filterMoviesListByGenre';
+import {filterMoviesListByGenre} from 'src/utils/filterMoviesListByGenre';
 
 export const getMovies = (state) => state[NameSpace.DATA].movies;
 

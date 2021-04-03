@@ -11,11 +11,10 @@ import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {AuthStatus} from 'src/store/auth';
-import {getDataLoadedStatus, getPromoMovie} from 'src/store/reducers/data/selectors';
-import {getUserData, getAuthStatus} from 'src/store/reducers/user/selectors';
+import {getDataLoadedStatus, getMoviesByGenre, getPromoMovie} from 'src/store/selectors/data';
+import {getUserData, getAuthStatus} from 'src/store/selectors/user';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 import {filterListByGenre} from 'src/store/actions/listActions';
-import {getMoviesByGenre} from 'src/store/reducers/data/selectors';
 
 function Main(props) {
   const {

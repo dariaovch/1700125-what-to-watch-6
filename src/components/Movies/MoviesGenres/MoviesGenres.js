@@ -2,8 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getGenre} from 'src/store/reducers/data/selectors';
-import {getMovies} from 'src/store/reducers/data/selectors';
+import {getGenre, getMovies} from 'src/store/selectors/data';
 import {createGenresList} from 'src/utils/createGenresList';
 
 function MoviesGenres(props) {

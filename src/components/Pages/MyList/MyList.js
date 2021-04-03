@@ -7,7 +7,7 @@ import Header from 'src/components/Layout/Header/Header';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import Footer from 'src/components/Layout/Footer/Footer';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
-import {getFavoriteMovies} from 'src/store/reducers/data/selectors';
+import {getFavoriteMovies} from 'src/store/selectors/data';
 import {getMoviesToWatch} from 'src/store/actions/apiActions';
 
 function MyList({favoriteMovies, onLoadFavoriteMovies}) {
