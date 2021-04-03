@@ -15,7 +15,7 @@ export const getComments = (comments) => ({
   payload: comments,
 });
 
-export const getMoviesToWatch = (movies) => ({
+export const getFavoriteMovies = (movies) => ({
   type: ActionType.GET_FAVORITE_MOVIES,
   payload: movies,
 });

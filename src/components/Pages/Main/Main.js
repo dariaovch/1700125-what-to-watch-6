@@ -3,7 +3,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {cardsAmount} from 'src/utils/constants';
 import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/apiActions';
 import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
@@ -11,10 +10,12 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
-import {genres} from 'src/utils/constants';
 import {AuthStatus} from 'src/store/auth';
-import {getDataLoadedStatus, getMovies, getPromoMovie} from 'src/store/reducers/data/selectors';
+import {getDataLoadedStatus, getPromoMovie} from 'src/store/reducers/data/selectors';
 import {getUserData, getAuthStatus} from 'src/store/reducers/user/selectors';
+import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
+import {filterListByGenre} from 'src/store/actions/listActions';
+import {getMoviesByGenre} from 'src/store/reducers/data/selectors';
 
 function Main(props) {
   const {
@@ -25,12 +26,13 @@ function Main(props) {
     onGetUserData,
     userData,
     promoMovie,
-    onGetPromoMovie
+    onGetPromoMovie,
+    onFilterListByGenre
   } = props;
 
-
-  const [shownCards, setShownCards] = React.useState([]);
-  const [isMoreButtonVisible, setIsMoreButtonVisible] = React.useState(false);
+  const handleFilterListByGenre = (item) => {
+    onFilterListByGenre(item);
+  };
 
   React.useEffect(() => {
     if (authStatus === AuthStatus.AUTH) {
@@ -39,29 +41,11 @@ function Main(props) {
   }, []);
 
   React.useEffect(() => {
-    setShownCards(movies.slice(0, cardsAmount));
-    if (movies.length <= cardsAmount) {
-      setIsMoreButtonVisible(false);
-    } else {
-      setIsMoreButtonVisible(true);
-    }
-  }, [movies]);
-
-  const handleMoreButtonClick = React.useCallback(
-      () => {
-        setShownCards(movies.slice(0, shownCards.length + cardsAmount));
-        if (shownCards.length >= movies.length - cardsAmount) {
-          setIsMoreButtonVisible(false);
-        }
-      },
-      [shownCards]
-  );
-
-  React.useEffect(() => {
     if (!promoMovie) {
       onGetPromoMovie();
     }
   }, [promoMovie]);
+
 
   React.useEffect(() => {
     if (!isDataLoaded) {
@@ -83,7 +67,7 @@ function Main(props) {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={`` || promoMovie.background_image} alt={`` || promoMovie.name} />
+          <img src={`` || (promoMovie && promoMovie.background_image)} alt={`` || (promoMovie && promoMovie.name)} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -94,15 +78,15 @@ function Main(props) {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <Link to={`/films/${promoMovie.id}`}>
-                <img src={`` || promoMovie.poster_image} alt={`` || promoMovie.name} width="218" height="327" />
+                <img src={`` || (promoMovie && promoMovie.poster_image)} alt={`` || (promoMovie && promoMovie.name)} width="218" height="327" />
               </Link>
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{`` || promoMovie.name}</h2>
+              <h2 className="movie-card__title">{`` || (promoMovie && promoMovie.name)}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{`` || promoMovie.genre}</span>
-                <span className="movie-card__year">{`` || promoMovie.released}</span>
+                <span className="movie-card__genre">{`` || (promoMovie && promoMovie.genre)}</span>
+                <span className="movie-card__year">{`` || (promoMovie && promoMovie.released)}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -112,12 +96,8 @@ function Main(props) {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link to={`/mylist`} className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use href="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </Link>
+
+                <MyListButton promoMovie={promoMovie} />
               </div>
             </div>
           </div>
@@ -128,8 +108,8 @@ function Main(props) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <MoviesGenres genres={genres} movies={movies} />
-          <MoviesList movies={shownCards} isMoreButtonVisible={isMoreButtonVisible} onMoreButtonClick={handleMoreButtonClick} />
+          <MoviesGenres onFilterListByGenre={handleFilterListByGenre} />
+          <MoviesList movies={movies} />
 
         </section>
 
@@ -140,7 +120,6 @@ function Main(props) {
 }
 
 Main.propTypes = {
-  // genres: PropTypes.arrayOf(PropTypes.object).isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     poster_image: PropTypes.string,
@@ -167,10 +146,11 @@ Main.propTypes = {
   userData: PropTypes.object,
   promoMovie: PropTypes.object,
   onGetPromoMovie: PropTypes.func,
+  onFilterListByGenre: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
+  movies: getMoviesByGenre(state),
   isDataLoaded: getDataLoadedStatus(state),
   authStatus: getAuthStatus(state),
   userData: getUserData(state),
@@ -186,7 +166,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onGetPromoMovie() {
     dispatch(getPromo());
-  }
+  },
+  onFilterListByGenre(item) {
+    dispatch(filterListByGenre(item));
+  },
 });
 
 export {Main};

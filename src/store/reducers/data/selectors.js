@@ -1,4 +1,6 @@
+import {createSelector} from 'reselect';
 import {NameSpace} from 'src/store/reducers/rootReducer';
+import {filterMoviesListByGenre} from '../../../utils/filterMoviesListByGenre';
 
 export const getMovies = (state) => state[NameSpace.DATA].movies;
 
@@ -10,6 +12,12 @@ export const getGenre = (state) => state[NameSpace.DATA].genre;
 
 export const getDataLoadedStatus = (state) => state[NameSpace.DATA].isDataLoaded;
 
-export const getFavoriteMovies = (state) => state[NameSpace.DATA].favoriteMovie;
+export const getFavoriteMovies = (state) => state[NameSpace.DATA].favoriteMovies;
 
 export const getPromoMovie = (state) => state[NameSpace.DATA].promoMovie;
+
+export const getMoviesByGenre = createSelector(
+    getMovies,
+    getGenre,
+    (movies, genre) => filterMoviesListByGenre(movies, genre)
+);
