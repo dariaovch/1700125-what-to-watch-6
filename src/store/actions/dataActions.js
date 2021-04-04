@@ -10,7 +10,7 @@ export const getMovieData = (movieData) => ({
   payload: movieData,
 });
 
-export const getComments = (comments) => ({
+export const getMovieReviews = (comments) => ({
   type: ActionType.GET_COMMENTS,
   payload: comments,
 });

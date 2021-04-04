@@ -1,7 +1,7 @@
-import {AuthStatus} from 'src/store/auth';
-import {redirectToRoute} from 'src/store/actions/appActions';
-import {getMovieData, loadMovies, getFavoriteMovies, getPromoMovie} from 'src/store/actions/dataActions';
-import {getUserData, requireAuth} from 'src/store/actions/userActions';
+import {AuthStatus} from '../auth';
+import {redirectToRoute} from './appActions';
+import {getMovieData, loadMovies, getMovieReviews, getFavoriteMovies, getPromoMovie} from './dataActions';
+import {getUserData, requireAuth} from './userActions';
 
 export const fetchMovies = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -32,12 +32,12 @@ export const getCurrentMovieData = (movieId) => (dispatch, _getState, api) => (
 
 export const getComments = (movieId) => (dispatch, _getState, api) => (
   api.get(`/comments/${movieId}`)
-    .then(({data}) => dispatch(getComments(data)))
+    .then(({data}) => dispatch(getMovieReviews(data)))
 );
 
 export const postComment = (movieId, {rating, comment}) => (dispatch, _getState, api) => (
   api.post(`/comments/${movieId}`, {rating, comment})
-    .then(({data}) => dispatch(getComments(data)))
+    .then(({data}) => dispatch(getMovieReviews(data)))
     .then(() => dispatch(redirectToRoute(`/films/${movieId}`)))
 );
 

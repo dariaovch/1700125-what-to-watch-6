@@ -1,7 +1,7 @@
 import {
   loadMovies,
   getMovieData,
-  getComments,
+  getMovieReviews,
   getFavoriteMovies,
   getPromoMovie,
 } from './dataActions';
@@ -117,7 +117,7 @@ describe(`Data action creators work correctly`, () => {
       payload: comments,
     };
 
-    expect(getComments(comments)).toEqual(expectedAction);
+    expect(getMovieReviews(comments)).toEqual(expectedAction);
   });
 
   it(`Action creator for getting favorite movies returns correct action`, () => {
