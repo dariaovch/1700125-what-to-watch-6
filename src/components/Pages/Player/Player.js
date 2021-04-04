@@ -10,7 +10,7 @@ import useVideoPlayer from 'src/hooks/useVideoPlayer';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
-import {getCurrentMovie, getMovies} from 'src/store/reducers/data/selectors';
+import {getCurrentMovie, getMovies} from 'src/store/selectors/data';
 
 
 function Player(props) {

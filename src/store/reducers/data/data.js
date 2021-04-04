@@ -3,8 +3,11 @@ import {ActionType} from 'src/store/actions/actionType';
 const initialState = {
   genre: `All Genres`,
   movies: [],
+  moviesFilteredByGenere: [],
   currentMovie: null,
   movieReviews: [],
+  favoriteMovies: [],
+  promoMovie: null,
   isDataLoaded: false,
 };
 
@@ -26,12 +29,20 @@ const data = (state = initialState, action) => {
         ...state,
         movieReviews: action.payload,
       };
-
     case ActionType.FILTER_LIST:
       return {
         ...state,
         genre: action.payload.genre,
-        movies: action.payload.movies,
+      };
+    case ActionType.GET_FAVORITE_MOVIES:
+      return {
+        ...state,
+        favoriteMovies: action.payload,
+      };
+    case ActionType.GET_PROMO_MOVIE:
+      return {
+        ...state,
+        promoMovie: action.payload,
       };
   }
 

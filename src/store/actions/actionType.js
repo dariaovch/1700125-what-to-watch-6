@@ -6,4 +6,6 @@ export const ActionType = {
   GET_USER_DATA: `user/getUserData`,
   GET_MOVIE_DATA: `data/getMovieData`,
   GET_COMMENTS: `data/getComments`,
+  GET_FAVORITE_MOVIES: `data/getFavoriteMovies`,
+  GET_PROMO_MOVIE: `data/getPromoMovie`,
 };

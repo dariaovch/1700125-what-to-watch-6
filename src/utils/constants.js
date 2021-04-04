@@ -2,6 +2,9 @@ export const videoDelayTime = 1000;
 
 export const cardsAmount = 8;
 
+export const addToFavoriteCode = 1;
+export const removeFromFavoriteCode = 0;
+
 export const genres = [
   {
     id: `00`,

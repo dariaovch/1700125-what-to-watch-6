@@ -8,7 +8,7 @@ import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
-import {getCurrentMovie} from 'src/store/reducers/data/selectors';
+import {getCurrentMovie} from 'src/store/selectors/data';
 
 function AddReview({currentMovie, onLoadCurrentMovieData}) {
   const {id} = useParams();

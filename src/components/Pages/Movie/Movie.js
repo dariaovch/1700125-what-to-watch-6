@@ -9,7 +9,7 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
 import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
-import {getCurrentMovie, getMovies} from 'src/store/reducers/data/selectors';
+import {getCurrentMovie, getMovies} from 'src/store/selectors/data';
 
 function Movie(props) {
   const {movies, currentMovie, onLoadCurrentMovieData} = props;

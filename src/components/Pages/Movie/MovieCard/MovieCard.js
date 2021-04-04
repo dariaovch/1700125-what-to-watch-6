@@ -9,17 +9,14 @@ import Overview from 'src/components/Pages/Movie/Overview/Overview';
 import Details from 'src/components/Pages//Movie/Details/Details';
 import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 import {AuthStatus} from 'src/store/auth';
-import {getAuthStatus} from 'src/store/reducers/user/selectors';
+import {getAuthStatus} from 'src/store/selectors/user';
+import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 
 function MovieCard({movie, authStatus}) {
   const history = useHistory();
 
   const handlePlayClick = () => {
     history.push(`/player/${movie.id}`);
-  };
-
-  const handleMyListClick = () => {
-    history.push(`/mylist`);
   };
 
   return (
@@ -48,12 +45,7 @@ function MovieCard({movie, authStatus}) {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button" onClick={handleMyListClick}>
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+              <MyListButton />
               {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>

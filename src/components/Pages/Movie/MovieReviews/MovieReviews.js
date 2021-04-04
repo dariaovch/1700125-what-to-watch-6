@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ReviewItem from 'src/components/Pages/Movie/MovieReviews/ReviewItem';
 import {getComments} from 'src/store/actions/apiActions';
-import {getMovieReviews} from 'src/store/reducers/data/selectors';
+import {getMovieReviews} from 'src/store/selectors/data';
 
 function MovieReviews({movieReviews, onLoadMovieReviews}) {
   const {id} = useParams();

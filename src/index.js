@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from 'src/components/App/App.js';
 import rootReducer from 'src/store/reducers/rootReducer';
-import {genres} from 'src/utils/constants';
+import {NameSpace} from 'src/store/reducers/rootReducer';
 import {AuthStatus} from 'src/store/auth';
 import {checkAuth} from 'src/store/actions/apiActions';
 import {redirect} from 'src/middlewares/redirect';
@@ -20,15 +20,15 @@ const api = createAPI(
 const store = createStore(
     rootReducer,
     {
-      DATA: {
-        genre: genres[0],
+      [NameSpace.DATA]: {
+        genre: `All genres`,
         movies: [],
         currentMovie: null,
         movieReviews: [],
+        favoriteMovies: [],
         isDataLoaded: false,
       },
-      // LIST: {genre: genres[0]},
-      USER: {
+      [NameSpace.USER]: {
         authStatus: AuthStatus.NO_AUTH,
         userData: null,
       },
