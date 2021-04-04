@@ -4,8 +4,8 @@ import {
   getMovieReviews,
   getFavoriteMovies,
   getPromoMovie,
-} from './dataActions';
-import {ActionType} from './actionType';
+} from 'src/store/actions/dataActions';
+import {ActionType} from 'src/store/actions/actionType';
 
 describe(`Data action creators work correctly`, () => {
   it(`Action creator for loading movies returns correct action`, () => {

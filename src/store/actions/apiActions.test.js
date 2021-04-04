@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../utils/api';
-import {ActionType} from './actionType';
+import {createAPI} from 'src/utils/api';
+import {ActionType} from 'src/store/actions/actionType';
 import {
   fetchMovies,
   checkAuth,
@@ -12,8 +12,8 @@ import {
   getMoviesToWatch,
   changeFavoriteStatus,
   getPromo,
-} from './apiActions';
-import {AuthStatus} from '../auth';
+} from 'src/store/actions/apiActions';
+import {AuthStatus} from 'src/store/auth';
 
 const api = createAPI(() => {});
 

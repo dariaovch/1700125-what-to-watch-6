@@ -1,6 +1,6 @@
-import {user} from './user';
-import {ActionType} from '../../actions/actionType';
-import {AuthStatus} from '../../auth';
+import {user} from 'src/store/reducers/user/user';
+import {ActionType} from 'src/store/actions/actionType';
+import {AuthStatus} from 'src/store/auth';
 
 
 describe(`User reducers work correctly`, () => {

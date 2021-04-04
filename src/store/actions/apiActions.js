@@ -1,7 +1,7 @@
-import {AuthStatus} from '../auth';
-import {redirectToRoute} from './appActions';
-import {getMovieData, loadMovies, getMovieReviews, getFavoriteMovies, getPromoMovie} from './dataActions';
-import {getUserData, requireAuth} from './userActions';
+import {AuthStatus} from 'src/store/auth';
+import {redirectToRoute} from 'src/store/actions/appActions';
+import {getMovieData, loadMovies, getMovieReviews, getFavoriteMovies, getPromoMovie} from 'src/store/actions/dataActions';
+import {getUserData, requireAuth} from 'src/store/actions/userActions';
 
 export const fetchMovies = () => (dispatch, _getState, api) => (
   api.get(`/films`)

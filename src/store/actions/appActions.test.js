@@ -1,7 +1,7 @@
 import {
   redirectToRoute
-} from './appActions';
-import {ActionType} from './actionType';
+} from 'src/store/actions/appActions';
+import {ActionType} from 'src/store/actions/actionType';
 
 describe(`App action creators work correctly`, () => {
   it(`Action creator for redirect returns correct action`, () => {

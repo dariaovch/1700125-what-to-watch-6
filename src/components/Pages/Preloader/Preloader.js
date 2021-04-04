@@ -1,5 +1,4 @@
 import React from 'react';
-// import spinner from 'src/images/Preloader.png';
 
 function Preloader() {
   return (

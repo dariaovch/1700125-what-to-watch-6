@@ -1,7 +1,7 @@
-import {data} from './data';
-import {ActionType} from '../../actions/actionType';
-import {mockMovies} from '../../../mocks/films';
-import {mockReviews} from '../../../mocks/reviews';
+import {data} from 'src/store/reducers/data/data';
+import {ActionType} from 'src/store/actions/actionType';
+import {mockMovies} from 'src/mocks/films';
+import {mockReviews} from 'src/mocks/reviews';
 
 describe(`Data reducers work correctly`, () => {
   it(`Should return initial state`, () => {

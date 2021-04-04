@@ -1,7 +1,7 @@
 import {
   filterListByGenre
-} from './listActions';
-import {ActionType} from './actionType';
+} from 'src/store/actions/listActions';
+import {ActionType} from 'src/store/actions/actionType';
 
 describe(`List action creators work correctly`, () => {
   it(`Action creator for filter by genre returns correct action`, () => {

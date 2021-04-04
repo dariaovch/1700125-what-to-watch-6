@@ -1,5 +1,5 @@
-import {ActionType} from '../../actions/actionType';
-import {AuthStatus} from '../../auth';
+import {ActionType} from 'src/store/actions/actionType';
+import {AuthStatus} from 'src/store/auth';
 
 const initialState = {
   authStatus: AuthStatus.NO_AUTH,

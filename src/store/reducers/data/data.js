@@ -1,4 +1,4 @@
-import {ActionType} from '../../actions/actionType';
+import {ActionType} from 'src/store/actions/actionType';
 
 const initialState = {
   genre: `All Genres`,

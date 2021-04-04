@@ -1,9 +1,9 @@
 import {
   requireAuth,
   getUserData,
-} from './userActions';
-import {ActionType} from './actionType';
-import {AuthStatus} from '../auth';
+} from 'src/store/actions/userActions';
+import {ActionType} from 'src/store/actions/actionType';
+import {AuthStatus} from 'src/store/auth';
 
 describe(`User action creators work correctly`, () => {
   it(`Action creator for requiring auth returns correct action`, () => {

@@ -31,6 +31,7 @@
   },
   "jest": {
     "moduleNameMapper": {
+      "src(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/src/style-mock.js"
     },
     "setupFilesAfterEnv": [
