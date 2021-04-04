@@ -1,8 +1,6 @@
-import {ActionType} from 'src/store/actions/actionType';
+import {ActionType} from './actionType';
 
 export const filterListByGenre = (item) => ({
   type: ActionType.FILTER_LIST,
-  payload: {
-    genre: item,
-  },
+  payload: item,
 });

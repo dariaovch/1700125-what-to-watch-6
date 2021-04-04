@@ -32,7 +32,7 @@ const data = (state = initialState, action) => {
     case ActionType.FILTER_LIST:
       return {
         ...state,
-        genre: action.payload.genre,
+        genre: action.payload,
       };
     case ActionType.GET_FAVORITE_MOVIES:
       return {

@@ -1,4 +1,4 @@
-import {ActionType} from 'src/store/actions/actionType';
+import {ActionType} from './actionType';
 
 export const loadMovies = (movies) => ({
   type: ActionType.LOAD_MOVIES,
