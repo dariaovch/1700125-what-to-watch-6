@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
@@ -20,7 +19,7 @@ function AddReview({currentMovie, onLoadCurrentMovieData}) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <section className="movie-card movie-card--full">

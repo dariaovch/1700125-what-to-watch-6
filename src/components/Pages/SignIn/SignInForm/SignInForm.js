@@ -31,6 +31,7 @@ function SignInForm(props) {
             placeholder="Email address"
             name="email"
             id="email"
+            data-testid="email"
             value={values.email || ``}
             onChange={handleChange}
           />
@@ -44,6 +45,7 @@ function SignInForm(props) {
             placeholder="Password"
             name="password"
             id="password"
+            data-testid="password"
             minLength="6"
             value={values.password || ``}
             onChange={handleChange}

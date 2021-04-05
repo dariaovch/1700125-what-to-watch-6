@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
-import controllersImage from 'src/images/controllersImage.svg';
 import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerControls';
 import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
 import useVideoPlayer from 'src/hooks/useVideoPlayer';
@@ -45,7 +44,7 @@ function Player(props) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <div className="player">

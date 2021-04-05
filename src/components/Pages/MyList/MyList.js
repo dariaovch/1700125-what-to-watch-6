@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -22,7 +21,7 @@ function MyList({favoriteMovies, onLoadFavoriteMovies}) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <div className="user-page">

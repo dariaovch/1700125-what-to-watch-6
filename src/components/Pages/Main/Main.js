@@ -2,57 +2,55 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/apiActions';
-import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import {AuthStatus} from 'src/store/auth';
-import {getDataLoadedStatus, getMoviesByGenre, getPromoMovie} from 'src/store/selectors/data';
-import {getUserData, getAuthStatus} from 'src/store/selectors/user';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 import {filterListByGenre} from 'src/store/actions/listActions';
+import {getMoviesByGenre} from '../../../store/selectors/data';
 
-function Main(props) {
+function Main({movies}) {
   const {
-    movies,
     isDataLoaded,
-    onLoadMovies,
-    authStatus,
-    onGetUserData,
-    userData,
     promoMovie,
-    onGetPromoMovie,
-    onFilterListByGenre
-  } = props;
+  } = useSelector((state) => state.DATA);
+
+  const {
+    authStatus,
+    userData,
+  } = useSelector((state) => state.USER);
+
+  const dispatch = useDispatch();
 
   const handleFilterListByGenre = (item) => {
-    onFilterListByGenre(item);
+    dispatch(filterListByGenre(item));
   };
 
   React.useEffect(() => {
     if (authStatus === AuthStatus.AUTH) {
-      onGetUserData();
+      dispatch(getCurrentUser());
     }
   }, []);
 
   React.useEffect(() => {
     if (!promoMovie) {
-      onGetPromoMovie();
+      dispatch(getPromo());
     }
   }, [promoMovie]);
 
 
   React.useEffect(() => {
     if (!isDataLoaded) {
-      onLoadMovies();
+      dispatch(fetchMovies());
     }
   }, [isDataLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded && !promoMovie) {
     return (
       <Preloader />
     );
@@ -61,7 +59,7 @@ function Main(props) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <section className="movie-card">
@@ -150,27 +148,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => ({
   movies: getMoviesByGenre(state),
-  isDataLoaded: getDataLoadedStatus(state),
-  authStatus: getAuthStatus(state),
-  userData: getUserData(state),
-  promoMovie: getPromoMovie(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onLoadMovies() {
-    dispatch(fetchMovies());
-  },
-  onGetUserData() {
-    dispatch(getCurrentUser());
-  },
-  onGetPromoMovie() {
-    dispatch(getPromo());
-  },
-  onFilterListByGenre(item) {
-    dispatch(filterListByGenre(item));
-  },
-});
-
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);
 

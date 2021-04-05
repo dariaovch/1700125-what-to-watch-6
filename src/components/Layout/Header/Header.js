@@ -2,14 +2,15 @@ import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Logo from 'src/components/Layout/Logo/Logo';
 import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
-import {getAuthStatus} from 'src/store/selectors/user';
 
 function Header(props) {
-  const {theme, hasBreadcrumbs, movie, authStatus, email} = props;
+  const {authStatus} = useSelector((state) => state.USER);
+
+  const {theme, hasBreadcrumbs, movie, email} = props;
 
   const location = useLocation();
 
@@ -62,9 +63,4 @@ Header.propTypes = {
   email: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-  authStatus: getAuthStatus(state),
-});
-
-export {Header};
-export default connect(mapStateToProps)(Header);
+export default Header;

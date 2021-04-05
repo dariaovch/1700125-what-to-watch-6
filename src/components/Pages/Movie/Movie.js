@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import controllersImage from 'src/images/controllersImage.svg';
 import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
@@ -27,7 +26,7 @@ function Movie(props) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <MovieCard movie={currentMovie} />

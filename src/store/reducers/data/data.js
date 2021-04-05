@@ -1,4 +1,13 @@
-import {ActionType} from 'src/store/actions/actionType';
+import {createReducer} from '@reduxjs/toolkit';
+import {
+  loadMovies,
+  getMovieData,
+  getMovieReviews,
+  getFavoriteMovies,
+  getPromoMovie,
+} from 'src/store/actions/dataActions';
+import {filterListByGenre} from 'src/store/actions/listActions';
+
 
 const initialState = {
   genre: `All Genres`,
@@ -11,42 +20,26 @@ const initialState = {
   isDataLoaded: false,
 };
 
-const data = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.LOAD_MOVIES:
-      return {
-        ...state,
-        movies: action.payload,
-        isDataLoaded: true,
-      };
-    case ActionType.GET_MOVIE_DATA:
-      return {
-        ...state,
-        currentMovie: action.payload,
-      };
-    case ActionType.GET_COMMENTS:
-      return {
-        ...state,
-        movieReviews: action.payload,
-      };
-    case ActionType.FILTER_LIST:
-      return {
-        ...state,
-        genre: action.payload,
-      };
-    case ActionType.GET_FAVORITE_MOVIES:
-      return {
-        ...state,
-        favoriteMovies: action.payload,
-      };
-    case ActionType.GET_PROMO_MOVIE:
-      return {
-        ...state,
-        promoMovie: action.payload,
-      };
-  }
-
-  return state;
-};
+const data = createReducer(initialState, (builder) => {
+  builder.addCase(loadMovies, (state, action) => {
+    state.movies = action.payload;
+    state.isDataLoaded = true;
+  });
+  builder.addCase(getMovieData, (state, action) => {
+    state.currentMovie = action.payload;
+  });
+  builder.addCase(getMovieReviews, (state, action) => {
+    state.movieReviews = action.payload;
+  });
+  builder.addCase(filterListByGenre, (state, action) => {
+    state.genre = action.payload;
+  });
+  builder.addCase(getFavoriteMovies, (state, action) => {
+    state.favoriteMovies = action.payload;
+  });
+  builder.addCase(getPromoMovie, (state, action) => {
+    state.promoMovie = action.payload;
+  });
+});
 
 export {data};

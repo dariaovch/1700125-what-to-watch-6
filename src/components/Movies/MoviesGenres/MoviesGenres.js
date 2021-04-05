@@ -1,16 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getGenre, getMovies} from 'src/store/selectors/data';
+import {useSelector} from 'react-redux';
 import {createGenresList} from 'src/utils/createGenresList';
 
-function MoviesGenres(props) {
-  const {
-    movies,
-    genre,
-    onFilterListByGenre,
-  } = props;
+function MoviesGenres({onFilterListByGenre}) {
+  const {movies, genre} = useSelector((state) => state.DATA);
 
   const genres = createGenresList(movies);
 
@@ -32,10 +27,4 @@ MoviesGenres.propTypes = {
   onFilterListByGenre: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  genre: getGenre(state),
-});
-
-export {MoviesGenres};
-export default connect(mapStateToProps)(MoviesGenres);
+export default MoviesGenres;
