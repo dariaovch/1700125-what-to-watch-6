@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
@@ -10,14 +10,21 @@ import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
 import {getCurrentMovie, getMovies} from 'src/store/selectors/data';
 
-function Movie(props) {
-  const {movies, currentMovie, onLoadCurrentMovieData} = props;
+function Movie() {
+  const {
+    movies,
+    currentMovie
+  } = useSelector((state) => state.DATA);
 
   const {id} = useParams();
 
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    onLoadCurrentMovieData(id);
-  }, []);
+    if (!currentMovie) {
+      dispatch(getCurrentMovieData(id));
+    }
+  }, [currentMovie]);
 
   if (!currentMovie) {
     return <NotFound />;

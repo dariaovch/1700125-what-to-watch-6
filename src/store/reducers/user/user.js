@@ -12,16 +12,10 @@ const initialState = {
 
 const user = createReducer(initialState, (builder) => {
   builder.addCase(requireAuth, (state, action) => {
-    return {
-      ...state,
-      authStatus: action.payload,
-    };
+    state.authStatus = action.payload;
   });
   builder.addCase(getUserData, (state, action) => {
-    return {
-      ...state,
-      userData: action.payload,
-    };
+    state.userData = action.payload;
   });
 });
 

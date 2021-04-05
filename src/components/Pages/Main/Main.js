@@ -9,7 +9,6 @@ import Footer from 'src/components/Layout/Footer/Footer';
 import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
 import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
-import {AuthStatus} from 'src/store/auth';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 import {filterListByGenre} from 'src/store/actions/listActions';
 import {getMoviesByGenre} from '../../../store/selectors/data';
@@ -21,7 +20,6 @@ function Main({movies}) {
   } = useSelector((state) => state.DATA);
 
   const {
-    authStatus,
     userData,
   } = useSelector((state) => state.USER);
 
@@ -32,10 +30,10 @@ function Main({movies}) {
   };
 
   React.useEffect(() => {
-    if (authStatus === AuthStatus.AUTH) {
+    if (!userData) {
       dispatch(getCurrentUser());
     }
-  }, []);
+  }, [userData]);
 
   React.useEffect(() => {
     if (!promoMovie) {
