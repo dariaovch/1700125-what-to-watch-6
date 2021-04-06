@@ -76,24 +76,7 @@ function MoviesList({movies}) {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    poster: PropTypes.string,
-    bgImage: PropTypes.string,
-    ratingScore: PropTypes.string,
-    ratingLevel: PropTypes.string,
-    ratingCount: PropTypes.string,
-    director: PropTypes.string,
-    starring: PropTypes.array,
-    descriptionShort: PropTypes.string,
-    descriptionFull: PropTypes.string,
-    videoLink: PropTypes.string,
-  })),
+  movies: PropTypes.arrayOf(PropTypes.object),
   isMoreButtonVisible: PropTypes.bool,
   onMoreButtonClick: PropTypes.func,
 };

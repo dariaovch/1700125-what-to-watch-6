@@ -21,8 +21,7 @@ function MoviesGenres({onFilterListByGenre}) {
 }
 
 MoviesGenres.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object),
   genre: PropTypes.object,
   onFilterListByGenre: PropTypes.func,
 };

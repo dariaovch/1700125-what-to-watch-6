@@ -103,6 +103,7 @@ describe(`Test routing`, () => {
       },
       [NameSpace.USER]: {
         authStatus: AuthStatus.AUTH,
+        userData: mockUser,
       },
     });
 
@@ -131,6 +132,7 @@ describe(`Test routing`, () => {
       },
       [NameSpace.USER]: {
         authStatus: AuthStatus.AUTH,
+        userData: mockUser,
       },
     });
 

@@ -68,12 +68,16 @@ describe(`Async api actions should work correctly`, () => {
 
     return loginLoader(dispatch, () => {}, api)
      .then(() => {
-       expect(dispatch).toHaveBeenCalledTimes(2);
+       expect(dispatch).toHaveBeenCalledTimes(3);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
+         type: ActionType.GET_USER_DATA,
+         payload: [{fake: true}],
+       });
+       expect(dispatch).toHaveBeenNthCalledWith(2, {
          type: ActionType.REQUIRE_AUTH,
          payload: AuthStatus.AUTH,
        });
-       expect(dispatch).toHaveBeenNthCalledWith(2, {
+       expect(dispatch).toHaveBeenNthCalledWith(3, {
          type: ActionType.REDIRECT_TO_ROUTE,
          payload: `/`,
        });
@@ -206,8 +210,8 @@ describe(`Async api actions should work correctly`, () => {
 
     return changeFavoriteStatusLoader(dispatch, () => {}, api)
      .then(() => {
-       expect(dispatch).toHaveBeenCalledTimes(2);
-       expect(dispatch).toHaveBeenNthCalledWith(2, {
+       expect(dispatch).toHaveBeenCalledTimes(1);
+       expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.REDIRECT_TO_ROUTE,
          payload: `/mylist`,
        });
