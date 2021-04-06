@@ -4,8 +4,12 @@ import Card from 'src/components/Movies/MoviesList/Card/Card';
 import {videoDelayTime} from 'src/utils/constants';
 import ShowMoreButton from 'src/components/Movies/MoviesList/ShowMoreButton/ShowMoreButton';
 import {cardsAmount} from 'src/utils/constants';
+import {useDispatch} from 'react-redux';
+import {getCurrentMovieData} from 'src/store/actions/apiActions';
 
 function MoviesList({movies}) {
+  const dispatch = useDispatch();
+
   const [activeMovie, setActiveMovie] = React.useState();
 
   const [shownCards, setShownCards] = React.useState([]);
@@ -28,6 +32,10 @@ function MoviesList({movies}) {
       },
       [activeMovie]
   );
+
+  const handleCardClick = (id) => {
+    dispatch(getCurrentMovieData(id));
+  };
 
   React.useEffect(() => {
     setShownCards(movies.slice(0, cardsAmount));
@@ -58,6 +66,7 @@ function MoviesList({movies}) {
             onOver={handleCardMouseOver}
             onOut={handleCardMouseOut}
             activeMovie={activeMovie}
+            onCardClick={handleCardClick}
           />
         )}
       </div>

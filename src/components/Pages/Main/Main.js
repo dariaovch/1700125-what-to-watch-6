@@ -11,7 +11,7 @@ import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 import {filterListByGenre} from 'src/store/actions/listActions';
-import {getMoviesByGenre} from '../../../store/selectors/data';
+import {getMoviesByGenre} from 'src/store/selectors/data';
 
 function Main({movies}) {
   const {

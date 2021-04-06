@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import {useHistory, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import Header from 'src/components/Layout/Header/Header.js';
@@ -12,15 +12,10 @@ import {AuthStatus} from 'src/store/auth';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 import {changeFavoriteStatus, getMoviesToWatch} from '../../../../store/actions/apiActions';
 
-function MovieCard({movie}) {
+function MovieCard({movie, onPlayClick}) {
   const {authStatus} = useSelector((state) => state.USER);
 
-  const history = useHistory();
   const id = movie.id;
-
-  const handlePlayClick = () => {
-    history.push(`/player/${id}`);
-  };
 
   const statusCode = !movie.is_favorite ? 1 : 0;
 
@@ -50,14 +45,14 @@ function MovieCard({movie}) {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayClick}>
+              <button className="btn btn--play movie-card__button" data-testid="play" type="button" onClick={onPlayClick}>
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
               <MyListButton movie={movie} onMyListClick={handleMyListButtonClick} />
-              {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
+              {authStatus === AuthStatus.AUTH && <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
         </div>
@@ -109,6 +104,7 @@ MovieCard.propTypes = {
     preview_video_link: PropTypes.string,
   }),
   authStatus: PropTypes.string,
+  onPlayClick: PropTypes.func,
 };
 
 export default MovieCard;

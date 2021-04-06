@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
 import Footer from 'src/components/Layout/Footer/Footer';
 import NotFound from 'src/components/Pages/NotFound/NotFound';
@@ -16,6 +16,12 @@ function Movie() {
   const {id} = useParams();
 
   const dispatch = useDispatch();
+
+  const history = useHistory();
+  const handlePlayClick = () => {
+    history.push(`/player/${id}`);
+  };
+
 
   React.useEffect(() => {
     if (!currentMovie) {
@@ -33,7 +39,7 @@ function Movie() {
         <img src='src/images/controllersImage.svg' />
       </div>
 
-      <MovieCard movie={currentMovie} />
+      <MovieCard movie={currentMovie} onPlayClick={handlePlayClick} />
 
       <div className="page-content">
 
