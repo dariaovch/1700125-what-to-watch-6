@@ -1,7 +1,7 @@
 function formatDate(date) {
   const monthes = [
     `January`,
-    `Fenruary`,
+    `February`,
     `March`,
     `April`,
     `May`,
