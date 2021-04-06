@@ -233,53 +233,5 @@ export const mockMovies = [
     descriptionFull: `Turkish and his close friend/accomplice Tommy get pulled into the world of match fixing by the notorious Brick Top. Things get complicated when the boxer they had lined up gets badly beaten by Mickey, a 'pikey' ( slang for an Irish Gypsy)- who comes into the equation after Turkish, an unlicensed boxing promoter wants to buy a caravan off the Irish Gypsies. They then try to convince Mickey not only to fight for them, but to lose for them too. Whilst all this is going on, a huge diamond heist takes place, and a fistful of motley characters enter the story, including 'Cousin Avi', 'Boris The Blade', 'Franky Four Fingers' and 'Bullet Tooth Tony'. Things go from bad to worse as it all becomes about the money, the guns, and the damned dog.`,
     videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
   },
-  // {
-  //   id: `13`,
-  //   image: `img/moonrise-kingdom.jpg`,
-  //   alt: `Moonrise Kingdom`,
-  //   title: `Moonrise Kingdom`,
-  // },
-  // {
-  //   id: `14`,
-  //   image: `img/seven-years-in-tibet.jpg`,
-  //   alt: `Seven Years in Tibet`,
-  //   title: `Seven Years in Tibet`,
-  // },
-  // {
-  //   id: `15`,
-  //   image: `img/midnight-special.jpg`,
-  //   alt: `Midnight Special`,
-  //   title: `Midnight Special`,
-  // },
-  // {
-  //   id: `16`,
-  //   image: `img/war-of-the-worlds.jpg`,
-  //   alt: `War of the Worlds`,
-  //   title: `War of the Worlds`,
-  // },
-  // {
-  //   id: `17`,
-  //   image: `img/dardjeeling-limited.jpg`,
-  //   alt: `Dardjeeling Limited`,
-  //   title: `Dardjeeling Limited`,
-  // },
-  // {
-  //   id: `18`,
-  //   image: `img/orlando.jpg`,
-  //   alt: `Orlando`,
-  //   title: `Orlando`,
-  // },
-  // {
-  //   id: `19`,
-  //   image: `img/mindhunter.jpg`,
-  //   alt: `Mindhunter`,
-  //   title: `Mindhunter`,
-  // },
-  // {
-  //   id: `20`,
-  //   image: `img/midnight-special.jpg`,
-  //   alt: `Midnight Special`,
-  //   title: `Midnight Special`,
-  // },
 ];
 
