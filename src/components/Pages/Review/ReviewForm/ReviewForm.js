@@ -32,6 +32,7 @@ function ReviewForm({stars, onReviewFormSubmit}) {
           className="add-review__textarea"
           name="comment"
           id="comment"
+          data-testid="comment"
           placeholder="Review text"
           minLength="50"
           maxLength="400"

@@ -19,6 +19,12 @@ const api = createAPI(
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }).concat(redirect),
   preloadedState: {
     [NameSpace.DATA]: {
       genre: `All genres`,
@@ -33,12 +39,6 @@ const store = configureStore({
       userData: null,
     },
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: {
-        extraArgument: api,
-      },
-    }).concat(redirect)
 });
 
 store.dispatch(checkAuth());

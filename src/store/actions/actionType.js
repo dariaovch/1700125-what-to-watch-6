@@ -7,5 +7,6 @@ export const ActionType = {
   GET_MOVIE_DATA: `data/getMovieData`,
   GET_COMMENTS: `data/getComments`,
   GET_FAVORITE_MOVIES: `data/getFavoriteMovies`,
+  CHANGE_FAVORITE_STATUS: `data/changeFavoriteStatus`,
   GET_PROMO_MOVIE: `data/getPromoMovie`,
 };

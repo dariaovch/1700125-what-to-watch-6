@@ -2,7 +2,7 @@
 import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Header from 'src/components/Layout/Header/Header.js';
 import Tabs from 'src/components/Pages/Movie/Tabs/Tabs';
 import Overview from 'src/components/Pages/Movie/Overview/Overview';
@@ -10,14 +10,24 @@ import Details from 'src/components/Pages//Movie/Details/Details';
 import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 import {AuthStatus} from 'src/store/auth';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
+import {changeFavoriteStatus, getMoviesToWatch} from '../../../../store/actions/apiActions';
 
 function MovieCard({movie}) {
   const {authStatus} = useSelector((state) => state.USER);
 
   const history = useHistory();
+  const id = movie.id;
 
   const handlePlayClick = () => {
-    history.push(`/player/${movie.id}`);
+    history.push(`/player/${id}`);
+  };
+
+  const statusCode = !movie.is_favorite ? 1 : 0;
+
+  const dispatch = useDispatch();
+  const handleMyListButtonClick = () => {
+    dispatch(changeFavoriteStatus(id, statusCode));
+    dispatch(getMoviesToWatch());
   };
 
   return (
@@ -46,7 +56,7 @@ function MovieCard({movie}) {
                 </svg>
                 <span>Play</span>
               </button>
-              <MyListButton movie={movie} />
+              <MyListButton movie={movie} onMyListClick={handleMyListButtonClick} />
               {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>

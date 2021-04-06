@@ -12,7 +12,6 @@ function MyList() {
 
   const dispatch = useDispatch();
 
-
   React.useState(() => {
     if (!favoriteMovies) {
       dispatch(getMoviesToWatch());

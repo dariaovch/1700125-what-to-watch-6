@@ -8,9 +8,9 @@ import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
 
 function Header(props) {
-  const {authStatus} = useSelector((state) => state.USER);
+  const {authStatus, userData} = useSelector((state) => state.USER);
 
-  const {theme, hasBreadcrumbs, movie, email} = props;
+  const {theme, hasBreadcrumbs, movie} = props;
 
   const location = useLocation();
 
@@ -25,7 +25,7 @@ function Header(props) {
 
       {authStatus === AuthStatus.AUTH &&
         <div className="user-block">
-          <p className="user-block__email">{email}</p>
+          <p className="user-block__email">{userData.email}</p>
           <div className="user-block__avatar">
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>

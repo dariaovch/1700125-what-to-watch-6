@@ -49,7 +49,6 @@ export const getMoviesToWatch = () => (dispatch, _getState, api) => (
 
 export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getState, api) => (
   api.post(`/favorite/${movieId}/${statusCode}`)
-    .then(() => dispatch(getMoviesToWatch()))
     .then(() => dispatch(redirectToRoute(`/mylist`)))
 );
 
