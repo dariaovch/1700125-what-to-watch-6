@@ -1,26 +1,32 @@
+import {createAction} from '@reduxjs/toolkit';
 import {ActionType} from 'src/store/actions/actionType';
 
-export const loadMovies = (movies) => ({
-  type: ActionType.LOAD_MOVIES,
-  payload: movies,
+export const loadMovies = createAction(ActionType.LOAD_MOVIES, (movies) => {
+  return {
+    payload: movies,
+  };
 });
 
-export const getMovieData = (movieData) => ({
-  type: ActionType.GET_MOVIE_DATA,
-  payload: movieData,
+export const getMovieData = createAction(ActionType.GET_MOVIE_DATA, (movieData) => {
+  return {
+    payload: movieData,
+  };
 });
 
-export const getComments = (comments) => ({
-  type: ActionType.GET_COMMENTS,
-  payload: comments,
+export const getMovieReviews = createAction(ActionType.GET_COMMENTS, (comments) => {
+  return {
+    payload: comments,
+  };
 });
 
-export const getFavoriteMovies = (movies) => ({
-  type: ActionType.GET_FAVORITE_MOVIES,
-  payload: movies,
+export const getFavoriteMovies = createAction(ActionType.GET_FAVORITE_MOVIES, (movies) => {
+  return {
+    payload: movies,
+  };
 });
 
-export const getPromoMovie = (movie) => ({
-  type: ActionType.GET_PROMO_MOVIE,
-  payload: movie,
+export const getPromoMovie = createAction(ActionType.GET_PROMO_MOVIE, (movie) => {
+  return {
+    payload: movie,
+  };
 });

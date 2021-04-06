@@ -1,26 +1,29 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import controllersImage from 'src/images/controllersImage.svg';
 import Header from 'src/components/Layout/Header/Header';
 import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
 import {stars} from 'src/utils/constants';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
-import {getCurrentMovie} from 'src/store/selectors/data';
 
-function AddReview({currentMovie, onLoadCurrentMovieData}) {
+function AddReview() {
+  const {currentMovie} = useSelector((state) => state.DATA);
+
   const {id} = useParams();
 
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    onLoadCurrentMovieData(id);
-  }, []);
+    if (!currentMovie) {
+      dispatch(getCurrentMovieData(id));
+    }
+  }, [currentMovie]);
 
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <section className="movie-card movie-card--full">
@@ -48,41 +51,4 @@ function AddReview({currentMovie, onLoadCurrentMovieData}) {
   );
 }
 
-AddReview.propTypes = {
-  currentMovie: PropTypes.shape({
-    name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
-    description: PropTypes.string,
-    rating: PropTypes.number,
-    scores_count: PropTypes.number,
-    director: PropTypes.string,
-    starring: PropTypes.array,
-    run_time: PropTypes.number,
-    genre: PropTypes.string,
-    released: PropTypes.number,
-    id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
-  }),
-  stars: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
-  onLoadCurrentMovieData: PropTypes.func,
-};
-
-const mapStateToProps = (state) => ({
-  currentMovie: getCurrentMovie(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadCurrentMovieData(id) {
-    dispatch(getCurrentMovieData(id));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+export default AddReview;

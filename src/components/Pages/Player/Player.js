@@ -1,20 +1,18 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
-import controllersImage from 'src/images/controllersImage.svg';
 import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerControls';
 import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
 import useVideoPlayer from 'src/hooks/useVideoPlayer';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
 import {getCurrentMovieData} from 'src/store/actions/apiActions';
 import Preloader from 'src/components/Pages/Preloader/Preloader';
-import {getCurrentMovie, getMovies} from 'src/store/selectors/data';
 
 
-function Player(props) {
-  const {currentMovie, onLoadCurrentMovieData} = props;
+function Player() {
+  const {currentMovie} = useSelector((state) => state.DATA);
+  const dispatch = useDispatch();
 
   const {id} = useParams();
   const history = useHistory();
@@ -35,8 +33,10 @@ function Player(props) {
   } = useVideoPlayer();
 
   React.useEffect(() => {
-    onLoadCurrentMovieData(id);
-  }, []);
+    if (!currentMovie) {
+      dispatch(getCurrentMovieData(id));
+    }
+  }, [currentMovie]);
 
   if (!currentMovie) {
     return <Preloader />;
@@ -45,7 +45,7 @@ function Player(props) {
   return (
     <>
       <div className="visually-hidden">
-        <img src={controllersImage} />
+        <img src='src/images/controllersImage.svg' />
       </div>
 
       <div className="player">
@@ -81,40 +81,4 @@ function Player(props) {
   );
 }
 
-Player.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
-    description: PropTypes.string,
-    rating: PropTypes.number,
-    scores_count: PropTypes.number,
-    director: PropTypes.string,
-    starring: PropTypes.array,
-    run_time: PropTypes.number,
-    genre: PropTypes.string,
-    released: PropTypes.number,
-    id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
-  })),
-  currentMovie: PropTypes.object,
-  onLoadCurrentMovieData: PropTypes.func,
-};
-
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  currentMovie: getCurrentMovie(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadCurrentMovieData(id) {
-    dispatch(getCurrentMovieData(id));
-  },
-});
-
-export {Player};
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default Player;

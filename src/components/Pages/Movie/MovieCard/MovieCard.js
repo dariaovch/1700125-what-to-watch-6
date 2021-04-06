@@ -2,17 +2,18 @@
 import React from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Header from 'src/components/Layout/Header/Header.js';
 import Tabs from 'src/components/Pages/Movie/Tabs/Tabs';
 import Overview from 'src/components/Pages/Movie/Overview/Overview';
 import Details from 'src/components/Pages//Movie/Details/Details';
 import MovieReviews from 'src/components/Pages/Movie/MovieReviews/MovieReviews';
 import {AuthStatus} from 'src/store/auth';
-import {getAuthStatus} from 'src/store/selectors/user';
 import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
 
-function MovieCard({movie, authStatus}) {
+function MovieCard({movie}) {
+  const {authStatus} = useSelector((state) => state.USER);
+
   const history = useHistory();
 
   const handlePlayClick = () => {
@@ -45,7 +46,7 @@ function MovieCard({movie, authStatus}) {
                 </svg>
                 <span>Play</span>
               </button>
-              <MyListButton />
+              <MyListButton movie={movie} />
               {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
@@ -100,9 +101,4 @@ MovieCard.propTypes = {
   authStatus: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-  authStatus: getAuthStatus(state),
-});
-
-export {MovieCard};
-export default connect(mapStateToProps)(MovieCard);
+export default MovieCard;

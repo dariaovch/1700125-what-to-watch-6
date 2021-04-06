@@ -1,4 +1,4 @@
-export const movies = [
+export const mockMovies = [
   {
     id: `00`,
     image: `img/bg-the-grand-budapest-hotel.jpg`,

@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Card from 'src/components/Movies/MoviesList/Card/Card';
+import {getSimiliarMovies} from 'src/store/selectors/data';
 
-function MoreLikeThis({movies, currentMovie}) {
-  const filterMoviesByGenre = (item) => {
-    return item.genre === currentMovie.genre;
-  };
-
+function MoreLikeThis({movies}) {
   return (
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
 
       <div className="catalog__movies-list">
-        {movies.filter(filterMoviesByGenre).slice(0, 4).map((item) => <Card item={item} key={item.id} />)}
+        {movies.map((item) => <Card item={item} key={item.id} />)}
       </div>
     </section>
   );
@@ -40,6 +38,11 @@ MoreLikeThis.propTypes = {
   currentMovie: PropTypes.object,
 };
 
-export default MoreLikeThis;
+const mapStateToProps = (state) => ({
+  movies: getSimiliarMovies(state),
+});
+
+export {MoreLikeThis};
+export default connect(mapStateToProps)(MoreLikeThis);
 
 

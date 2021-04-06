@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import {NameSpace} from 'src/store/reducers/rootReducer';
 import {filterMoviesListByGenre} from 'src/utils/filterMoviesListByGenre';
+import {filterMoviesListBySimilarity} from '../../utils/filterMoviesListBySimiliarity';
 
 export const getMovies = (state) => state[NameSpace.DATA].movies;
 
@@ -20,4 +21,10 @@ export const getMoviesByGenre = createSelector(
     getMovies,
     getGenre,
     (movies, genre) => filterMoviesListByGenre(movies, genre)
+);
+
+export const getSimiliarMovies = createSelector(
+    getMovies,
+    getCurrentMovie,
+    (movies, currentMovie) => filterMoviesListBySimilarity(movies, currentMovie)
 );

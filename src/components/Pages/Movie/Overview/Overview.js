@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {formatRating} from 'src/utils/formatRating';
 
 function Overview({movie}) {
 
@@ -9,7 +10,7 @@ function Overview({movie}) {
       <div className="movie-rating">
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very Good</span>
+          <span className="movie-rating__level">{formatRating(movie.rating)}</span>
           <span className="movie-rating__count">{movie.scores_count}</span>
         </p>
       </div>
