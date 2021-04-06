@@ -92,7 +92,7 @@ function Main({movies}) {
                   <span>Play</span>
                 </Link>
 
-                <MyListButton promoMovie={promoMovie} />
+                <MyListButton movie={promoMovie} />
               </div>
             </div>
           </div>

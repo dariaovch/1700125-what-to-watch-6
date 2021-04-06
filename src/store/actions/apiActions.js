@@ -28,6 +28,7 @@ export const getCurrentUser = () => (dispatch, _getState, api) => (
 export const getCurrentMovieData = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(getMovieData(data)))
+    .then(() => dispatch(redirectToRoute(`/films/${movieId}`)))
 );
 
 export const getComments = (movieId) => (dispatch, _getState, api) => (
@@ -48,6 +49,7 @@ export const getMoviesToWatch = () => (dispatch, _getState, api) => (
 
 export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getState, api) => (
   api.post(`/favorite/${movieId}/${statusCode}`)
+    .then(() => dispatch(getMoviesToWatch()))
     .then(() => dispatch(redirectToRoute(`/mylist`)))
 );
 

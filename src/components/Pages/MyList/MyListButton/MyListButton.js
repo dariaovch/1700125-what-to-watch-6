@@ -1,25 +1,19 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useParams, useLocation} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {getFavoriteMovies} from 'src/store/selectors/data';
+import {useDispatch} from 'react-redux';
 import {changeFavoriteStatus} from 'src/store/actions/apiActions';
 import {addToFavoriteCode, removeFromFavoriteCode} from 'src/utils/constants';
 
 
-function MyListButton(props) {
-  const {promoMovie, favoriteMovies, onChangeFavoriteMovieStatus} = props;
-  const location = useLocation();
-  const {id} = useParams();
+function MyListButton({movie}) {
+  const dispatch = useDispatch();
 
   const handleMyListClick = () => {
-    const movieId = (location.pathname === `/` && promoMovie) ? promoMovie.id : id;
-    const isFavorite = favoriteMovies.find((item) => item.id === movieId);
-    if (isFavorite) {
-      onChangeFavoriteMovieStatus(movieId, removeFromFavoriteCode);
+    if (!movie.is_favorite) {
+      dispatch(changeFavoriteStatus(movie.id, addToFavoriteCode));
     } else {
-      onChangeFavoriteMovieStatus(movieId, addToFavoriteCode);
+      dispatch(changeFavoriteStatus(movie.id, removeFromFavoriteCode));
     }
   };
 
@@ -34,8 +28,7 @@ function MyListButton(props) {
 }
 
 MyListButton.propTypes = {
-  promoMovie: PropTypes.object,
-  favoriteMovies: PropTypes.arrayOf(PropTypes.shape({
+  movie: PropTypes.shape({
     name: PropTypes.string,
     poster_image: PropTypes.string,
     preview_image: PropTypes.string,
@@ -53,19 +46,7 @@ MyListButton.propTypes = {
     is_favorite: PropTypes.bool,
     video_link: PropTypes.string,
     preview_video_link: PropTypes.string,
-  })),
-  onChangeFavoriteMovieStatus: PropTypes.func,
-  onLoadFavoriteMovies: PropTypes.func,
+  }),
 };
 
-const mapStateToProps = (state) => ({
-  favoriteMovies: getFavoriteMovies(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeFavoriteMovieStatus(movieId, statusCode) {
-    dispatch(changeFavoriteStatus(movieId, statusCode));
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
+export default MyListButton;

@@ -1,10 +1,13 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
+import {getCurrentMovieData} from 'src/store/actions/apiActions';
 
 function Card({item, onOver, onOut, activeMovie}) {
+  const dispatch = useDispatch();
   const activeVideoRef = React.useRef();
 
   const handleMouseOver = () => {
@@ -16,7 +19,7 @@ function Card({item, onOver, onOut, activeMovie}) {
   };
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <article className="small-movie-card catalog__movies-card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={() => dispatch(getCurrentMovieData(item.id))}>
       <div className="small-movie-card__image">
         {!activeMovie && <img src={item.preview_image} alt={item.name} width="280" height="175" />}
         {activeMovie && <PlayerVideo ref={activeVideoRef} videoSrc={item.video_link} bgImage={item.background_image} isMuted={true} />}

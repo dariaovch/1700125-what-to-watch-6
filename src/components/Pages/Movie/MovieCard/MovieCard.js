@@ -46,7 +46,7 @@ function MovieCard({movie}) {
                 </svg>
                 <span>Play</span>
               </button>
-              <MyListButton />
+              <MyListButton movie={movie} />
               {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>

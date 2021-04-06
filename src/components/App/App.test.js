@@ -118,9 +118,9 @@ describe(`Test routing`, () => {
         </redux.Provider>
     );
 
-    expect(screen.getByText(/Details/i)).toBeInTheDocument();
-    expect(screen.getByText(/Overview/i)).toBeInTheDocument();
-    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
+    expect(screen.getByText(/Play/i)).toBeInTheDocument();
+    expect(screen.getByText(/My list/i)).toBeInTheDocument();
+    expect(screen.getByText(/Add review/i)).toBeInTheDocument();
   });
 
   it(`Render Review page when user navigate to '/films/:id/review' url`, () => {

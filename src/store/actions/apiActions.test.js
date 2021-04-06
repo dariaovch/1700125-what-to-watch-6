@@ -111,10 +111,14 @@ describe(`Async api actions should work correctly`, () => {
 
     return currentMovieLoader(dispatch, () => {}, api)
      .then(() => {
-       expect(dispatch).toHaveBeenCalledTimes(1);
+       expect(dispatch).toHaveBeenCalledTimes(2);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.GET_MOVIE_DATA,
          payload: [{fake: true}],
+       });
+       expect(dispatch).toHaveBeenNthCalledWith(2, {
+         type: ActionType.REDIRECT_TO_ROUTE,
+         payload: `/films/${mockMovieId}`,
        });
      });
   });
@@ -202,8 +206,8 @@ describe(`Async api actions should work correctly`, () => {
 
     return changeFavoriteStatusLoader(dispatch, () => {}, api)
      .then(() => {
-       expect(dispatch).toHaveBeenCalledTimes(1);
-       expect(dispatch).toHaveBeenNthCalledWith(1, {
+       expect(dispatch).toHaveBeenCalledTimes(2);
+       expect(dispatch).toHaveBeenNthCalledWith(2, {
          type: ActionType.REDIRECT_TO_ROUTE,
          payload: `/mylist`,
        });
