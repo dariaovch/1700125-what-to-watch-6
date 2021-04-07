@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLocation, Link} from 'react-router-dom';
+import {useLocation, useHistory, Link} from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,6 +17,8 @@ function Header(props) {
 
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
   return (
     <header className={cn(`page-header`, {'movie-card__head': theme === `movie`}, {'user-page__head': theme === `user`})}>
       <Logo />
@@ -29,7 +31,8 @@ function Header(props) {
       {(authStatus === AuthStatus.AUTH && userData) &&
         <div className="user-block">
           <p className="user-block__email">{userData.email}</p>
-          <div className="user-block__avatar" onClick={() => dispatch(logout())}>
+          <p className="user-block__email" onClick={() => dispatch(logout())}>Logout</p>
+          <div className="user-block__avatar" onClick={() => history.push(`/mylist`)}>
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>
         </div>}

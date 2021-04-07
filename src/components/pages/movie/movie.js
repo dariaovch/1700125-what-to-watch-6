@@ -4,8 +4,8 @@ import {useHistory, useParams} from 'react-router-dom';
 import {getCurrentMovieData} from 'src/store/actions/api-actions';
 import MovieCard from 'src/components/pages/movie/movie-card/movie-card';
 import Footer from 'src/components/page-layout/page-footer/page-footer';
-import NotFound from 'src/components/pages/not-found/not-found';
 import MoreLikeThis from 'src/components/pages/movie/more-like-this/more-like-this';
+import Preloader from 'src/components/pages/preloader/preloader';
 
 function Movie() {
   const {
@@ -25,11 +25,12 @@ function Movie() {
   React.useEffect(() => {
     if (!currentMovie) {
       dispatch(getCurrentMovieData(id));
+      window.scrollTo({top: 0});
     }
   }, [currentMovie]);
 
-  if (!currentMovie) {
-    return <NotFound />;
+  if (currentMovie === null) {
+    return <Preloader />;
   }
 
   return (

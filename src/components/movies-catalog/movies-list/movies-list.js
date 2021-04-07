@@ -19,7 +19,9 @@ function MoviesList({movies}) {
       (item, activeVideoRef) => {
         setActiveMovie(item);
         setTimeout(() => {
-          activeVideoRef.current.play();
+          if (activeVideoRef.current) {
+            activeVideoRef.current.play();
+          }
         }, VIDEO_DELAY_TIME);
       },
       [activeMovie]

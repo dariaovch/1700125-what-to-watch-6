@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {ADD_TO_FAVORITE_CODE} from 'src/utils/constants';
 
 function MyListButton({movie, onMyListClick}) {
   const id = movie.id;
-  const statusCode = !movie.isFavorite ? 1 : 0;
 
   return (
-    <button className="btn btn--list movie-card__button" type="button" onClick={() => onMyListClick(id, statusCode)}>
+    <button className="btn btn--list movie-card__button" type="button" onClick={() => onMyListClick(id, ADD_TO_FAVORITE_CODE)}>
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref="#add"></use>
       </svg>

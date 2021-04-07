@@ -2,6 +2,8 @@ export const VIDEO_DELAY_TIME = 1000;
 
 export const CARDS_AMOUNT = 8;
 
+export const ADD_TO_FAVORITE_CODE = 1;
+
 export const stars = [
   {
     id: 1,
