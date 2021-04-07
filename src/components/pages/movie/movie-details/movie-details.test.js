@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
@@ -24,14 +23,14 @@ test(`Details component should render correctly`, () => {
     name: `The Grand Budapest Hotel`,
     genre: `Drama`,
     released: 2014,
-    poster_image: `img/the-grand-budapest-hotel-poster.jpg`,
-    background_image: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterImage: `img/the-grand-budapest-hotel-poster.jpg`,
+    bgImage: `img/bg-the-grand-budapest-hotel.jpg`,
     rating: 8.9,
-    scores_count: 240,
+    scoresCount: 240,
     director: `Wes Anderson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.`,
-    video_link: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/0/0d/The_Pink_Panther_trailer_%281963%29.webm`,
   };
 
   const {container} = render(

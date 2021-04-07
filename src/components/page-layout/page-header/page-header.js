@@ -63,8 +63,6 @@ Header.propTypes = {
     videoLink: PropTypes.string,
     previewVideoLink: PropTypes.string,
   }),
-  authStatus: PropTypes.string,
-  email: PropTypes.string,
 };
 
 export default Header;

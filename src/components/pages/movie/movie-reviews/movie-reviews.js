@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ReviewItem from 'src/components/pages/movie/movie-reviews/review-item';
 import {getComments} from 'src/store/actions/api-actions';
-import {getMovieReviews} from 'src/store/selectors/data';
 
-function MovieReviews({movieReviews, onLoadMovieReviews}) {
+function MovieReviews() {
   const {id} = useParams();
+  const {movieReviews} = useSelector((state) => state.DATA);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    onLoadMovieReviews(id);
+    dispatch(getComments(id));
   }, []);
 
   return (
@@ -32,15 +33,4 @@ MovieReviews.propTypes = {
   onLoadMovieReviews: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  movieReviews: getMovieReviews(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadMovieReviews(id) {
-    dispatch(getComments(id));
-  },
-});
-
-export {MovieReviews};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieReviews);
+export default MovieReviews;
