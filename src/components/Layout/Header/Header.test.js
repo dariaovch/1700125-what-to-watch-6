@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
 import {mockUser} from 'src/mocks/user';
-import Header from 'src/components/hayout/header/header';
+import Header from 'src/components/layout/header/header';
 
 describe(`Header component should render correctly`, () => {
   const history = createMemoryHistory();

@@ -4,7 +4,7 @@ import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import {NameSpace} from 'src/store/reducers/rootReducer';
+import {NameSpace} from 'src/store/reducers/root-reducer';
 import {mockMovies} from 'src/mocks/films';
 import MoviesGenres from 'src/components/movies/movies-genres/movies-genres';
 

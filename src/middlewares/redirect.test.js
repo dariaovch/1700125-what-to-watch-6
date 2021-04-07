@@ -19,7 +19,7 @@ const fakeHistory = {
   }
 };
 
-jest.mock(`src/utils/browserHistory`, () => fakeHistory);
+jest.mock(`src/utils/browser-history`, () => fakeHistory);
 
 describe(`Redirect middleware works correctly`, () => {
   it(`Action passes to next middleware`, () => {

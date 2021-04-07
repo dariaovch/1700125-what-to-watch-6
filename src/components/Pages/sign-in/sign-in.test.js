@@ -4,7 +4,7 @@ import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import {NameSpace} from 'src/store/reducers/rootReducer';
+import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
 import SignIn from 'src/components/pages/sign-in/sign-in';
 

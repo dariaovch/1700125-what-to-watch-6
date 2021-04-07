@@ -5,7 +5,7 @@ import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import * as redux from 'react-redux';
 import userEvent from '@testing-library/user-event';
-import MyListButton from 'src/components/pages/my-list/my-list-nutton/my-list-button';
+import MyListButton from 'src/components/pages/my-list/my-list-button/my-list-button';
 
 const mockStore = configureStore({});
 let history;
