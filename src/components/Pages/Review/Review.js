@@ -2,10 +2,11 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import Header from 'src/components/Layout/Header/Header';
-import ReviewForm from 'src/components/Pages/Review/ReviewForm/ReviewForm';
+import {getCurrentMovieData} from 'src/store/actions/api-actions';
+import Header from 'src/components/layout/header/header';
+import ReviewForm from 'src/components/pages/review/review-form/review-form';
 import {stars} from 'src/utils/constants';
-import {getCurrentMovieData} from 'src/store/actions/apiActions';
+
 
 function AddReview() {
   const {currentMovie} = useSelector((state) => state.DATA);

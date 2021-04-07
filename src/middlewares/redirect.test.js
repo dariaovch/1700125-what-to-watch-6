@@ -1,5 +1,5 @@
 import {redirect} from 'src/middlewares/redirect';
-import {redirectToRoute} from 'src/store/actions/appActions';
+import {redirectToRoute} from 'src/store/actions/app-actions';
 
 const mockRedux = () => {
   const store = {

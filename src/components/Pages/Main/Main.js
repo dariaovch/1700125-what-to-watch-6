@@ -3,14 +3,14 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect, useSelector, useDispatch} from 'react-redux';
-import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/apiActions';
-import Header from 'src/components/Layout/Header/Header';
-import Footer from 'src/components/Layout/Footer/Footer';
-import MoviesList from 'src/components/Movies/MoviesList/MoviesList';
-import MoviesGenres from 'src/components/Movies/MoviesGenres/MoviesGenres';
-import Preloader from 'src/components/Pages/Preloader/Preloader';
-import MyListButton from 'src/components/Pages/MyList/MyListButton/MyListButton';
-import {filterListByGenre} from 'src/store/actions/listActions';
+import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/api-actions';
+import Header from 'src/components/layout/header/header';
+import Footer from 'src/components/layout/footer/footer';
+import MoviesList from 'src/components/movies/movies-list/movies-list';
+import MoviesGenres from 'src/components/movies/movies-genres/movies-genres';
+import Preloader from 'src/components/pages/preloader/preloader';
+import MyListButton from 'src/components/pages/my-list/my-list-button/my-list-button';
+import {filterListByGenre} from 'src/store/actions/list-actions';
 import {getMoviesByGenre} from 'src/store/selectors/data';
 
 function Main({movies}) {

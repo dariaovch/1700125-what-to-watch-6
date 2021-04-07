@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
-import Footer from 'src/components/Layout/Footer/Footer';
+import Footer from 'src/components/layout/footer/footer';
 
 it(`Footer component should render correctly`, () => {
   const history = createMemoryHistory();

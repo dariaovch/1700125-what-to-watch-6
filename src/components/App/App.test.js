@@ -5,11 +5,11 @@ import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import * as redux from 'react-redux';
-import App from 'src/components/App/App';
-import {NameSpace} from '../../store/reducers/rootReducer';
-import {mockMovies} from '../../mocks/films';
-import {mockUser} from '../../mocks/user';
-import {AuthStatus} from '../../store/auth';
+import App from 'src/components/app/app';
+import {NameSpace} from 'src/store/reducers/root-reducer';
+import {mockMovies} from 'src/mocks/films';
+import {mockUser} from 'src/mocks/user';
+import {AuthStatus} from 'src/store/auth';
 
 const mockStore = configureStore({});
 

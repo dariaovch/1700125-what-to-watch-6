@@ -3,11 +3,11 @@ import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
-import Header from 'src/components/Layout/Header/Header';
 import {Provider} from 'react-redux';
-import {NameSpace} from 'src/store/reducers/rootReducer';
+import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
 import {mockUser} from 'src/mocks/user';
+import Header from 'src/components/hayout/header/header';
 
 describe(`Header component should render correctly`, () => {
   const history = createMemoryHistory();

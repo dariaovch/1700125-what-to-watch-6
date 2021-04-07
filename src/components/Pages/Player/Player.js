@@ -2,12 +2,12 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
-import PlayerControls from 'src/components/Pages/Player/PlayerControls/PlayerControls';
-import PlayerProgressbar from 'src/components/Pages/Player/PlayerProgressbar/PlayerProgressbar';
-import useVideoPlayer from 'src/hooks/useVideoPlayer';
-import PlayerVideo from 'src/components/Pages/Player/PlayerVideo/PlayerVideo';
-import {getCurrentMovieData} from 'src/store/actions/apiActions';
-import Preloader from 'src/components/Pages/Preloader/Preloader';
+import {getCurrentMovieData} from 'src/store/actions/api-actions';
+import useVideoPlayer from 'src/hooks/use-video-player';
+import PlayerControls from 'src/components/pages/player/player-controls/player-controls';
+import PlayerProgressbar from 'src/components/pages/player/player-progressbar/player-progressbar';
+import PlayerVideo from 'src/components/pages/player/player-video/player-video';
+import Preloader from 'src/components/pages/preloader/preloader';
 
 
 function Player() {

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {formatRating} from 'src/utils/formatRating';
+import {formatRating} from 'src/utils/format-rating';
 
 function Overview({movie}) {
 

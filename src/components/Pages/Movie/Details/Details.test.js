@@ -4,10 +4,10 @@ import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
-import Details from 'src/components/Pages/Movie/Details/Details';
 import {Provider} from 'react-redux';
-import {NameSpace} from 'src/store/reducers/rootReducer';
+import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
+import Details from 'src/components/pages/movie/details/details';
 
 test(`Details component should render correctly`, () => {
   const history = createMemoryHistory();

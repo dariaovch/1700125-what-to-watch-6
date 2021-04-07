@@ -4,10 +4,10 @@ import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
-import Overview from 'src/components/Pages/Movie/Overview/Overview';
 import {Provider} from 'react-redux';
 import {NameSpace} from 'src/store/reducers/rootReducer';
 import {AuthStatus} from 'src/store/auth';
+import Overview from 'src/components/pages/movie/overview/overview';
 
 test(`Overview component should render correctly`, () => {
   const history = createMemoryHistory();

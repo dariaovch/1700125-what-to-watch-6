@@ -2,11 +2,11 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
-import MovieCard from 'src/components/Pages/Movie/MovieCard/MovieCard';
-import Footer from 'src/components/Layout/Footer/Footer';
-import NotFound from 'src/components/Pages/NotFound/NotFound';
-import MoreLikeThis from 'src/components/Pages/Movie/MoreLikeThis/MoreLikeThis';
-import {getCurrentMovieData} from 'src/store/actions/apiActions';
+import {getCurrentMovieData} from 'src/store/actions/api-actions';
+import MovieCard from 'src/components/pages/movie/movie-card/movie-card';
+import Footer from 'src/components/layout/footer/footer';
+import NotFound from 'src/components/pages/not-found/not-found';
+import MoreLikeThis from 'src/components/pages/movie/more-like-this/more-like-this';
 
 function Movie() {
   const {

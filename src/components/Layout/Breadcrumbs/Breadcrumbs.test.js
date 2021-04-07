@@ -2,7 +2,7 @@ import React from 'react';
 import {Router} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
-import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from 'src/components/layout/breadcrumbs/breadcrumbs';
 
 let history;
 let movie;

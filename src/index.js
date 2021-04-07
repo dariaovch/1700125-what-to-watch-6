@@ -4,14 +4,14 @@ import {configureStore} from '@reduxjs/toolkit';
 import {createAPI} from 'src/utils/api';
 import {Provider} from 'react-redux';
 import {Router as BrowserRouter} from 'react-router-dom';
-import App from 'src/components/App/App.js';
-import rootReducer from 'src/store/reducers/rootReducer';
-import {NameSpace} from 'src/store/reducers/rootReducer';
+import App from 'src/components/app/app';
+import rootReducer from 'src/store/reducers/root-reducer';
+import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
-import {checkAuth} from 'src/store/actions/apiActions';
+import {checkAuth} from 'src/store/actions/api-actions';
 import {redirect} from 'src/middlewares/redirect';
-import {requireAuth} from 'src/store/actions/userActions';
-import browserHistory from 'src/utils/browserHistory';
+import {requireAuth} from 'src/store/actions/user-actions';
+import browserHistory from 'src/utils/browser-history';
 
 const api = createAPI(
     () => store.dispatch(requireAuth(AuthStatus.NO_AUTH))

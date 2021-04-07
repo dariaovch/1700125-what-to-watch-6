@@ -1,44 +1,6 @@
-export const videoDelayTime = 1000;
+export const VIDEO_DELAY_TIME = 1000;
 
-export const cardsAmount = 8;
-
-export const addToFavoriteCode = 1;
-export const removeFromFavoriteCode = 0;
-
-export const genres = [
-  {
-    id: `00`,
-    title: `All genres`,
-  },
-  {
-    id: `01`,
-    title: `Crime`,
-  },
-  {
-    id: `02`,
-    title: `Action`,
-  },
-  {
-    id: `03`,
-    title: `Drama`,
-  },
-  {
-    id: `04`,
-    title: `Adventure`,
-  },
-  {
-    id: `05`,
-    title: `Comedy`,
-  },
-  {
-    id: `06`,
-    title: `Fantasy`,
-  },
-  {
-    id: `07`,
-    title: `Thriller`,
-  },
-];
+export const CARDS_AMOUNT = 8;
 
 export const stars = [
   {

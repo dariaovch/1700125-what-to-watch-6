@@ -1,5 +1,5 @@
 import {user} from 'src/store/reducers/user/user';
-import {ActionType} from 'src/store/actions/actionType';
+import {ActionType} from 'src/store/actions/action-type';
 import {AuthStatus} from 'src/store/auth';
 
 

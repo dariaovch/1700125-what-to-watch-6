@@ -4,8 +4,8 @@ import {useLocation, Link} from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
-import Logo from 'src/components/Layout/Logo/Logo';
-import Breadcrumbs from 'src/components/Layout/Breadcrumbs/Breadcrumbs';
+import Logo from 'src/components/layout/logo/logo';
+import Breadcrumbs from 'src/components/layout/breadcrumbs/breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
 
 function Header(props) {

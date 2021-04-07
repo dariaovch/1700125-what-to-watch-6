@@ -3,7 +3,7 @@ import {AuthStatus} from 'src/store/auth';
 import {
   requireAuth,
   getUserData,
-} from 'src/store/actions/userActions';
+} from 'src/store/actions/user-actions';
 
 const initialState = {
   authStatus: AuthStatus.NO_AUTH,
