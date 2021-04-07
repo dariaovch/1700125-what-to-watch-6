@@ -5,6 +5,7 @@ import {
   fetchMovies,
   checkAuth,
   login,
+  logout,
   getCurrentUser,
   getCurrentMovieData,
   getComments,
@@ -76,6 +77,34 @@ describe(`Async api actions should work correctly`, () => {
        expect(dispatch).toHaveBeenNthCalledWith(2, {
          type: ActionType.REQUIRE_AUTH,
          payload: AuthStatus.AUTH,
+       });
+       expect(dispatch).toHaveBeenNthCalledWith(3, {
+         type: ActionType.REDIRECT_TO_ROUTE,
+         payload: `/`,
+       });
+     });
+  });
+
+
+  it(`Logout GET request to /logout work correctly`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const logoutLoader = logout();
+
+    apiMock
+      .onGet(`/logout`)
+      .reply(200, [{fake: true}]);
+
+    return logoutLoader(dispatch, () => {}, api)
+     .then(() => {
+       expect(dispatch).toHaveBeenCalledTimes(3);
+       expect(dispatch).toHaveBeenNthCalledWith(1, {
+         type: ActionType.REQUIRE_AUTH,
+         payload: AuthStatus.NO_AUTH,
+       });
+       expect(dispatch).toHaveBeenNthCalledWith(2, {
+         type: ActionType.GET_USER_DATA,
+         payload: null,
        });
        expect(dispatch).toHaveBeenNthCalledWith(3, {
          type: ActionType.REDIRECT_TO_ROUTE,

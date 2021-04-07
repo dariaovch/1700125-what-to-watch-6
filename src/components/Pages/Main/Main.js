@@ -48,7 +48,7 @@ function Main({movies}) {
     }
   }, [isDataLoaded]);
 
-  if (!isDataLoaded && !promoMovie) {
+  if (!isDataLoaded || !promoMovie) {
     return (
       <Preloader />
     );
@@ -67,7 +67,7 @@ function Main({movies}) {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header theme="movie" email={`` || (userData && userData.email)} />
+        <Header theme="movie" />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

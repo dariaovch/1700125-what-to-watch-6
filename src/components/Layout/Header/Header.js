@@ -3,7 +3,8 @@ import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout} from 'src/store/actions/api-actions';
 import Logo from 'src/components/layout/logo/logo';
 import Breadcrumbs from 'src/components/layout/breadcrumbs/breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
@@ -15,6 +16,8 @@ function Header(props) {
 
   const location = useLocation();
 
+  const dispatch = useDispatch();
+
   return (
     <header className={cn(`page-header`, {'movie-card__head': theme === `movie`}, {'user-page__head': theme === `user`})}>
       <Logo />
@@ -24,10 +27,10 @@ function Header(props) {
       {location.pathname === `/login` && <h1 className="page-title user-page__title">Sign in</h1>}
       {location.pathname === `/mylist` && <h1 className="page-title user-page__title">My list</h1>}
 
-      {authStatus === AuthStatus.AUTH &&
+      {(authStatus === AuthStatus.AUTH && userData) &&
         <div className="user-block">
           <p className="user-block__email">{userData.email}</p>
-          <div className="user-block__avatar">
+          <div className="user-block__avatar" onClick={() => dispatch(logout())}>
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>
         </div>}

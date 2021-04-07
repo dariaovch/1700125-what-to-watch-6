@@ -21,6 +21,13 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(redirectToRoute(`/`)))
 );
 
+export const logout = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(requireAuth(AuthStatus.NO_AUTH)))
+    .then(() => dispatch(getUserData(null)))
+    .then(() => dispatch(redirectToRoute(`/`)))
+);
+
 export const getCurrentUser = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(({data}) => dispatch(getUserData(data)))
