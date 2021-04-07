@@ -18,7 +18,7 @@ function Card({item, onOver, onOut, activeMovie, onCardClick}) {
     <article className="small-movie-card catalog__movies-card" data-testid="card" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={() => onCardClick(item.id)}>
       <div className="small-movie-card__image">
         {!activeMovie && <img src={item.previewImage} alt={item.name} width="280" height="175" />}
-        {activeMovie && <PlayerVideo ref={activeVideoRef} videoSrc={item.videoLink} bgImage={item.bgImage} isMuted={true} />}
+        {activeMovie && <PlayerVideo ref={activeVideoRef} videoSrc={`` || item.videoLink} bgImage={item.bgImage} isMuted={true} />}
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${item.id}`}>{item.name}</Link>
