@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from 'src/store/actions/api-actions';
 import Logo from 'src/components/page-layout/wtw-logo/wtw-logo';
-import Breadcrumbs from 'src/components/page-layout/header-breadcrumbs/header-breadcrumbs';
+import Breadcrumbs from 'src/components/page-layout/breadcrumbs/breadcrumbs';
 import {AuthStatus} from 'src/store/auth';
 
 function Header(props) {

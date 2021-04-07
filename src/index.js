@@ -4,7 +4,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {createAPI} from 'src/utils/api';
 import {Provider} from 'react-redux';
 import {Router as BrowserRouter} from 'react-router-dom';
-import App from 'src/components/myapplication/myapplication';
+import App from 'src/components/app/app';
 import rootReducer from 'src/store/reducers/root-reducer';
 import {NameSpace} from 'src/store/reducers/root-reducer';
 import {AuthStatus} from 'src/store/auth';
