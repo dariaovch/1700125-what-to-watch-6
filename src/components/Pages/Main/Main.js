@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -62,7 +61,7 @@ function Main({movies}) {
 
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={`` || (promoMovie && promoMovie.background_image)} alt={`` || (promoMovie && promoMovie.name)} />
+          <img src={`` || (promoMovie && promoMovie.bgImage)} alt={`` || (promoMovie && promoMovie.name)} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -73,7 +72,7 @@ function Main({movies}) {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <Link to={`/films/${promoMovie.id}`}>
-                <img src={`` || (promoMovie && promoMovie.poster_image)} alt={`` || (promoMovie && promoMovie.name)} width="218" height="327" />
+                <img src={`` || (promoMovie && promoMovie.posterImage)} alt={`` || (promoMovie && promoMovie.name)} width="218" height="327" />
               </Link>
             </div>
 
@@ -117,22 +116,22 @@ function Main({movies}) {
 Main.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
+    posterImage: PropTypes.string,
+    previewImage: PropTypes.string,
+    bgImage: PropTypes.string,
+    bgColor: PropTypes.string,
     description: PropTypes.string,
     rating: PropTypes.number,
-    scores_count: PropTypes.number,
+    scoresCount: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    run_time: PropTypes.number,
+    runTime: PropTypes.number,
     genre: PropTypes.string,
     released: PropTypes.number,
     id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    videoLink: PropTypes.string,
+    previewVideoLink: PropTypes.string,
   })),
   isDataLoaded: PropTypes.bool,
   onLoadMovies: PropTypes.func,

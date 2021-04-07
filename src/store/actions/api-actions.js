@@ -2,10 +2,14 @@ import {AuthStatus} from 'src/store/auth';
 import {redirectToRoute} from 'src/store/actions/app-actions';
 import {getMovieData, loadMovies, getMovieReviews, getFavoriteMovies, getPromoMovie} from 'src/store/actions/data-actions';
 import {getUserData, requireAuth} from 'src/store/actions/user-actions';
+import {formatMovieObjectKeys} from 'src/utils/format-movie-object-keys';
 
 export const fetchMovies = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-    .then(({data}) => dispatch(loadMovies(data)))
+    .then(({data}) => {
+      const movies = data.map((item) => formatMovieObjectKeys(item));
+      dispatch(loadMovies(movies));
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -35,7 +39,10 @@ export const getCurrentUser = () => (dispatch, _getState, api) => (
 
 export const getCurrentMovieData = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
-    .then(({data}) => dispatch(getMovieData(data)))
+    .then(({data}) => {
+      const movie = formatMovieObjectKeys(data);
+      dispatch(getMovieData(movie));
+    })
     .then(() => dispatch(redirectToRoute(`/films/${movieId}`)))
 );
 
@@ -52,7 +59,10 @@ export const postComment = (movieId, {rating, comment}) => (dispatch, _getState,
 
 export const getMoviesToWatch = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
-    .then(({data}) => dispatch(getFavoriteMovies(data)))
+    .then(({data}) => {
+      const movies = data.map((item) => formatMovieObjectKeys(item));
+      dispatch(getFavoriteMovies(movies));
+    })
 );
 
 export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getState, api) => (
@@ -62,6 +72,9 @@ export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getStat
 
 export const getPromo = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
-    .then(({data}) => dispatch(getPromoMovie(data)))
+    .then(({data}) => {
+      const movie = formatMovieObjectKeys(data);
+      dispatch(getPromoMovie(movie));
+    })
 );
 

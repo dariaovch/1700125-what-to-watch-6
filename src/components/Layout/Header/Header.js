@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 import cn from 'classnames';
@@ -47,22 +46,22 @@ Header.propTypes = {
   hasBreadcrumbs: PropTypes.bool,
   movie: PropTypes.shape({
     name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
+    posterImage: PropTypes.string,
+    previewImage: PropTypes.string,
+    bgImage: PropTypes.string,
+    bgColor: PropTypes.string,
     description: PropTypes.string,
     rating: PropTypes.number,
-    scores_count: PropTypes.number,
+    scoresCount: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    run_time: PropTypes.number,
+    runTime: PropTypes.number,
     genre: PropTypes.string,
     released: PropTypes.number,
     id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    videoLink: PropTypes.string,
+    previewVideoLink: PropTypes.string,
   }),
   authStatus: PropTypes.string,
   email: PropTypes.string,

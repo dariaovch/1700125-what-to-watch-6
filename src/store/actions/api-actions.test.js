@@ -26,14 +26,58 @@ describe(`Async api actions should work correctly`, () => {
 
     apiMock
       .onGet(`/films`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [{
+        "name": `Macbeth`,
+        "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+        "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+        "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+        "background_color": `#F1E9CE`,
+        "description": `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+        "rating": 3.3,
+        "scores_count": 48798,
+        "director": `Justin Kurzel`,
+        "starring": [
+          `Michael Fassbender`,
+          `Marion Cotillard`,
+          `Jack Madigan`
+        ],
+        "run_time": 113,
+        "genre": `Drama`,
+        "released": 2015,
+        "id": 1,
+        "is_favorite": true,
+        "video_link": `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+        "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      }]);
 
     return moviesLoader(dispatch, () => {}, api)
      .then(() => {
        expect(dispatch).toHaveBeenCalledTimes(1);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.LOAD_MOVIES,
-         payload: [{fake: true}],
+         payload: [{
+           name: `Macbeth`,
+           posterImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+           previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+           bgImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+           bgColor: `#F1E9CE`,
+           description: `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+           rating: 3.3,
+           scoresCount: 48798,
+           director: `Justin Kurzel`,
+           starring: [
+             `Michael Fassbender`,
+             `Marion Cotillard`,
+             `Jack Madigan`
+           ],
+           runTime: 113,
+           genre: `Drama`,
+           released: 2015,
+           id: 1,
+           isFavorite: true,
+           videoLink: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+           previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+         }],
        });
      });
   });
@@ -140,14 +184,58 @@ describe(`Async api actions should work correctly`, () => {
 
     apiMock
       .onGet(`/films/${mockMovieId}`)
-      .reply(200, [{fake: true}]);
+      .reply(200, {
+        "name": `Macbeth`,
+        "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+        "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+        "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+        "background_color": `#F1E9CE`,
+        "description": `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+        "rating": 3.3,
+        "scores_count": 48798,
+        "director": `Justin Kurzel`,
+        "starring": [
+          `Michael Fassbender`,
+          `Marion Cotillard`,
+          `Jack Madigan`
+        ],
+        "run_time": 113,
+        "genre": `Drama`,
+        "released": 2015,
+        "id": 1,
+        "is_favorite": true,
+        "video_link": `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+        "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      });
 
     return currentMovieLoader(dispatch, () => {}, api)
      .then(() => {
        expect(dispatch).toHaveBeenCalledTimes(2);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.GET_MOVIE_DATA,
-         payload: [{fake: true}],
+         payload: {
+           name: `Macbeth`,
+           posterImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+           previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+           bgImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+           bgColor: `#F1E9CE`,
+           description: `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+           rating: 3.3,
+           scoresCount: 48798,
+           director: `Justin Kurzel`,
+           starring: [
+             `Michael Fassbender`,
+             `Marion Cotillard`,
+             `Jack Madigan`
+           ],
+           runTime: 113,
+           genre: `Drama`,
+           released: 2015,
+           id: 1,
+           isFavorite: true,
+           videoLink: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+           previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+         },
        });
        expect(dispatch).toHaveBeenNthCalledWith(2, {
          type: ActionType.REDIRECT_TO_ROUTE,
@@ -214,14 +302,58 @@ describe(`Async api actions should work correctly`, () => {
 
     apiMock
       .onGet(`/favorite`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [{
+        "name": `Macbeth`,
+        "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+        "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+        "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+        "background_color": `#F1E9CE`,
+        "description": `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+        "rating": 3.3,
+        "scores_count": 48798,
+        "director": `Justin Kurzel`,
+        "starring": [
+          `Michael Fassbender`,
+          `Marion Cotillard`,
+          `Jack Madigan`
+        ],
+        "run_time": 113,
+        "genre": `Drama`,
+        "released": 2015,
+        "id": 1,
+        "is_favorite": true,
+        "video_link": `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+        "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      }]);
 
     return favoriteMoviesLoader(dispatch, () => {}, api)
      .then(() => {
        expect(dispatch).toHaveBeenCalledTimes(1);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.GET_FAVORITE_MOVIES,
-         payload: [{fake: true}],
+         payload: [{
+           name: `Macbeth`,
+           posterImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+           previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+           bgImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+           bgColor: `#F1E9CE`,
+           description: `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+           rating: 3.3,
+           scoresCount: 48798,
+           director: `Justin Kurzel`,
+           starring: [
+             `Michael Fassbender`,
+             `Marion Cotillard`,
+             `Jack Madigan`
+           ],
+           runTime: 113,
+           genre: `Drama`,
+           released: 2015,
+           id: 1,
+           isFavorite: true,
+           videoLink: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+           previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+         }],
        });
      });
   });
@@ -254,14 +386,58 @@ describe(`Async api actions should work correctly`, () => {
 
     apiMock
       .onGet(`/films/promo`)
-      .reply(200, [{fake: true}]);
+      .reply(200, {
+        "name": `Macbeth`,
+        "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+        "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+        "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+        "background_color": `#F1E9CE`,
+        "description": `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+        "rating": 3.3,
+        "scores_count": 48798,
+        "director": `Justin Kurzel`,
+        "starring": [
+          `Michael Fassbender`,
+          `Marion Cotillard`,
+          `Jack Madigan`
+        ],
+        "run_time": 113,
+        "genre": `Drama`,
+        "released": 2015,
+        "id": 1,
+        "is_favorite": true,
+        "video_link": `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+        "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      });
 
     return promoMovieLoader(dispatch, () => {}, api)
      .then(() => {
        expect(dispatch).toHaveBeenCalledTimes(1);
        expect(dispatch).toHaveBeenNthCalledWith(1, {
          type: ActionType.GET_PROMO_MOVIE,
-         payload: [{fake: true}],
+         payload: {
+           name: `Macbeth`,
+           posterImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Macbeth.jpg`,
+           previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/macbeth.jpg`,
+           bgImage: `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Macbeth.jpg`,
+           bgColor: `#F1E9CE`,
+           description: `Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.`,
+           rating: 3.3,
+           scoresCount: 48798,
+           director: `Justin Kurzel`,
+           starring: [
+             `Michael Fassbender`,
+             `Marion Cotillard`,
+             `Jack Madigan`
+           ],
+           runTime: 113,
+           genre: `Drama`,
+           released: 2015,
+           id: 1,
+           isFavorite: true,
+           videoLink: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+           previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+         },
        });
      });
   });

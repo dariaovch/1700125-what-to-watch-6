@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,7 +17,7 @@ function MovieCard({movie, onPlayClick}) {
 
   const id = movie.id;
 
-  const statusCode = !movie.is_favorite ? 1 : 0;
+  const statusCode = !movie.isFavorite ? 1 : 0;
 
   const dispatch = useDispatch();
   const handleMyListButtonClick = () => {
@@ -30,7 +29,7 @@ function MovieCard({movie, onPlayClick}) {
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={movie.background_image} alt={movie.name} />
+          <img src={movie.bgImage} alt={movie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -62,7 +61,7 @@ function MovieCard({movie, onPlayClick}) {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={movie.poster_image} alt={movie.name} width="218" height="327" />
+            <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
           </div>
 
           <Tabs>
@@ -87,22 +86,22 @@ function MovieCard({movie, onPlayClick}) {
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
+    posterImage: PropTypes.string,
+    previewImage: PropTypes.string,
+    bgImage: PropTypes.string,
+    bgColor: PropTypes.string,
     description: PropTypes.string,
     rating: PropTypes.number,
-    scores_count: PropTypes.number,
+    scoresCount: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    run_time: PropTypes.number,
+    runTime: PropTypes.number,
     genre: PropTypes.string,
     released: PropTypes.number,
     id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    videoLink: PropTypes.string,
+    previewVideoLink: PropTypes.string,
   }),
   authStatus: PropTypes.string,
   onPlayClick: PropTypes.func,

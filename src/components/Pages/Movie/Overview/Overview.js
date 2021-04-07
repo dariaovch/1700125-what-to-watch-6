@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {formatRating} from 'src/utils/format-rating';
@@ -11,7 +10,7 @@ function Overview({movie}) {
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{formatRating(movie.rating)}</span>
-          <span className="movie-rating__count">{movie.scores_count}</span>
+          <span className="movie-rating__count">{movie.scoresCount}</span>
         </p>
       </div>
 
@@ -31,22 +30,22 @@ function Overview({movie}) {
 Overview.propTypes = {
   movie: PropTypes.shape({
     name: PropTypes.string,
-    poster_image: PropTypes.string,
-    preview_image: PropTypes.string,
-    background_image: PropTypes.string,
-    background_color: PropTypes.string,
+    posterImage: PropTypes.string,
+    previewImage: PropTypes.string,
+    bgImage: PropTypes.string,
+    bgColor: PropTypes.string,
     description: PropTypes.string,
     rating: PropTypes.number,
-    scores_count: PropTypes.number,
+    scoresCount: PropTypes.number,
     director: PropTypes.string,
     starring: PropTypes.array,
-    run_time: PropTypes.number,
+    runTime: PropTypes.number,
     genre: PropTypes.string,
     released: PropTypes.number,
     id: PropTypes.number,
-    is_favorite: PropTypes.bool,
-    video_link: PropTypes.string,
-    preview_video_link: PropTypes.string,
+    isFavorite: PropTypes.bool,
+    videoLink: PropTypes.string,
+    previewVideoLink: PropTypes.string,
   }),
 };
 

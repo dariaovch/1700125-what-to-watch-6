@@ -52,8 +52,8 @@ function Player() {
 
         <PlayerVideo
           ref={videoPlayerRef}
-          videoSrc={currentMovie.video_link}
-          bgImage={currentMovie.background_image}
+          videoSrc={currentMovie.videoLink}
+          bgImage={currentMovie.bgImage}
           handleLoadedMetadata={handleVideoMetadataLoaded}
           handleTimeUpdate={handleTimeUpdate}
           isMuted={false}

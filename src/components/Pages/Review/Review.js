@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
@@ -30,7 +29,7 @@ function AddReview() {
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src={currentMovie.background_image} alt={currentMovie.name} />
+            <img src={currentMovie.bgImage} alt={currentMovie.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -38,7 +37,7 @@ function AddReview() {
           <Header hasBreadcrumbs={true} movie={currentMovie} />
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src={currentMovie.poster_image} alt={currentMovie.name} width="218" height="327" />
+            <img src={currentMovie.posterImage} alt={currentMovie.name} width="218" height="327" />
           </div>
         </div>
 
