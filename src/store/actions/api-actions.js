@@ -68,6 +68,7 @@ export const getMoviesToWatch = () => (dispatch, _getState, api) => (
 export const changeFavoriteStatus = (movieId, statusCode) => (dispatch, _getState, api) => (
   api.post(`/favorite/${movieId}/${statusCode}`)
     .then(() => dispatch(redirectToRoute(`/mylist`)))
+    .catch(() => dispatch(redirectToRoute(`/login`)))
 );
 
 export const getPromo = () => (dispatch, _getState, api) => (

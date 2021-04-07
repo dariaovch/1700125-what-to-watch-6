@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect, useSelector, useDispatch} from 'react-redux';
-import {fetchMovies, getCurrentUser, getPromo} from 'src/store/actions/api-actions';
+import {fetchMovies, getCurrentUser, getPromo, changeFavoriteStatus, getMoviesToWatch} from 'src/store/actions/api-actions';
 import Header from 'src/components/page-layout/page-header/page-header';
 import Footer from 'src/components/page-layout/page-footer/page-footer';
 import MoviesList from 'src/components/movies-catalog/movies-list/movies-list';
@@ -26,6 +26,11 @@ function Main({movies}) {
 
   const handleFilterListByGenre = (item) => {
     dispatch(filterListByGenre(item));
+  };
+
+  const handleMyListButtonClick = (id, statusCode) => {
+    dispatch(changeFavoriteStatus(id, statusCode));
+    dispatch(getMoviesToWatch());
   };
 
   React.useEffect(() => {
@@ -56,7 +61,6 @@ function Main({movies}) {
   return (
     <>
       <div className="visually-hidden">
-        <img src='src/images/controllersImage.svg' />
       </div>
 
       <section className="movie-card">
@@ -91,7 +95,7 @@ function Main({movies}) {
                   <span>Play</span>
                 </Link>
 
-                <MyListButton movie={promoMovie} />
+                <MyListButton movie={promoMovie} onMyListClick={handleMyListButtonClick} />
               </div>
             </div>
           </div>

@@ -1,23 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {postComment} from 'src/store/actions/api-actions';
 import useFormWithValidation from 'src/hooks/use-form-with-validation';
 import Stars from 'src/components/pages/add-review/review-form/rating-stars/rating-stars';
 
 
-function ReviewForm({stars, onReviewFormSubmit}) {
+function ReviewForm({stars}) {
   const {values, handleChange, errors, isFormValid, resetForm} = useFormWithValidation();
   const {id} = useParams();
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onReviewFormSubmit(id, {
+    dispatch(postComment(id, {
       rating: values.rating,
       comment: values.comment,
-    });
+    }));
 
     resetForm();
   };
@@ -37,6 +39,7 @@ function ReviewForm({stars, onReviewFormSubmit}) {
           placeholder="Review text"
           minLength="50"
           maxLength="400"
+          value={`` || values.comment}
           onChange={handleChange}
         ></textarea>
         {errors.comment && <span className="sign-in__error-message">{errors.comment}</span>}
@@ -57,11 +60,4 @@ ReviewForm.propTypes = {
   onReviewFormSubmit: PropTypes.func,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onReviewFormSubmit(id, data) {
-    dispatch(postComment(id, data));
-  },
-});
-
-export {ReviewForm};
-export default connect(null, mapDispatchToProps)(ReviewForm);
+export default ReviewForm;

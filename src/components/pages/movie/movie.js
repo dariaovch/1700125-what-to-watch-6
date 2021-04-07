@@ -35,7 +35,6 @@ function Movie() {
   return (
     <>
       <div className="visually-hidden">
-        <img src='src/images/controllersImage.svg' />
       </div>
 
       <MovieCard movie={currentMovie} onPlayClick={handlePlayClick} />

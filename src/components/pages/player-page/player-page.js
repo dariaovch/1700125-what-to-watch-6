@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
@@ -45,7 +44,6 @@ function Player() {
   return (
     <>
       <div className="visually-hidden">
-        <img src='src/images/controllersImage.svg' />
       </div>
 
       <div className="player">
