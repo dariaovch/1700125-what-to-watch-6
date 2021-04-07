@@ -4,11 +4,7 @@ exports[`SignIn component should render correctly 1`] = `
 <div>
   <div
     class="visually-hidden"
-  >
-    <img
-      src="src/images/controllersImage.svg"
-    />
-  </div>
+  />
   <div
     class="user-page"
   >
