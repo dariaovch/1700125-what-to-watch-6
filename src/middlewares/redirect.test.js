@@ -1,5 +1,5 @@
 import {redirect} from 'src/middlewares/redirect';
-import {redirectToRoute} from 'src/store/actions/appActions';
+import {redirectToRoute} from 'src/store/actions/app-actions';
 
 const mockRedux = () => {
   const store = {
@@ -19,7 +19,7 @@ const fakeHistory = {
   }
 };
 
-jest.mock(`src/utils/browserHistory`, () => fakeHistory);
+jest.mock(`src/utils/browser-history`, () => fakeHistory);
 
 describe(`Redirect middleware works correctly`, () => {
   it(`Action passes to next middleware`, () => {

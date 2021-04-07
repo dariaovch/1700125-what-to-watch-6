@@ -1,5 +1,5 @@
 import {data} from 'src/store/reducers/data/data';
-import {ActionType} from 'src/store/actions/actionType';
+import {ActionType} from 'src/store/actions/action-type';
 import {mockMovies} from 'src/mocks/films';
 import {mockReviews} from 'src/mocks/reviews';
 

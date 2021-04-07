@@ -5,8 +5,8 @@ import {
   getMovieReviews,
   getFavoriteMovies,
   getPromoMovie,
-} from 'src/store/actions/dataActions';
-import {filterListByGenre} from 'src/store/actions/listActions';
+} from 'src/store/actions/data-actions';
+import {filterListByGenre} from 'src/store/actions/list-actions';
 
 
 const initialState = {
