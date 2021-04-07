@@ -48,7 +48,7 @@ function MovieCard({movie, onPlayClick}) {
                 <span>Play</span>
               </button>
               <MyListButton movie={movie} onMyListClick={handleMyListButtonClick} />
-              {authStatus === AuthStatus.AUTH && <Link to={`/movies/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
+              {authStatus === AuthStatus.AUTH && <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>}
             </div>
           </div>
         </div>

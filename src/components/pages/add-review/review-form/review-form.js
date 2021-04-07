@@ -39,6 +39,7 @@ function ReviewForm({stars}) {
           placeholder="Review text"
           minLength="50"
           maxLength="400"
+          value={`` || values.comment}
           onChange={handleChange}
         ></textarea>
         {errors.comment && <span className="sign-in__error-message">{errors.comment}</span>}
