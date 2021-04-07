@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Main from 'src/components/pages/main/main';
-import SignIn from 'src/components/pages/sign-in/sign-in';
-import MyList from 'src/components/pages/my-list/my-list';
-import Movie from 'src/components/pages/movie/movie';
-import Review from 'src/components/pages/review/review';
-import Player from 'src/components/pages/player/player';
-import NotFound from 'src/components/pages/not-found/not-found';
+import Main from 'src/components/screens/main-page/main-page';
+import SignIn from 'src/components/screens/sign-in/sign-in';
+import MyList from 'src/components/screens/my-list/my-list';
+import Movie from 'src/components/screens/film/film';
+import Review from 'src/components/screens/add-review/add-review';
+import Player from 'src/components/screens/player-page/player-page';
+import NotFound from 'src/components/screens/not-found/not-found';
 import PrivateRoute from 'src/hocs/private-route/private-route';
 
 function App() {
