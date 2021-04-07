@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function PlayerControls({onPlayClick, isPlaying, isLoaded, title, onFullscreenClick}) {
   return (
     <div className="player__controls-row">
-      <button type="button" className="player__play" onClick={onPlayClick}>
+      <button type="button" className="player__play" data-testid="play-button" role="play-button" onClick={onPlayClick}>
         {!isPlaying && <>
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s"></use>

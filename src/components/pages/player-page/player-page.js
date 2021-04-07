@@ -45,7 +45,6 @@ function Player() {
   return (
     <>
       <div className="visually-hidden">
-        <img src='src/images/controllersImage.svg' />
       </div>
 
       <div className="player">

@@ -49,7 +49,7 @@ describe(`MyListButton component works correctly`, () => {
           <Router history={history}>
             <Switch>
               <Route exact path={`/films/${movie.id}`}>
-                <MyListButton onMyListClick={myListBtnClickHandler} />
+                <MyListButton movie={movie} onMyListClick={myListBtnClickHandler} />
               </Route>
               <Route exact path="/mylist">
                 <h1>Mock My List Screen</h1>
